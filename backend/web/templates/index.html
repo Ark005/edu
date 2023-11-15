@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p></p>
+<center>
+  <div>
+    {% for century in centuries %}
+
+    <a style="color:rgb(93, 88, 88)" href="/century/{{ century.0}}">{{century.1}}</a>
+    {% endfor %}
+  </div>
+</center>
+<p></p>
+<div>
+
+  <div class="container">
+    <div class="row">
+
+
+      {% for category in categories %}
+      {% if category.main_image%}
+
+
+
+
+      <div class="card" style="width: 25rem;">
+        <p></p>
+        <div class="col-md-3 col-lg-12   col-sm-6">
+          <div class="row">
+            <div class="card-img">
+              <center>
+                <a href="{{category.get_absolute_url}}"><img src="{{category.main_image.url}}" width="210" height="100"
+                    alt=""></a></p>
+              </center>
+              <h7 class="card-title"></h7>
+              <p class="card-text"></p>
+              <p><a href="{{ category.get_absolute_url }}"><center><button type="button" class="btn btn-outline-secondary">{{category.name }}</button></a></p></center>
+              <center> {{ category.about_text }}</center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endblock %}

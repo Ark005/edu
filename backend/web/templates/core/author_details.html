@@ -1,0 +1,127 @@
+{%extends "base.html"%}
+{% block content %}
+{% load static %}
+
+<script src="{%static 'core/player.js'%}"></script>
+<div class="container my-5">
+    <div class="card">
+        <div class="row audio-root">
+            <aside class="col-lg-12  border-right">
+                <article class="gallery-wrap">
+                    <div class="img-big-wrap">
+                        <img align="center" src="{{author.image.url}}" class="img-fluid" style="width: 250px;px" >  
+                    </div>
+                    </a>
+                    <p></p>
+                    <div>
+                        {{author.name}}
+                    </div>
+                    <p></p>
+                    {{author.text_preview}}
+                    {# {{ author.songs.all }} #}
+                    <div>
+                        {% for century in centuries %}
+                        <a href="/antogonist/{{ antogonist.0}}">{{antogonist.1}}</a>
+                        {% endfor %}
+                    </div>
+                    <!--
+<h6>идеологические противники:</h6>
+{% for antagonist in author.antagonist.all  %}
+ <a href="{{antogonist.get_absolute_url}}" >{{ antagonist }} </a>
+{% endfor %}
+<h6>учителя:</h6>
+{% for teacher in author.teacher.all %}
+<a href="{{teacher.get_absolute_url}}">{{ teacher}} </a>
+{% endfor %}
+<h6>ученики:</h6>
+{% for student in author.student.all %}
+<a href="{{teacher.get_absolute_url}}">{{student}} </a>
+{% endfor %}
+-->         
+                    {% for song in author.songs.all %}
+                    <div class="audio {%if forloop.counter != 1 %}hidden{%endif%}" id="id_{{ song.id }}">
+                        <div>
+                            <br>
+                            {{ song.name }}
+                            {{ song.singer }}
+                            {{ song.text }}
+                            {{ song.about}}
+
+                        </div>
+                        <div class="main-song">
+                            {% if song.file %}
+                            <audio controls src="{{ song.file.url }}">
+                            </audio>
+                            {% endif %}
+                        </div>
+                        <div class="analysis">
+                            {% if song.analysis %}
+                            <audio controls src="{{ song.analysis.url }}">
+                            </audio>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <select class="select-audio" name="audio" id="id_audio">
+                        {% for song in author.songs.all %}
+                        {% if song.file %}
+                        <option value="{{ song.id }}">
+                            {{ song.name }}
+                            {{song.text}}
+                        </option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                    {% if author.website %}
+                    <!--
+                <body>
+                    <form>
+                        <input type="button" onclick="window.location.href = '{{author.website}}';"
+                            value="слушать" />
+                    </form>
+                </body>
+             -->
+
+                    <html>
+                    <head>
+                        <title>Заголовок документа</title>
+                        <style>
+                            .button {
+                                background-color: #f1e8c4;
+                                border: none;
+                                color: rgb(183, 175, 175);
+                                padding: 4px 105px;
+                                text-align: center;
+                                text-decoration: none;
+                                display: inline-block;
+                                font-size: 15px;
+                                margin: 4px 2px;
+                                cursor: pointer;
+                            }
+                        </style>
+                    </head>
+                    <body>
+
+                        <div id="ytplayer"></div>
+                        <iframe width="560" height="315" src="{{author.website}}" 
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+
+                    <!--    <a href="{{author.website}}" class="button">перейти на youtube</a> -->
+                    </body>
+                    </html>
+                    <div>
+                        {{author.text}}
+                    </div>
+
+                    {% for picture in author.pictures.all %}
+                    <div class="main-picture">
+                        {% if picture.file %}
+                       <img src="{{ picture.file.url }}" >
+                        {% endif %}
+                    </div>
+                    {{picture.text}}
+                    {% endfor %}
+                    {% endif %}
+                    {% endblock %}

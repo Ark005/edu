@@ -1,0 +1,37 @@
+version: '2.2'
+services: 
+  edu: 
+    tty: true
+    env_file:
+      - .env
+    networks:
+      - internal
+    build: ./backend
+    command: python manage.py runserver 0:8005
+    container_name: edu
+    depends_on:
+      - db
+    ports:
+      - 8005:8005
+    volumes:
+      - ./backend/web/:/home/edu
+  db:
+    networks:
+      - internal
+    image: postgres:13-buster
+    ports:
+       - 5432:5432
+    volumes:
+   
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=edu
+      - POSTGRES_PASSWORD=edu
+      - POSTGRES_DB=edu
+    container_name: db
+volumes:
+  postgres_data:
+
+networks:
+  internal:
+    driver: bridge
