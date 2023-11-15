@@ -36,6 +36,16 @@ author_type_choices = [
             [TypeChoices.SPIRITUAL,'Духоносный'],
             ]
 
+class TypeCenturyChoices:
+        SILVER='silver'
+        GOLD='gold'
+        
+century_type_choices = [
+            [TypeCenturyChoices.SILVER,'Серебряный'],
+            [TypeCenturyChoices.GOLD,'Золотой'],
+            ]
+
+
 class Author(models.Model):
     
     name = models.CharField(
@@ -81,10 +91,12 @@ class Author(models.Model):
         null=True,
        
     )
-    silver_century = models.BooleanField(
-        default=False,
-        max_length=1,
-        verbose_name='серебряный век',
+    century_type = models.CharField(
+        choices=century_type_choices,
+        max_length=255,
+        verbose_name='группа',
+        null=True,
+        blank=True
     )
 
     image = models.ImageField(

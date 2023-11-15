@@ -21,6 +21,17 @@ class CategoryDetailView(ListView):
     def get_queryset(self):
         queryset = Author.objects.filter(type=self.category_slug).order_by('century')
         return queryset
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['object_list'] = self.split_by_century_type()
+        return context
+    def split_by_century_type(self):
+        century_types = {'gold':[],'silver':[],None:[]}
+        for author in self.get_queryset():
+            century_types[author.century_type].append(author)
+        return century_types
+    
+    
     
     
    
