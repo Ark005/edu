@@ -1,4 +1,5 @@
 from django.db import models
+
 from django.urls import reverse
 
 def get_century_choices():
@@ -91,13 +92,7 @@ class Author(models.Model):
         null=True,
        
     )
-    century_type = models.CharField(
-        choices=century_type_choices,
-        max_length=255,
-        verbose_name='группа',
-        null=True,
-        blank=True
-    )
+  
 
     image = models.ImageField(
         upload_to='images',
@@ -105,8 +100,9 @@ class Author(models.Model):
         blank=True
     )
 
-    century = models.IntegerField(
-        choices= get_century_choices(),
+    century = models.ForeignKey(
+        to='Century',
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,
     )

@@ -6,3 +6,4 @@ from .category import Category
 from .genre import Genre
 from .film import Film
 from .picture import Picture
+from .century import Century

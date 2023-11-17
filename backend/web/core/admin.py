@@ -4,8 +4,7 @@ from .models import Author,Singer,Song,Category,Genre,Film,Picture
 # Register your models here.
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display=('id','name','text_preview','get_type_display','century_type')
-    list_editable=['century_type']
+    list_display=('id','name','text_preview','get_type_display')
     ordering=['type']
     prepopulated_fields={"slug": ["name"]}
     list_display_links=["name"]
