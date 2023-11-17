@@ -7,12 +7,12 @@ services:
     networks:
       - internal
     build: ./backend
-    command: python manage.py runserver 0:8005
+    command: python manage.py runserver 0:8000
     container_name: edu
     depends_on:
       - db
     ports:
-      - 8005:8005
+      - 8000:8000
     volumes:
       - ./backend/web/:/home/edu
   db:
