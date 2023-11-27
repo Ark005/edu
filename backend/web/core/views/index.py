@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from ..models import Category,Author,Genre,Film
+from ..models import Category,Author,Genre,Film,Century
 from ..models.author import get_century_choices
 from django.http import HttpResponse,HttpRequest
 
@@ -10,17 +10,8 @@ def get_all_authors():
     return author_list
 
 def get_author_centuries():
-    
-    author_centuries_list = []
-    for author in get_all_authors():
-        author_centuries_list.append(author.century)
-
-    all_centuries = get_century_choices()
-    filtered_centuries = []
-    for century in all_centuries:
-        if century[0] in author_centuries_list:
-            filtered_centuries.append(century)
-    return filtered_centuries
+    centuries = Century.objects.all()
+    return centuries
 
 def index_view(request):
    

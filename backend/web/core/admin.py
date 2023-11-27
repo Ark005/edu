@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author,Singer,Song,Category,Genre,Film,Picture
+from .models import Author,Singer,Song,Category,Genre,Film,Picture,Century
 
 # Register your models here.
 @admin.register(Author)
@@ -36,3 +36,7 @@ class FilmAdmin(admin.ModelAdmin):
 class PictureAdmin(admin.ModelAdmin):
     pass
     prepopulated_fields={"slug": ["name"]}
+
+@admin.register(Century)
+class CenturyAdmin(admin.ModelAdmin):
+    prepopulated_fields={"slug": ["display_name"]}

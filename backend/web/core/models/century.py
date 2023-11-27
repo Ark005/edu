@@ -11,7 +11,6 @@ class Century(models.Model):
 
     )
 
-
     display_name=models.CharField(
         max_length=255,
         verbose_name='Век',

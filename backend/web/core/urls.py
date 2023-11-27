@@ -10,7 +10,7 @@ urlpatterns = [
 
    path('',views.index_view),
    path('category/<str:slug>',views.CategoryDetailView.as_view(),name="category_detail"),
-   path('century/<int:century>',views.CenturyDetailView.as_view(),name="century_detail"),
+   path('century/<str:slug>',views.CenturyDetailView.as_view(),name="century_detail"),
    path('<str:slug>/detail',views.author_detail_view,name="author_detail"),
    path('genre/<str:slug>/detail',views.GenreDetailView.as_view(),name="genre_detail"),
    path('genre/list',views.genre_list_view,name="genre_list"),
