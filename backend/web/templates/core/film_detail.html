@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+{% block content %}
+<p></p>
+
+<div id="ytplayer"></div>
+<iframe width="560" height="315" src="{{film.website}}" title="YouTube video player" frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen></iframe>
+
+<!--    <a href="{{author.website}}" class="button">перейти на youtube</a> -->
+</body>{%if object.image%}
+
+<!--
+<div>
+
+  <img class="" src="{{object.image.url}}" class="rounded" alt="" style="width:250px;height:300px;">
+  <h1 class="h5">{{film.name}}</h1>
+  <h1 class="h5">{{film.director}}</h1>
+
+</div>
+-->
+{%endif%}
+{%endblock%}
+
+
+<div class="container">
+  <div class="row">
+
+    {% for category in categories %}
+    {% if category.main_image%}
+
+
+
+    {% endif %}
+    {% endfor %}
+  </div>

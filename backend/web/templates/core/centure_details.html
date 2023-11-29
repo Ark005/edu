@@ -1,0 +1,10 @@
+{%extends "base.html"%}
+{% block content %}
+
+
+
+{% for antogonist  in author.antogonist.all  %}
+{{ antogonist.author }}
+{% endfor %}
+
+{%endblock%}
