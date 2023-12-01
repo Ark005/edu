@@ -5,13 +5,13 @@ from ..models import Author
 
 
 class CenturyDetailView(ListView):
-    template_name = "core/century.html"
+    template_name = "core/century_details.html"
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        self.century = kwargs.get('century')
+        self.century = kwargs.get('slug')
         return super().get(request, *args, **kwargs)
     def get_queryset(self):
-        queryset = Author.objects.filter(century=self.century)
+        queryset = Author.objects.filter(century__slug=self.century)
         return queryset
     
 
