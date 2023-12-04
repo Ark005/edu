@@ -261,7 +261,7 @@ $(function () {
 
     
 
-         <p><a style="color:rgb(229, 152, 147)" href="javascript:flipflop('animals');">{% trans 'у вас выводится иное от введенного значение тиража?' %}</a></p>             
+         <p><a style="color:rgb(229, 152, 147)" href="javascript:flipflop('animals');">{%  %}</a></p>
 
          
 <ul id="animals" style="display: none;">
@@ -271,9 +271,7 @@ $(function () {
 
 <li><div id="browse_app">
 
-  в случае, если вы ввели число не попадающие в диапазон между минимальным и макисмальным тиражом,
-    рассчет будет произведен по одной из границ.Алгоритм ориентируется на min или max тиражи, 
-    то есть автоматически увеличивает тираж до минимального, или считает не больше максимального.
+
 
 </li>
 
@@ -375,12 +373,12 @@ $(function () {
            
            <!--
         
-         <p><a href="javascript:flipflop('animals');">{% trans 'у вас исчезает введенное значение тиража?' %}</a></p> 
+         <p><a href="javascript:flipflop('animals');">{%  %}</a></p>
          
             <ul id="animals" style="display: none;">
               <li><div id="browse_app">
 
-                {% trans ' значение тиража не слетает, результат выводится на экран  в строке  зеленым цветом, а поле ввода обнуляется для следующего расчёта' %}
+                {%  %}
                
        
          </li>
@@ -392,13 +390,13 @@ $(function () {
 
             <li>
    
-               <p><a href="javascript:flipflop('an');"><p style="color:rgb(36, 163, 60)"></p>  {% trans 'вы вводите один тираж, а на экране выводится другой?' %} </a></p> 
+               <p><a href="javascript:flipflop('an');"><p style="color:rgb(36, 163, 60)"></p>  {%  %} </a></p>
               
                <ul id="an" style="display: none;">
                  <li><div id="browse_app">
 
                     
-                    {% trans 'Всё нормально, алгоритм ориентируется на min или max тиражи, то есть автоматически увеличивает тираж до минимального, или считает не больше максимального ' %}
+
                   
           
             </li>

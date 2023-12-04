@@ -3,7 +3,7 @@
 **/__pycache__
 **/venv
 **/.venv
-**/*.sqlite3
+**/*.sqlite3S
 backend/web/media
 backend/web/venv
 .env

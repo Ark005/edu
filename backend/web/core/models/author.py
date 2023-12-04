@@ -37,14 +37,6 @@ author_type_choices = [
             [TypeChoices.SPIRITUAL,'Духоносный'],
             ]
 
-class TypeCenturyChoices:
-        SILVER='silver'
-        GOLD='gold'
-        
-century_type_choices = [
-            [TypeCenturyChoices.SILVER,'Серебряный'],
-            [TypeCenturyChoices.GOLD,'Золотой'],
-            ]
 
 
 class Author(models.Model):
@@ -59,11 +51,23 @@ class Author(models.Model):
         #blank=True, 
         #null=True
     #)
+    category = models.ForeignKey(
+        to='Category',
+        on_delete=models.SET_NULL,
+        related_name='authors',
+        null=True,
+        blank=True,
+    )
     
     text = models.TextField(
         max_length=80000,
         verbose_name='текст',
         blank=True, 
+        null=True
+    )
+    year = models.IntegerField(
+        verbose_name='год рождения',
+        blank=True,
         null=True
     )
 
@@ -106,6 +110,8 @@ class Author(models.Model):
         null=True,
         blank=True,
     )
+
+
     def __str__(self):
         return f'{self.name}'
     

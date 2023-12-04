@@ -2,7 +2,7 @@ from ..models import Author
 from django.shortcuts import render
 
 def get_author_list():
-    objectlist = Author.objects.all()
+    objectlist = Author.objects.all().order_by('year')
     return objectlist
 
 def author_list_view(request):

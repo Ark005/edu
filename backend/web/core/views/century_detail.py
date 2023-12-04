@@ -1,7 +1,7 @@
 from django.http import HttpRequest,HttpResponse
 from django.shortcuts import render
 from django.views.generic import View,ListView
-from ..models import Author
+from ..models import Author, Category
 
 
 class CenturyDetailView(ListView):
@@ -11,7 +11,7 @@ class CenturyDetailView(ListView):
         self.century = kwargs.get('slug')
         return super().get(request, *args, **kwargs)
     def get_queryset(self):
-        queryset = Author.objects.filter(century__slug=self.century)
+        queryset = Category.objects.filter(authors__century__slug=self.century)
         return queryset
     
 

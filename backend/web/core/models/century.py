@@ -10,6 +10,11 @@ class Century(models.Model):
         help_text='значение'
 
     )
+    text = models.TextField(
+        verbose_name='описание века',
+        null=True,
+        blank=True
+    )
 
     display_name=models.CharField(
         max_length=255,

@@ -19,7 +19,7 @@ class CategoryDetailView(ListView):
            return redirect(reverse('genre_list'))
         return super().get(request, *args, **kwargs)
     def get_queryset(self):
-        queryset = Author.objects.filter(type=self.category_slug).order_by('century')
+        queryset = Author.objects.filter(type=self.category_slug).order_by('-year')
         return queryset
     def get_context_data(self):
         context = super().get_context_data()
