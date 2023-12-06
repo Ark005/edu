@@ -18,7 +18,7 @@
                     </div>
                     <p></p>
                     {{author.text_preview}}
-                    {# {{ author.songs.all }} #}
+                    {# {{ author.songs.all }} #}з
                     <div>
                         {% for century in centuries %}
                         <a href="/antogonist/{{ antogonist.0}}">{{antogonist.1}}</a>
@@ -124,4 +124,27 @@
                     {{picture.text}}
                     {% endfor %}
                     {% endif %}
-                    {% endblock %}
+    <!-- VIDEO -->
+<div class="audio-root">
+    {% for video in author.videos.all %}
+        <div id="id_{{ video.id }}" class="audio {%if forloop.counter != 1 %}hidden{%endif%}">
+           <iframe width="560" height="315" src="{{video.slug}}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+        </div>
+    {% endfor %}
+<div>
+    <select class="select-audio">
+       {% for video in author.videos.all %}
+           <option value="{{video.id}}">
+           {{ video.name }}
+           </option>
+        {% endfor %}
+
+    </select>
+</div>
+</div>
+
+
+{% endblock %}

@@ -129,21 +129,20 @@ class Author(models.Model):
     
     teacher = models.ManyToManyField(
         to="self",
-        related_name='students',
         blank=True,
     )
     antagonist = models.ManyToManyField(
-        to="self",related_name='antagonist',
+        to="self",
         blank=True,
     )
     
     associate = models.ManyToManyField(
-        to="self",related_name='associate',
+        to="self",
         blank=True,
     )
 
     student = models.ManyToManyField(
-        to="self",related_name='student',
+        to="self",
 
         blank=True,
     )

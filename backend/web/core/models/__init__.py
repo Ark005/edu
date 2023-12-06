@@ -7,3 +7,4 @@ from .genre import Genre
 from .film import Film
 from .picture import Picture
 from .century import Century
+from .video import Video

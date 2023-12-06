@@ -8,7 +8,7 @@ $(document).ready(function () {
         console.log(audio)
         audio.each((index, item) => {  // цикл jc
             const $item = $(item)
-            if ($item.attr('id') === 'id_' + value) {
+            if ($item.attr('id') === 'id_' + vlaalue) {
                 $item.removeClass('hidden')
             } else {
                 $item.addClass('hidden')
