@@ -149,16 +149,20 @@
 
     <div class="audio-root">
     {% for picture in author.pictures.all %}
+        {%  if picture.file %}
         <div id="id_{{ picture.id }}" class="audio {%if forloop.counter != 1 %}hidden{%endif%}">
            <img src="{{ picture.file.url }}" >
         </div>
+         {% endif %}
     {% endfor %}
 <div>
     <select class="select-audio">
        {% for picture in author.pictures.all %}
+           {%  if picture.file %}
            <option value="{{picture.id}}">
            {{ picture.name}}
            </option>
+           {% endif %}
         {% endfor %}
 
     </select>
