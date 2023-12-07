@@ -2,7 +2,7 @@
 {% block content %}
     {% load static %}
 
-
+{{ object_list }}
     <script src="{% static 'core/player.js' %}"></script>
     {% for category in object_list %}
         {% for object in category.authors.all %}

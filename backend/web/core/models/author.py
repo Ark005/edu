@@ -1,6 +1,7 @@
 from django.db import models
-
+from django.dispatch import receiver
 from django.urls import reverse
+from django.db.models.signals import pre_save
 
 def get_century_choices():
 
@@ -148,4 +149,12 @@ class Author(models.Model):
     )
     class Meta:
         ordering = ["name"]
-    
+@receiver(pre_save, sender=Author)
+def func_name(sender, instance: Author, **kwargs):
+    if instance.year>0:
+        century = instance.year/100+1
+    else:
+        century = instance.year / 100-1
+
+filter
+
