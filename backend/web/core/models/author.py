@@ -150,11 +150,16 @@ class Author(models.Model):
     class Meta:
         ordering = ["name"]
 @receiver(pre_save, sender=Author)
-def func_name(sender, instance: Author, **kwargs):
+def func_name(sender, instance: Author, save=None, year=None, **kwargs):
     if instance.year>0:
         century = instance.year/100+1
     else:
         century = instance.year / 100-1
 
-filter
+        x = Author.objects.filter('year.id)')
+        year.id = century.id
+        century.save()
+
+
+
 

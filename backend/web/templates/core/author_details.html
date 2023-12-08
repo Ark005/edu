@@ -46,11 +46,12 @@
                             {{ song.singer }}
                             {{ song.text }}
                             {{ song.about}}
-
                         </div>
+
+
                         <div class="main-song">
                             {% if song.file %}
-                            <audio controls src="{{ song.file.url }}">
+                            <audio  src="{{ song.file.url }}" preload="auto">
                             </audio>
                             {% endif %}
                         </div>
@@ -72,8 +73,9 @@
                         {% endif %}
                         {% endfor %}
                     </select>
-                    {% if author.website %}
-                    <!--
+
+                  <!--  {% if author.website %}
+
                 <body>
                     <form>
                         <input type="button" onclick="window.location.href = '{{author.website}}';"
@@ -150,7 +152,7 @@
     <div class="audio-root">
     {% for picture in author.pictures.all %}
         {%  if picture.file %}
-        <div id="id_{{ picture.id }}" class="audio {%if forloop.counter != 1 %}hidden{%endif%}">
+        <div id="id_{{ picture.id }}" class="audio {% if forloop.counter != 1 %}hidden{%endif%}">
            <img src="{{ picture.file.url }}" >
         </div>
          {% endif %}
@@ -160,14 +162,12 @@
        {% for picture in author.pictures.all %}
            {%  if picture.file %}
            <option value="{{picture.id}}">
+           {{picture.id}}
            {{ picture.name}}
            </option>
            {% endif %}
         {% endfor %}
-
     </select>
 </div>
 </div>
-
-
 {% endblock %}
