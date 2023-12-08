@@ -3,6 +3,9 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.db.models.signals import pre_save
 
+from core.models import Century
+
+
 def get_century_choices():
 
     century_choices = []
@@ -150,15 +153,14 @@ class Author(models.Model):
     class Meta:
         ordering = ["name"]
 @receiver(pre_save, sender=Author)
-def func_name(sender, instance: Author, save=None, year=None, **kwargs):
+def func_name(sender, instance: Author, save=None,  **kwargs):
     if instance.year>0:
         century = instance.year/100+1
     else:
         century = instance.year / 100-1
+    x = Century.objects.filter(value=century).first
+    instance.century=x
 
-        x = Author.objects.filter('year.id)')
-        year.id = century.id
-        century.save()
 
 
 
