@@ -29,6 +29,8 @@ class Video(models.Model):
 
     )
 
+    def get_absolute_url(self):
+        return reverse('author_detail', kwargs={'slug': self.author.slug})
 
     @staticmethod
     def get_search_field():

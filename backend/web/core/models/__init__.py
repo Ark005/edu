@@ -8,3 +8,4 @@ from .film import Film
 from .picture import Picture
 from .century import Century
 from .video import Video
+from .subcategory import Subcategory

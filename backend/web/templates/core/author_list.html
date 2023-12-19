@@ -2,7 +2,7 @@
 {% block content %}
     {% for author in author_list %}
         <div>
-            <a href="{{ author.get_absolute_url }}">{{ author.name }}</a>
+            <a href="{{ author.get_absolute_url }}"> {{ author.name }} </a>
         </div>
     {% endfor %}
 {% endblock %}

@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
     <br>
-
     <div>
         <center>
             <h5>века</h5>
-                {% for century in centuries %}
-                    <a class="123ss" style="color:rgb(93, 88, 88)"
-                       href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
-                {% endfor %}
+            {% for century in centuries %}
+                <a class="123ss" style="color:rgb(93, 88, 88)"
+                   href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
+            {% endfor %}
         </center>
     </div>
 

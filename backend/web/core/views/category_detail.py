@@ -13,13 +13,13 @@ from django.urls import reverse
 class CategoryDetailView(ListView):
     template_name = "core/category.html"
     model = Author
-    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        self.category_slug = kwargs.get('slug')
-        if self.category_slug == 'director':
-           return redirect(reverse('genre_list'))
-        return super().get(request, *args, **kwargs)
+
+
     def get_queryset(self):
-        queryset = Author.objects.filter(type=self.category_slug).order_by('-year')
+        queryset = Author.objects.filter(type=self.kwargs.get('slug')).order_by('-year')
+        if self.request.GET.get('sub'):
+            queryset = queryset.filter(subcategory__slug=self.request.GET.get('sub'))
+
         return queryset
     def get_context_data(self):
         context = super().get_context_data()

@@ -7,7 +7,7 @@ from .century import Century
 
 def get_century_choices():
     century_choices = []
-    for century in range(-1, 22):
+    for century in range(-6, 22):
         if century < 0:
             x = f'{abs(century)} до н.э.'
         elif century == 0:
@@ -52,11 +52,10 @@ class Author(models.Model):
     # blank=True,
     # null=True
     # )
-    category = models.ForeignKey(
-        to='Category',
-        on_delete=models.SET_NULL,
+
+    subcategory = models.ManyToManyField(
+        to='Subcategory',
         related_name='authors',
-        null=True,
         blank=True,
     )
 

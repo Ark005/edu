@@ -1,19 +1,19 @@
-{%extends "base.html"%}
+{% extends "base.html" %}
 {% block content %}
 
-        {% for category in categories %}
-            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-        {% endfor %}
+    {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+    {% endfor %}
 
-        {% for century in centuries %}
-        <a href="/century/{{ century.0}}">{{century.1}}</a>
-        {% endfor %}
+    {% for century in centuries %}
+        <a href="/century/{{ century.0 }}">{{ century.1 }}</a>
+    {% endfor %}
 
-<h6>жанры фильмов</h6>
+    <h6>жанры фильмов</h6>
 
-        {% for genre in genre_list %}
-        <a href="{{film.get_absolute_url}}">{{genre.name}}</a>
-        {% endfor %}
+    {% for genre in genre_list %}
+        <a href="{{ film.get_absolute_url }}">{{ genre.name }}</a>
+    {% endfor %}
 
 
 {% endblock %}
