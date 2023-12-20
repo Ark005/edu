@@ -2,6 +2,13 @@
 {% block content %}
 {% load static %}
 <script src="{%static 'core/player.js'%}"></script>
+    {% for subcategory in subcategorylist %}
+
+        <div>
+            <a href="?sub={{subcategory.slug}}">{{ subcategory.name}}</a>
+        </div>
+
+    {% endfor %}
 {% for object in object_list %}
 <div class="bg-link d-inline-block">
     <div>

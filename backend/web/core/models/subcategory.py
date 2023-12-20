@@ -7,6 +7,7 @@ class Subcategory(models.Model):
     category = models.ForeignKey(
         to='Category',
         on_delete=models.SET_NULL,
+        related_name='subcategories',
         null=True,
         blank=True,
     )

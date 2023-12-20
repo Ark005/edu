@@ -1,7 +1,7 @@
 from typing import Any
 from django.db import models
 from django.http import HttpRequest, HttpResponse
-from ..models import Author,Category
+from ..models import Author, Category, Subcategory
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import ListView 
 from django.shortcuts import redirect
@@ -23,8 +23,12 @@ class CategoryDetailView(ListView):
         return queryset
     def get_context_data(self):
         context = super().get_context_data()
+        context['subcategorylist'] = self.subcategorylist()
         return context
 
+    def subcategorylist(self):
+        queryset = Subcategory.objects.filter(category__slug=self.kwargs.get('slug'))
+        return queryset
     
     
     
