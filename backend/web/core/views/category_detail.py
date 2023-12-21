@@ -6,9 +6,7 @@ from django.shortcuts import render,get_object_or_404
 from django.views.generic import ListView 
 from django.shortcuts import redirect
 from django.urls import reverse
-#from django.utils.text import slugify
-# /genre/list - это путь до списка жанров. Чтобы получить этот путь по имени, можно использовать 
-# функцию reverse
+
 
 class CategoryDetailView(ListView):
     template_name = "core/category.html"
