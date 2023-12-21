@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
     {% load static %}
-
-{{ object_list }}
+    
     <script src="{% static 'core/player.js' %}"></script>
-    {% for category in object_list %}
-        {% for object in category.authors.all %}
+    {% for object in object_list %}
             <div class="bg-link d-inline-block">
                 <div>
                     {% if object.image %}
@@ -42,7 +40,6 @@
                     </div>
                 </div>
             </div>
-        {% endfor %}
     {% endfor %}
 
     <style>

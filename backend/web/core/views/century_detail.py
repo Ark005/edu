@@ -11,9 +11,6 @@ class CenturyDetailView(ListView):
         self.century = kwargs.get('slug')
         return super().get(request, *args, **kwargs)
     def get_queryset(self):
-        queryset = Category.objects.filter(subcategories__authors__century__slug=self.century)
+        queryset = Author.objects.filter(century__slug=self.century)
         return queryset
-    def get_author_century(self):
-        list = Author.objects.filter(subcategories__authors__century__slug=self.century)
-        return list
 
