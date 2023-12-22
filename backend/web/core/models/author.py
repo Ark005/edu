@@ -150,6 +150,8 @@ class Author(models.Model):
 
 @receiver(pre_save, sender=Author)
 def func_name(sender, instance: Author, save=None, **kwargs):
+    if instance.year is None:
+        return
     if instance.year > 0:
         century = instance.year / 100 + 1
     else:
