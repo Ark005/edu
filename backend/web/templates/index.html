@@ -1,47 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-    <br>
-    <div>
-        <center>
-            <h5>века</h5>
+    <div class="d-flex justify-content-center mb-3">
+        <div>
+            <h5>Века</h5>
             {% for century in centuries %}
-                <a class="123ss" style="color:rgb(93, 88, 88)"
-                   href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
+                <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
             {% endfor %}
-        </center>
+        </div>
     </div>
 
-    </center>
-    <br>
     <div>
-    <div class="container">
-    <div class="row">
-        {% for category in categories %}
-            {% if category.main_image %}
-                <div class="card" style="width: 25rem;">
-                    <div class="col-md-3 col-lg-12   col-sm-6">
-                        <div class="row">
-                            <div class="card-img">
-                                <a href="{{ category.get_absolute_url }}"><img src="{{ category.main_image.url }}"
-                                                                               width="210" height="100"
-                                                                               alt="">
-                                </a>
-                                <p>
-                                    <a href="{{ category.get_absolute_url }}">
-                                        <br>
-                                        <button type="button"
-                                                class="btn btn-outline-secondary">{{ category.name }}</button>
-                                    </a>
-                                </p>
-                                {{ category.about_text }}
+        <div class="container">
+            <div class="row">
+                {% for category in categories %}
+                    {% if category.main_image %}
+                        <div class="card mb-3" style="width: 25rem;">
+                            <div class="col-md-3 col-lg-12   col-sm-6">
+                                <div class="row">
+                                    <div class="card-img">
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{{ category.get_absolute_url }}"><img
+                                                    src="{{ category.main_image.url }}"
+                                                    width="210" height="100"
+                                                    alt="">
+                                            </a>
+                                        </div>
+                                        <div class="d-flex justify-content-center my-3">
+                                            <a href="{{ category.get_absolute_url }}" type="button"
+                                                    class="btn btn-outline-secondary">{{ category.name }}</a>
+                                        </div>
+                                        <p class="text-center">{{ category.about_text }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
-
 {% endblock %}
-</div>
-</div>

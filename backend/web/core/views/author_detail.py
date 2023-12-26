@@ -19,13 +19,6 @@ def get_author_object(slug: str):
 
     return author_object
 
-
-# if [условие (==, !=, <, >, is, <= ... )] :
-#    ... Код который выполнится в случае выполнения условия
-# else (не обязательно):
-#    ... код который выполнится, в случае если условие не выполнится
-
-
 def author_detail_view(request: HttpRequest, slug: str):
     author_object = get_author_object(slug)
     if author_object == False:

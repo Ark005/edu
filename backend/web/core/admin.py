@@ -1,15 +1,14 @@
 from django.contrib import admin
 from django.contrib.admin import TabularInline, StackedInline
-
 from .models import *
-from .models.fil_genre import FilGenre
 
 
 class VideoInLineAdmin(TabularInline):
     model = Video
+
+
 class PictureInLineAdmin(StackedInline):
     model = Picture
-
 
 
 # Register your models here.
@@ -20,7 +19,7 @@ class AuthorAdmin(admin.ModelAdmin):
     ordering = ['type']
     prepopulated_fields = {"slug": ["name"]}
     list_display_links = ["name"]
-    inlines = [VideoInLineAdmin,PictureInLineAdmin]
+    inlines = [VideoInLineAdmin, PictureInLineAdmin]
     search_fields = ['name']
 
 
@@ -44,6 +43,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
+
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):

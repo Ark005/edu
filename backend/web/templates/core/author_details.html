@@ -7,13 +7,12 @@
         <div class="card">
             <div class="row audio-root">
                 <div class="img-big-wrap">
-                    <img align="center" src="{{ author.image.url }}" class="img-fluid" style="width: 250px;">
+                    <img src="{{ author.image.url }}" class="img-fluid" style="width: 250px;">
                 </div>
+            <div class="h3">{{ author.name }}</div>
                 <div>
-                    {{ author.name }}
-                    <p>{{ author.text }}</p>
+                    {% include 'core/includes/author_accordion.html' %}
                 </div>
-                <p>{{ author.text_preview }}</p>
                 <div>
                     {% for century in centuries %}
                         <a href="/antogonist/{{ antogonist.0 }}">{{ antogonist.1 }}</a>
@@ -43,19 +42,21 @@
                         </div>
                     </div>
                 {% endfor %}
-                <select class="select-audio" name="audio" id="id_audio">
-                    {% for song in author.songs.all %}
-                        {% if song.file %}
-                            <option value="{{ song.id }}">
-                                {{ song.name }}
-                                {{ song.text }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
+                {% if author.songs.exists %}
+                    <select class="select-audio form-select" name="audio" id="id_audio">
+                        {% for song in author.songs.all %}
+                            {% if song.file %}
+                                <option value="{{ song.id }}">
+                                    {{ song.name }}
+                                    {{ song.text }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                {% endif %}
             </div>
         </div>
-        <div class="videos">
+        <div class="videos my-2">
             <div class="audio-root">
                 {% for video in author.videos.all %}
                     <div id="id_{{ video.id }}" class="audio {% if forloop.counter != 1 %}hidden{% endif %}">
@@ -65,39 +66,48 @@
                                 allowfullscreen></iframe>
                     </div>
                 {% endfor %}
-                <div>
-                    <select class="select-audio">
-                        {% for video in author.videos.all %}
-                            <option value="{{ video.id }}">
-                                {{ video.name }}
-                            </option>
-                        {% endfor %}
-
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="pictures">
-            <div class="audio-root">
-                {% for picture in author.pictures.all %}
-                    {% if picture.file %}
-                        <div id="id_{{ picture.id }}" class="audio {% if forloop.counter != 1 %}hidden{% endif %}">
-                            <img src="{{ picture.file.url }}">
-                        </div>
-                    {% endif %}
-                {% endfor %}
-                <div>
-                    <select class="select-audio">
-                        {% for picture in author.pictures.all %}
-                            {% if picture.file %}
-                                <option value="{{ picture.id }}">
-                                    {{ picture.name }}
+                {% if author.videos.exists %}
+                    <div>
+                        <select class="select-audio form-select">
+                            {% for video in author.videos.all %}
+                                <option value="{{ video.id }}">
+                                    {{ video.name }}
                                 </option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                {% endif %}
             </div>
         </div>
+        {% if author.pictures.exists %}
+            <div class="pictures d-flex justify-content-center my-2">
+                <div class="audio-root">
+                    {% for picture in author.pictures.all %}
+                        {% if picture.file %}
+                            <div id="id_{{ picture.id }}" class="audio {% if forloop.counter != 1 %}hidden{% endif %}">
+                                <img class="mh-400" src="{{ picture.file.url }}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div>
+                        <select class="select-audio form-select">
+                            {% for picture in author.pictures.all %}
+                                {% if picture.file %}
+                                    <option value="{{ picture.id }}">
+                                        {{ picture.name }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
+    <style>
+        .mh-400 {
+            max-height: 400px;
+        }
+    </style>
 {% endblock %}

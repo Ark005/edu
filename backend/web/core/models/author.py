@@ -71,12 +71,6 @@ class Author(models.Model):
         null=True
     )
 
-    website = models.URLField(
-        max_length=250,
-        blank=True,
-        null=True
-    )
-
     text_preview = models.TextField(
         max_length=3000,
         verbose_name='текст_превью',
