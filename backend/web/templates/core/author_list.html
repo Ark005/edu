@@ -2,7 +2,11 @@
 {% block content %}
     {% for author in author_list %}
         <div>
-            <a href="{{ author.get_absolute_url }}"> {{ author.name }} </a>
+            {% if author.pictures.exists %}
+                <div class="pictures d-flex justify-content-center my-2">
+                    <a href="{{ author.get_absolute_url }}"> {{ author.name }} </a>
+                </div>
+            {% endif %}
         </div>
     {% endfor %}
 {% endblock %}

@@ -3,52 +3,67 @@
     {% load static %}
     <script src="{% static 'core/player.js' %}"></script>
     {% for subcategory in subcategorylist %}
-
         <div>
             <a href="?sub={{ subcategory.slug }}">{{ subcategory.name }}</a>
         </div>
-
     {% endfor %}
-    {% for object in object_list %}
-        <div class="bg-link d-inline-block">
-            <div>
-                {% if object.image %}
-                    <div class="flip-card audio-root">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img class="" src="{{ object.image.url }}" alt="" style="width:250px;height:300px;">
+    <div class="container">
+        <div>
+            {% for object in object_list %}
+                <div class="bg-link d-inline-block">
+                    <div>
+                        {% if object.image %}
+                            <div class="flip-card audio-root">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <img class="" src="{{ object.image.url }}" alt=""
+                                             style="width:250px;height:300px;">
+                                    </div>
+                                    <div class="flip-card-back">
+                                        {% if object.website %}
+                                            <div id="ytplayer">
+                                                <iframe width="250" height="315" src="{{ object.website }}"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                        allowfullscreen></iframe>
+                                            </div>
+                                        {% else %}
+                                            <div>
+                                                {{ object.text_preview }}
+                                                {% for song in object.songs.all %}
+                                                    {% if song.file %}
+                                                        <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}"
+                                                             id="id_{{ song.id }}">
+                                                            <audio style="width: 250px" controls
+                                                                   src="{{ song.file.url }}"></audio>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if object.songs.exists %}
+                                                    <select class="select-audio" name="audio" id="id_audio">
+                                                        {% for song in object.songs.all %}
+                                                            {% if song.file %}
+                                                                <option value="{{ song.id }}">
+                                                                    {{ song.name }}
+                                                                </option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flip-card-back">
-                                {{ object.text_preview }}
-                                {% for song in object.songs.all %}
-                                    {% if song.file %}
-                                        <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}"
-                                             id="id_{{ song.id }}">
-                                            <audio style="width: 250px" controls src="{{ song.file.url }}"></audio>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                                {% if object.songs.exists %}
-                                    <select class="select-audio" name="audio" id="id_audio">
-                                        {% for song in object.songs.all %}
-                                            {% if song.file %}
-                                                <option value="{{ song.id }}">
-                                                    {{ song.name }}
-                                                </option>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </select>
-                                {% endif %}
-                            </div>
+                        {% endif %}
+                        <div>
+                            <a href="{{ object.get_absolute_url }}">{{ object }}</a>
                         </div>
                     </div>
-                {% endif %}
-                <div>
-                    <a href="{{ object.get_absolute_url }}">{{ object }}</a>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
     <style>
         img {
             height: 150px;
