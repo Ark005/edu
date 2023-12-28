@@ -52,6 +52,13 @@ class Author(models.Model):
     # blank=True,
     # null=True
     # )
+    category = models.ForeignKey(
+        to='Category',
+        related_name='authors',
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT
+    )
 
     subcategory = models.ManyToManyField(
         to='Subcategory',

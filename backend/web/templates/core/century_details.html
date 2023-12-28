@@ -2,51 +2,54 @@
 {% block content %}
     {% load static %}
     <script src="{% static 'core/player.js' %}"></script>
- {{ object.text }}
-     {{ century.text }}
+    <div>
+        {{ century.text }}
+    </div>
     <div class="d-flex justify-content-center mb-3">
-       <div>
-        <div class="container">
-            {% for object in object_list %}
-                <div class="bg-link d-inline-block">
-                    <div>
-                        {% if object.image %}
-                            <div class="flip-card audio-root">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <img class="" src="{{ object.image.url }}" alt=""
-                                             style="width:250px;height:300px;">
-                                    </div>
-                                    <div class="flip-card-back">
-                                        {{ object.text_preview }}
-                                        {% for song in object.songs.all %}
-                                            {% if song.file %}
-                                                <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}"
-                                                     id="id_{{ song.id }}">
-                                                    <audio controls src="{{ song.file.url }}"></audio>
+        <div>
+            <div class="container">
+                {% for category in object_list %}                     #}
+                        {% for object in category.authors.all%}
+                            <div class="bg-link d-inline-block">
+                                <div>
+                                    {% if object.image %}
+                                        <div class="flip-card audio-root">
+                                            <div class="flip-card-inner">
+                                                <div class="flip-card-front">
+                                                    <img class="" src="{{ object.image.url }}" alt=""
+                                                         style="width:250px;height:300px;">
                                                 </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                        <select class="select-audio" name="audio" id="id_audio">
-                                            {% for song in object.songs.all %}
-                                                {% if song.file %}
-                                                    <option value="{{ song.id }}">
-                                                        {{ song.name }}
-                                                    </option>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </select>
+                                                <div class="flip-card-back">
+                                                    {{ object.text_preview }}
+                                                    {% for song in object.songs.all %}
+                                                        {% if song.file %}
+                                                            <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}"
+                                                                 id="id_{{ song.id }}">
+                                                                <audio controls src="{{ song.file.url }}"></audio>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    <select class="select-audio" name="audio" id="id_audio">
+                                                        {% for song in object.songs.all %}
+                                                            {% if song.file %}
+                                                                <option value="{{ song.id }}">
+                                                                    {{ song.name }}
+                                                                </option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div>
+                                        <a href="{{ object.get_absolute_url }}">{{ object }}</a>
                                     </div>
                                 </div>
                             </div>
-                        {% endif %}
-                        <div>
-                            <a href="{{ object.get_absolute_url }}">{{ object }}</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+                        {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
     <style>

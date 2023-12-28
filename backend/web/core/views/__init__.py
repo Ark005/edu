@@ -11,5 +11,6 @@ from .film_list import get_film_list
 from .genre_list import genre_list_view
 from .genre_detail import GenreDetailView
 from .image import image
+from .century_category_view import CenturyCategoryDetailView
 #from . import index_detail_view
 #from .import get_category_object

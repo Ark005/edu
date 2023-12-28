@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
     {% load static %}
+    
+    
+    <div>
+            <h5>Века</h5>
+            {% for century in centuries %}
+                <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
+            {% endfor %}
+        </div>
+    
+    
     <script src="{% static 'core/player.js' %}"></script>
     {% for subcategory in subcategorylist %}
         <div>

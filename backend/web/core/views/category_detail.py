@@ -1,7 +1,7 @@
 from typing import Any
 from django.db import models
 from django.http import HttpRequest, HttpResponse
-from ..models import Author, Category, Subcategory, Film
+from ..models import Author, Category, Subcategory, Film, Century, CenturyDescription
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.shortcuts import redirect
@@ -24,8 +24,13 @@ class CategoryDetailView(ListView):
     def get_context_data(self):
         context = super().get_context_data()
         context['subcategorylist'] = self.subcategorylist()
+        context['centuries'] = self.centuries()
         return context
 
     def subcategorylist(self):
         queryset = Subcategory.objects.filter(category__slug=self.kwargs.get('slug'))
+        return queryset
+
+    def centuries(self):
+        queryset = CenturyDescription.objects.all()
         return queryset
