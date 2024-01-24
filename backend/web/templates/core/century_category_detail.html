@@ -1,23 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
     {% load static %}
-    <div>
-    {{ object_list }}
-    </div>
-    <div>
-    {{ century.text }}
-    </div>
-    <div>
-    {{ description.text }}
-    </div>
 
-    {% for author in author_list %}
-        <div>
-            {% if author.pictures.exists %}
-                <div class="pictures d-flex justify-content-center my-2">
-                    <a href="{{ author.get_absolute_url }}"> {{ author.name }} </a>
-                </div>
-            {% endif %}
+    <div class="container my-5">
+    <div class="card">
+    <div class="row">
+    <aside class="col-sm-5   border-center">
+                <div class="container-fluid">
+    <div class="row">
+    <div class="form-group col-11">
+    <ul>
+        {{ century.text }}
+    </ul>
+    </div>
+    </aside>
+   
+    <aside class="col-sm-7">
+  <!--  <article class="card-body p-5"> -->
+    <div class="collapse" id="collapseExample" style="">
+        <div class="card card-body">
         </div>
-    {% endfor %}
+    </div>
+    
+    
+
+    <div class="container-fluid">
+    <div class="row">
+    {% csrf_token %}
+    <div class="form-group col-11">
+    <ul>
+        {{ description.text }}
+    </ul>
+    
+    
+{% for object in object_list %}
+    <div>  {{ object }} </div>
+{% if object.image %}
+{{ object.text_preview }} {% for song in object.songs.all %} {% if song.file %}
+{% endif %} {% endfor %}
+{% endif %}
+{% endfor %}
 {% endblock %}
+
+
+
+
