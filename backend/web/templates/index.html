@@ -2,7 +2,7 @@
 {% block content %}
     <div class="d-flex justify-content-center mb-3">
         <div>
-            <h5>Века</h5>
+            <h5>столетия:</h5>
             {% for century in centuries %}
                 <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
             {% endfor %}
