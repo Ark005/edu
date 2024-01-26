@@ -126,7 +126,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="form-group col-11">
+
                         <ul>
+                            <p><strong>исторический вызов</strong></p>
                             {{ century.text }}
                         </ul>
     </aside>
@@ -139,12 +141,13 @@
     </div>
 
 
-
     <div class="container-fluid">
     <div class="row">
     {% csrf_token %}
     <div class="form-group col-11">
+
     <ul>
+        <p><strong>философский ответ</p></strong>
         {{ description.text }}
     </ul>
 
@@ -154,6 +157,42 @@
             <a href="?sub={{ subcategory.slug }}">{{ subcategory.name }}</a>
         </div>
     {% endfor %}
+    
+
+    <a class="btn btn-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+       aria-controls="offcanvasExample">
+        подробнее
+    </a>
+
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">подробности</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Закрыть"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                <p><strong>философские ответы на вызовы {{ century.slug }} века:</strong></p>
+            </div>
+            <div>
+                {{ description.detailed_text }}
+            </div>
+            <div>
+                <p><strong>религиозные изменения {{ century.slug }} века:</strong></p>
+            </div>
+            <div>
+                {{ description.rel_changes_text }}
+            </div>
+            <div>
+                <p><strong>философские ошибки {{ century.slug }} века:</strong></p>
+            </div>
+            <div>
+                {{ description.mistake_text }}
+            </div>
+           
+        </div>
+    </div>
 {% endblock %}
 
 

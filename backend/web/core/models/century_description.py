@@ -9,6 +9,21 @@ class CenturyDescription(models.Model):
         null=True,
         blank=True
     )
+    detailed_text = models.TextField(
+        verbose_name='детальное описание',
+        null=True,
+        blank=True
+    )
+    rel_changes_text = models.TextField(
+        verbose_name='религиозные изменения',
+        null=True,
+        blank=True
+    )
+    mistake_text = models.TextField(
+        verbose_name='описание ошибок',
+        null=True,
+        blank=True
+    )
     category = models.ForeignKey(
         to='Category',
         blank=True,

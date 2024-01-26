@@ -77,7 +77,9 @@ class CenturyAdmin(admin.ModelAdmin):
 
 @admin.register(Subcategory)
 class SubcategoryAdmin(admin.ModelAdmin):
+    ordering = ['name']
     prepopulated_fields = {"slug": ["name"]}
+
 
 
 @admin.register(CenturyDescription)
