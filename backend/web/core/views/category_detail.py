@@ -32,5 +32,12 @@ class CategoryDetailView(ListView):
         return queryset
 
     def centuries(self):
-        queryset = CenturyDescription.objects.all()
-        return queryset
+        if self.kwargs.get('slug') == 'philosopher':
+            queryset = (CenturyDescription.objects.all())
+            #queryset = sorted(queryset)
+            return queryset
+
+    def print(self):
+        if self.kwargs.get('slug') == 'philosopher':
+            context = str('123')
+            return context
