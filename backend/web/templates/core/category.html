@@ -4,11 +4,11 @@
     <br>
     {% if category.slug == 'philosopher' %}
     {% endif %}
-
     {% for century in centuries %}
         <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
     {% endfor %}
-   
+   <br>
+    <center>
     <div class="row">
         <div class="container">
             <script src="{% static 'core/player.js' %}"></script>
@@ -17,6 +17,7 @@
             {% endfor %}
         </div>
     </div>
+    </center>
 
 
     <div class="container">
