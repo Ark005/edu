@@ -128,7 +128,7 @@
                     <div class="form-group col-11">
 
                         <ul>
-                            <p><strong>исторический вызов</strong></p>
+                            <p><strong>исторический контекст {{ century.slug }} века </strong></p>
                             {{ century.text }}
                         </ul>
     </aside>
@@ -147,7 +147,7 @@
     <div class="form-group col-11">
 
     <ul>
-        <p><strong>философский ответ</p></strong>
+        <p><strong>философские представления {{ century.slug }} века </p></strong>
         {{ description.text }}
     </ul>
 
@@ -178,12 +178,14 @@
             <div>
                 {{ description.detailed_text }}
             </div>
+            <br>
             <div>
                 <p><strong>религиозные изменения {{ century.slug }} века:</strong></p>
             </div>
             <div>
                 {{ description.rel_changes_text }}
             </div>
+            <br>
             <div>
                 <p><strong>философские ошибки {{ century.slug }} века:</strong></p>
             </div>
