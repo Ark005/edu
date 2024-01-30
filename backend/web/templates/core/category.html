@@ -8,7 +8,7 @@
         <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
     {% endfor %}
    <br>
-    <center>
+  
     <div class="row">
         <div class="container">
             <script src="{% static 'core/player.js' %}"></script>
@@ -17,9 +17,11 @@
             {% endfor %}
         </div>
     </div>
-    </center>
+    
 
 <br>
+    
+    <center>
     <div class="container">
         <div>
             {% for object in object_list %}
@@ -76,6 +78,7 @@
                 </div>
             {% endfor %}
         </div>
+    </center>
     </div>
     <style>
         img {
