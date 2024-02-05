@@ -54,25 +54,12 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
-@admin.register(Filmgenre)
-class GenreAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ["name"]}
 
-@admin.register(Musicgenre)
-class GenreAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ["name"]}
-
-@admin.register(Artgenre)
-class GenreAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ["name"]}
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
 
-
-# class AuthorInstanceAdmin(admin.ModelAdmin):
-# list_filter = ('name', 'century')
 
 @admin.register(Picture)
 class PictureAdmin(admin.ModelAdmin):

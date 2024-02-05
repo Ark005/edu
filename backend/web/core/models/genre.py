@@ -21,6 +21,12 @@ class Genre(models.Model):
         blank=True,
         null=True
     )
+    type = models.CharField(
+        max_length=100,
+        verbose_name='тип жанра',
+        blank=True,
+        null=True
+    )
 
 
     class Meta:
