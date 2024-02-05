@@ -1,7 +1,7 @@
 from typing import Any
 from django.db import models
 from django.http import HttpRequest, HttpResponse
-from ..models import Author, Category, Subcategory, Film, Century, CenturyDescription,Genre
+from ..models import Author, Category, Subcategory, Film, Century, CenturyDescription,Genre,Filmgenre,Artgenre,Musicgenre
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.shortcuts import redirect
@@ -13,7 +13,14 @@ class CategoryDetailView(ListView):
     model = Author
     def get_queryset(self):
         if self.kwargs.get('slug') == 'director':
+            return Filmgenre.objects.all()
+        if self.kwargs.get('slug') == 'philosopher':
             return Genre.objects.all()
+        if self.kwargs.get('slug') == 'artist':
+            return Artgenre.objects.all()
+        if self.kwargs.get('slug') == 'musician':
+            return Musicgenre.objects.all()
+
 
         queryset = Author.objects.filter(type=self.kwargs.get('slug')).order_by('-year')
         if self.request.GET.get('sub'):

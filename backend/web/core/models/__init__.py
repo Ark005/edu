@@ -3,8 +3,11 @@ from .singer import Singer
 from .song import Song
 #from .song import Film
 from .category import Category
+from .filmgenre import Filmgenre
 from .genre import Genre
+from .artgenre import Artgenre
 from .film import Film
+from .musicgenre import Musicgenre
 from .picture import Picture
 from .century import Century
 from .video import Video

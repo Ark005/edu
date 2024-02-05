@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
-class Genre(models.Model):
+class Filmgenre(models.Model):
 
     name = models.CharField(max_length=100)
     slug = models.CharField(
@@ -14,12 +14,6 @@ class Genre(models.Model):
         upload_to='images',
         null=True,
         blank=True
-    )
-    text_preview = models.TextField(
-        max_length=3000,
-        verbose_name='текст_превью',
-        blank=True,
-        null=True
     )
 
 

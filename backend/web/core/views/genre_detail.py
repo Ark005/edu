@@ -1,11 +1,14 @@
 from django.http import HttpRequest,HttpResponse
 from django.shortcuts import render
-from django.views.generic import View,DetailView
-from ..models import Genre
+from django.views.generic import View,DetailView,ListView
+from ..models import Genre,Author
 
 
-class GenreDetailView(DetailView):
+class GenreDetailView(ListView):
     template_name = "core/genre_detail.html"
-    model = Genre
+    model = Author
+    def get_queryset(self):
+        if self.kwargs.get('slug') == 'director':
+            return Author.objects.all()
     
    

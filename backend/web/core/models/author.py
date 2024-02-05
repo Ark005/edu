@@ -110,7 +110,11 @@ class Author(models.Model):
         null=True,
         blank=True,
     )
-
+    genre = models.ManyToManyField(
+        'Genre',
+        related_name='authors',
+        blank=True
+    )
     def __str__(self):
         return f'{self.name}'
 

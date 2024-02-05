@@ -7,6 +7,6 @@ def get_genre_list():
 
 def genre_list_view(request):
     context = get_genre_list()
-    return render(request,template_name='core/genre_list.html', context={'genre_list':context})
+    return render(request,template_name='core/genre_list.html', context={'genre_detail':context})
 
 

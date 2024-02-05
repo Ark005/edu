@@ -12,5 +12,11 @@ from .genre_list import genre_list_view
 from .genre_detail import GenreDetailView
 from .image import image
 from .century_category_view import CenturyCategoryDetailView
-#from . import index_detail_view
-#from .import get_category_object
+from .filmgenre_list import film_list_view
+from .filmgenre_detail import FilmGenreDetailView
+from .artgenre_list import art_list_view
+from .artgenre_detail import ArtGenreDetailView
+from .musicgenre_list import music_list_view
+from .musicgenre_detail import MusicGenreDetailView
+
+

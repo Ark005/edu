@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
-class Genre(models.Model):
+class Artgenre(models.Model):
 
     name = models.CharField(max_length=100)
     slug = models.CharField(

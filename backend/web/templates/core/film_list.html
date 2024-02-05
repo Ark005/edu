@@ -11,7 +11,7 @@
 
     <h6>жанры фильмов</h6>
 
-    {% for genre in genre_list %}
+    {% for film-genre in film-list %}
         <a href="{{ film.get_absolute_url }}">{{ genre.name }}</a>
     {% endfor %}
 
