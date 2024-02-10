@@ -53,7 +53,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
+    list_display = ( 'name', 'type')
     prepopulated_fields = {"slug": ["name"]}
+
 
 
 @admin.register(Film)
