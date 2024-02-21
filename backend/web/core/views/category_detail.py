@@ -12,15 +12,7 @@ class CategoryDetailView(ListView):
     template_name = "core/category.html"
     model = Author
     def get_queryset(self):
-        if self.kwargs.get('slug') == 'philosopher':
-            return Genre.objects.all()
-
-
-        queryset = Author.objects.filter(type=self.kwargs.get('slug')).order_by('-year')
-        if self.request.GET.get('sub'):
-            queryset = queryset.filter(subcategory__slug=self.request.GET.get('sub'))
-
-        return queryset
+        return Genre.objects.filter(type=self.kwargs.get('slug'),parent__isnull=True)
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -33,12 +25,5 @@ class CategoryDetailView(ListView):
         return queryset
 
     def centuries(self):
-        if self.kwargs.get('slug') == 'philosopher':
-            queryset = (CenturyDescription.objects.all())
-            #queryset = sorted(queryset)
-            return queryset
-
-    def print(self):
-        if self.kwargs.get('slug') == 'philosopher':
-            context = str('123')
-            return context
+        queryset = CenturyDescription.objects.filter(category__slug=self.kwargs.get("slug")).order_by("century__value")
+        return queryset

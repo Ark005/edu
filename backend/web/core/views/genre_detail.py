@@ -8,7 +8,10 @@ class GenreDetailView(ListView):
     template_name = "core/genre_detail.html"
     model = Author
     def get_queryset(self):
-        if self.kwargs.get('slug') == 'director':
-            return Author.objects.all()
+        genre = Genre.objects.get(slug=self.kwargs.get('slug'))
+        if genre.parent:
+            return genre.authors.all()
+        else:
+            return genre.children.all()
     
    

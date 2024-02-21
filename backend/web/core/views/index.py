@@ -10,7 +10,7 @@ def get_all_authors():
     return author_list
 
 def get_author_centuries():
-    centuries = Century.objects.all()
+    centuries = Century.objects.all().order_by('value')
     return centuries
 
 def index_view(request):

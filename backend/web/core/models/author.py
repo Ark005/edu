@@ -34,7 +34,6 @@ author_type_choices = [
     [TypeChoices.WRITER, 'Литератор'],
     [TypeChoices.ARTIST, 'Художник'],
     [TypeChoices.PHILOSOPHER, 'Философ'],
-    [TypeChoices.MUSICIAN, 'Музыкант'],
     [TypeChoices.LECTOR, 'Лектор'],
     [TypeChoices.DIRECTOR, 'Режиссер'],
     [TypeChoices.SPIRITUAL, 'Духоносный'],

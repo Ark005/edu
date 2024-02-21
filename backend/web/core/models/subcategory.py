@@ -21,6 +21,13 @@ class Subcategory(models.Model):
         #null=True
    # )
 
+    about_text = models.TextField(
+        max_length=3000,
+        verbose_name='about',
+        blank=True,
+        null=True
+    )
+
     slug = models.CharField(
         max_length=300,
         null=True,

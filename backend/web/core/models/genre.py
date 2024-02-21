@@ -1,9 +1,12 @@
 from django.db import models
 from django.urls import reverse
 
+from core.models.author import author_type_choices
+
 
 class Genre(models.Model):
 
+    parent = models.ForeignKey('self',on_delete=models.CASCADE,related_name='children',null=True,blank=True)
     name = models.CharField(max_length=100)
     slug = models.CharField(
         max_length=255,
@@ -25,7 +28,8 @@ class Genre(models.Model):
         max_length=100,
         verbose_name='тип жанра',
         blank=True,
-        null=True
+        null=True,
+        choices=author_type_choices
     )
 
 

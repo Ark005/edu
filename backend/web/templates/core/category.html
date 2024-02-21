@@ -1,27 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     {% load static %}
-    <br>
-    <!--{% if category.slug == 'philosopher' %}
-    {% endif %}-->
     {% for century in centuries %}
         <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
     {% endfor %}
-   <br>
-
-    <div class="row">
-        <div class="container">
-            <script src="{% static 'core/player.js' %}"></script>
-            {% for subcategory in subcategorylist %}
-                <a href="?sub={{ subcategory.slug }}">{{ subcategory.name }}</a>
-            {% endfor %}
-        </div>
-    </div>
-
-
-<br>
-
-    <center>
+    
     <div class="container">
         <div>
             {% for object in object_list %}

@@ -1,29 +1,20 @@
 {%extends "base.html" %}
 {% block content %}
-    
-<p>2345</p>
 
-
-<center><h6>{{object}}</h6>
-
-<p></p>
 <div class="container">
     <div class="row">
-
-
-        {% for author in object.authors.all %}
+        {% for genre in object_list %}
 
 
         <div class="card" style="width: 16rem;">
             <div class="col-md-3 col-lg-12   col-sm-6">
                 <div class="row">
                     <div class="card-img">
-                        <a href="{{film.get_absolute_url }}"><img class="" src="{{author.image.url}}"
+                        <a href="{{genre.get_absolute_url }}"><img class="" src="{{genre.image.url}}"
                         style="width:200px;height:200px;"></a>
                         <h7 class="card-title"></h7>
                         <p class="card-text"></p>
-                        <a href="{{film.get_absolute_url}}"> {{author.name}} </a></p>
-                        {{ category.about_text }}
+                        <a href="{{genre.get_absolute_url}}"> {{genre.name}} </a></p>
                     </div>
                 </div>
             </div>
@@ -33,5 +24,6 @@
 
         {% endfor %}
     </div>
+</div>
 
     {%endblock%}
