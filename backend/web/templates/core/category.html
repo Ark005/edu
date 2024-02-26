@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     {% load static %}
+    
     {% for century in centuries %}
         <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
     {% endfor %}
