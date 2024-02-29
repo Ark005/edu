@@ -19,7 +19,7 @@ class Genre(models.Model):
         blank=True
     )
     text_preview = models.TextField(
-        max_length=3000,
+        max_length=5000,
         verbose_name='текст_превью',
         blank=True,
         null=True
@@ -30,6 +30,11 @@ class Genre(models.Model):
         blank=True,
         null=True,
         choices=author_type_choices
+    )
+    website = models.URLField(
+        max_length=250,
+        blank=True,
+        null=True
     )
 
 
