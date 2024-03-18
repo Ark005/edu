@@ -6,6 +6,12 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.db.models.signals import pre_save
 from slugify import slugify
+from django.db.models import TextChoices
+
+
+class PlayerTypeChoices(TextChoices):
+    YOUTUBE = ("youtube", "youtube")
+    INTERNAL = ("internal", "закаченный файл")
 
 
 class Song(models.Model):
@@ -63,6 +69,19 @@ class Song(models.Model):
         null=True,
         blank=True
     )
+    youtube_link = models.URLField(
+        max_length=250,
+        blank=True,
+        null=True
+    )
+    type = models.CharField(
+        choices=PlayerTypeChoices.choices,
+        max_length=255,
+        verbose_name='тип',
+        default=PlayerTypeChoices.YOUTUBE
+    )
+
+
     @staticmethod
     def get_search_field():
         return 'name__icontains'

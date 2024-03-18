@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
     {% load static %}
-    {% for century in centuries %}
-        <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
-    {% endfor %}
+    <center>
+        <h6 style="color:#0037ff">столетия:</h6>
 
-    <div class="container">
-        <div>
+        {% for century in centuries %}
+            <a class="text-dark" href="{{ century.get_absolute_url }}"> {{ century.century.display_name }}</a>
+        {% endfor %}
+
+        <div class="container">
             {% for object in object_list %}
-
                 <div class="bg-link d-inline-block">
                     <div>
                         {% if object.image %}
@@ -29,8 +30,6 @@
                                             </div>
                                             {{ object.text_preview }}
                                             <div>
-
-                                                {% else %}
                                                 {% for song in object.songs.all %}
                                                     {% if song.file %}
                                                         <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}"
@@ -59,85 +58,107 @@
                         {% endif %}
                         <div>
                             <a href="{{ object.get_absolute_url }}">{{ object }}</a>
-
                         </div>
                     </div>
                 </div>
-
-                <script src="{% static 'core/player.js' %}"></script>
-
-               <!-- <a class="btn btn-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                   aria-controls="offcanvasExample">
-                    подробнее
-                </a>
-
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                     aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                            aria-label="Закрыть"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div>
-                        {{ object.text_preview }}
-                    </div>-->
-                    <br>
-                </div> 
-
             {% endfor %}
-            </div>
         </div>
-        <style>
-            img {
-                height: 150px;
-                width: 120px;
-            }
+    </center>
 
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-            }
+    <script src="{% static 'core/player.js' %}"></script>
+    {% if view.kwargs.slug == 'philosopher' %}
+        <div class="scroll-container">
 
-            .flip-card {
-                background-color: transparent;
-                width: 250px;
-                height: 300px;
-                perspective: 1000px;
-            }
 
-            .flip-card-inner {
-                position: relative;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-                transition: transform 0.6s;
-                transform-style: preserve-3d;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            }
+            <img src="/media/images/1.webp" width="600" height="400">
+            <img src="/media/images/2.webp" width="600" height="400">
+            <img src="/media/images/3.webp" width="600" height="400">
 
-            .flip-card:hover .flip-card-inner {
-                transform: rotateY(180deg);
-            }
+        </div>
+    {% endif %}
+    {% if view.kwargs.slug == 'genre/drevnegrecheskaya-filosofiya-6-vek-do-ne-6-vek-ne/detail' %}
+        <div class="scroll-container">
+        
+            <img src="/media/images/1.webp" width="600" height="400">
+            <img src="/media/images/2.webp" width="600" height="400">
+            <img src="/media/images/3.webp" width="600" height="400">
 
-            .flip-card-front,
-            .flip-card-back {
-                vertical-align: middle;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
-            }
+        </div>
+    {% endif %}
+    <h6 style="color:#0037ff">слайдер: тянем слева направо</h6>
+    <style>
+        img {
+            height: 500px;
+            width: 500px;
+        }
 
-            .flip-card-front {
-                background-color: #bbb;
-                color: black;
-            }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-            .flip-card-back {
-                background-color: #2980b9;
-                color: white;
-                text-align: center;
-                transform: rotateY(180deg);
-            }
-        </style>
-{% endblock %}
+        .flip-card {
+            background-color: transparent;
+            width: 250px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            vertical-align: middle;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+        }
+
+        .flip-card-back {
+            background-color: #2980b9;
+            color: white;
+            text-align: center;
+            transform: rotateY(180deg);
+        }
+
+        .scroll-container {
+            width: 1000px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        div.scroll-container img {
+            padding: 10px;
+
+        }
+
+        .scroll-item {
+            display: inline-block;
+            width: 150px;
+            height: 150%;
+            background-color: lightblue;
+            margin-right: 1px;
+        }
+    </style>
+{% endblock %}  
+
+
+

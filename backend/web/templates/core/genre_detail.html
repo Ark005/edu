@@ -1,6 +1,6 @@
 {%extends "base.html" %}
 {% block content %}
-    
+    <center>
     {% for century in centuries %}
         <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
     {% endfor %}
@@ -118,5 +118,6 @@
             transform: rotateY(180deg);
         }
     </style>
+    </center>
 {% endblock %}S
 
