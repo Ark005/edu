@@ -114,7 +114,7 @@
         </style>
         {% if author.antagonist.name.exists %}
             <h6>антагонист:</h6>
-            <div class="h3">{{ author.antagonist.name.get_absolute_url  }}{{author.antagonist.name.display_name }}</div>
+           {{ author.antagonist.name.get_absolute_url  }}{{author.antagonist.name.display_name }}
         {% endif %}
     
     
