@@ -65,20 +65,21 @@
             {% endfor %}
         </div>
     </center>
-  <style>
-   hr {
-    border: none; /* Убираем границу */
-    background-color: #a92d2d; /* Цвет линии */
-    color: #835364; /* Цвет линии для IE6-7 */
-    height: 5px; /* Толщина линии */
-   }
-  </style>
-
-
-  <hr>
-<h6 style="color:#0037ff">схемы ниже - слайдер: тянем слева направо</h6>
-  <hr>
-
+    <style>
+        hr {
+            border: none; /* Убираем границу */
+            background-color: #a92d2d; /* Цвет линии */
+            color: #835364; /* Цвет линии для IE6-7 */
+            height: 5px; /* Толщина линии */
+        }
+    </style>
+    <div>
+        {% if view.kwargs.slug == 'philosopher' %}
+            <hr>
+            <h6 style="color:#0037ff">схемы ниже - слайдер: тянем слева направо</h6>
+            <hr>
+        {% endif %}
+    </div>
 
     <script src="{% static 'core/player.js' %}"></script>
     {% if view.kwargs.slug == 'philosopher' %}
@@ -93,18 +94,19 @@
     {% endif %}
     {% if view.kwargs.slug == 'genre/drevnegrecheskaya-filosofiya-6-vek-do-ne-6-vek-ne/detail' %}
         <div class="scroll-container">
-        
+
             <img src="/media/images/1.webp" width="600" height="400">
             <img src="/media/images/2.webp" width="600" height="400">
             <img src="/media/images/3.webp" width="600" height="400">
 
         </div>
     {% endif %}
-    
+
     <style>
-    .scroll-container {
-      width: 11400px;
-    }
+        .scroll-container {
+            width: 11400px;
+        }
+
         img {
             height: 500px;
             width: 500px;
