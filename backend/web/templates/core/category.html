@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
     {% load static %}
     <center>
         <h6 style="color:#0037ff">столетия:</h6>
@@ -64,6 +65,20 @@
             {% endfor %}
         </div>
     </center>
+  <style>
+   hr {
+    border: none; /* Убираем границу */
+    background-color: #a92d2d; /* Цвет линии */
+    color: #835364; /* Цвет линии для IE6-7 */
+    height: 5px; /* Толщина линии */
+   }
+  </style>
+
+
+  <hr>
+<h6 style="color:#0037ff">схемы ниже - слайдер: тянем слева направо</h6>
+  <hr>
+
 
     <script src="{% static 'core/player.js' %}"></script>
     {% if view.kwargs.slug == 'philosopher' %}
@@ -85,8 +100,11 @@
 
         </div>
     {% endif %}
-    <h6 style="color:#0037ff">слайдер: тянем слева направо</h6>
+    
     <style>
+    .scroll-container {
+      width: 11400px;
+    }
         img {
             height: 500px;
             width: 500px;
