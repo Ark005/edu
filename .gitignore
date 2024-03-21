@@ -8,3 +8,4 @@ backend/web/media
 backend/web/venv
 .env
 **/.DS_Store
+postgres_data
