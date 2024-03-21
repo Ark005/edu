@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.conf.urls.static import static
-from .settings2 import MEDIA_DIR, MEDIA_URL
+from .settings import MEDIA_DIR, MEDIA_URL
 from django.views.generic import TemplateView
 
 urlpatterns = [
