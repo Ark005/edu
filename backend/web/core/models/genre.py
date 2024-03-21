@@ -42,7 +42,7 @@ class Genre(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.get_type_display()}"
     
     def get_absolute_url(self):
         return reverse('genre_detail',kwargs={'slug':self.slug})
