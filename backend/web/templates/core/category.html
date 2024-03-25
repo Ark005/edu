@@ -3,8 +3,10 @@
 
     {% load static %}
     <center>
-        <h6 style="color:#0037ff">столетия:</h6>
 
+        {% if view.kwargs.slug != 'director' %} 
+            <h6 style="color:#0037ff">столетия:</h6>
+        {% endif %}
         {% for century in centuries %}
             <a class="text-dark" href="{{ century.get_absolute_url }}"> {{ century.century.display_name }}</a>
         {% endfor %}
