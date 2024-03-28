@@ -18,6 +18,11 @@ class Genre(models.Model):
         null=True,
         blank=True
     )
+    order = models.IntegerField(
+        null=True,
+        blank=True,
+        default=0
+    )
     text_preview = models.TextField(
         max_length=5000,
         verbose_name='текст_превью',

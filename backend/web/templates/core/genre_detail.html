@@ -4,7 +4,6 @@
     {% for century in centuries %}
         <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
     {% endfor %}
-    
     <div class="container">
         <div>
             {% for object in object_list %}
@@ -65,6 +64,7 @@
         </div>
     </center>
     </div>
+  
     <style>
         img {
             height: 150px;
