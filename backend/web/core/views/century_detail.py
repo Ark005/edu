@@ -2,6 +2,7 @@ from django.http import HttpRequest,HttpResponse
 from django.shortcuts import render
 from django.views.generic import View,ListView
 from ..models import Author, Category, Century, century
+from django.db.models import Prefetch
 
 
 class CenturyDetailView(ListView):
@@ -11,7 +12,10 @@ class CenturyDetailView(ListView):
         self.century = kwargs.get('slug')
         return super().get(request, *args, **kwargs)
     def get_queryset(self):
-        queryset = Category.objects.filter(subcategories__authors__century__slug=self.century).distinct()
+        # queryset = Category.objects.filter(authors__century__slug=self.century).distinct()
+        queryset = Category.objects.prefetch_related(
+            Prefetch("authors", queryset=Author.objects.filter(century__slug=self.century))
+        ).filter(authors__century__slug=self.century).distinct()
         return queryset
     def get_context_data(self):
         context = super().get_context_data()

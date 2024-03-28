@@ -145,25 +145,34 @@
     <div class="row">
     {% csrf_token %}
     <div class="form-group col-11">
+    {% if view.kwargs.category == 'philosopher' %}
 
-    <ul>
-        <p><strong>философские представления {{ century.slug }} века </p></strong>
-        {{ description.text }}
-    </ul>
-
+        <ul>
+            <p><strong>философские представления {{ century.slug }} века</p></strong>
+            {{ description.text }}
+        </ul>
+    {% endif %}
+    {% if view.kwargs.category == 'music' %}
+        <ul>
+            <p><strong> музыка в {{ century.slug }} веке</p></strong>
+            {{ description.text }}
+        </ul>
+    {% endif %}
     <script src="{% static 'core/player.js' %}"></script>
     {% for subcategory in subcategorylist %}
         <div>
             <a href="?sub={{ subcategory.slug }}">{{ subcategory.name }}</a>
         </div>
+
     {% endfor %}
-    
 
-    <a class="btn btn-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-       aria-controls="offcanvasExample">
-        подробнее
-    </a>
+    {% if view.kwargs.category == 'philosopher' %}
+        <a class="btn btn-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+           aria-controls="offcanvasExample">
+            подробнее
+        </a>
 
+    {% endif %}
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
@@ -192,9 +201,10 @@
             <div>
                 {{ description.mistake_text }}
             </div>
-           
+
         </div>
     </div>
+
 {% endblock %}
 
 

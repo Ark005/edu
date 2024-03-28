@@ -14,4 +14,3 @@ class GenreDetailView(ListView):
         else:
             return genre.children.all()
     
-   

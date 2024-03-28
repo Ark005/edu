@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import TabularInline, StackedInline
 from .models import *
+from .models.author import TypeChoices
 
 
 class VideoInLineAdmin(TabularInline):
@@ -51,13 +52,6 @@ class CategoryAdmin(admin.ModelAdmin):
     # prepopulated_fields={"slug": ["name"]}
 
 
-@admin.register(Genre)
-class GenreAdmin(admin.ModelAdmin):
-    list_display = ( 'name', 'type')
-    prepopulated_fields = {"slug": ["name"]}
-
-
-
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
@@ -84,3 +78,11 @@ class SubcategoryAdmin(admin.ModelAdmin):
 @admin.register(CenturyDescription)
 class CenturyDescriptionAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('name', 'type')
+    prepopulated_fields = {"slug": ["name"]}
+    ordering = ['type']
+
