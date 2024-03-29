@@ -1,9 +1,17 @@
 from django.db import models
 from django.urls import reverse
+from core.models.author import author_type_choices
 
 
 class CenturyDescription(models.Model):
 
+    type = models.CharField(
+        max_length=100,
+        verbose_name='тип жанра',
+        blank=True,
+        null=True,
+        choices=author_type_choices
+    )
     text = models.TextField(
         verbose_name='описание века',
         null=True,

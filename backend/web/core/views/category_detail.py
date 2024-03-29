@@ -6,13 +6,20 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.db.models import Prefetch
 
 
 class CategoryDetailView(ListView):
     template_name = "core/category.html"
     model = Author
     def get_queryset(self):
-        return Genre.objects.filter(type=self.kwargs.get('slug'),parent__isnull=True).order_by("order")
+       return Genre.objects.filter(type=self.kwargs.get('slug'),parent__isnull=True).order_by("order")
+    #def get_queryset(self):
+        # queryset = Category.objects.filter(authors__century__slug=self.century).distinct()
+        #queryset = Category.objects.prefetch_related(
+            #Prefetch("authors", queryset=Author.objects.filter(century__slug=self.century))
+        #).filter(authors__century__slug=self.century).distinct()
+        #return queryset
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -27,3 +34,5 @@ class CategoryDetailView(ListView):
     def centuries(self):
         queryset = CenturyDescription.objects.filter(category__slug=self.kwargs.get("slug")).order_by("century__value")
         return queryset
+
+

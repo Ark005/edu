@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-         <a class="nav-link active" aria-current="page" href="/">мыслю, значит существую</a>
+        <a class="nav-link active" aria-current="page" href="/">мыслю, значит существую</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -19,20 +19,23 @@
                         категории
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/category/philosopher">философия</a></li>
-                        <li><a class="dropdown-item" href="/category/writer">литература</a></li>
                         <li><a class="dropdown-item" href="/category/artist">арт</a></li>
-                        <li><a class="dropdown-item" href="/category/music">музыка</a></li>
                         <li><a class="dropdown-item" href="/category/director">кино</a></li>
+                        <li><a class="dropdown-item" href="/category/writer">литература</a></li>
+                        <li><a class="dropdown-item" href="/category/music">музыка</a></li>
+                        <li><a class="dropdown-item" href="/category/spiritual">религия</a></li>
+                        <li><a class="dropdown-item" href="/category/philosopher">философия</a></li>
+                     
+
                     </ul>
-                {% if request.user.is_authenticated %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<i class="fas fa-user-tie"></i> {{ request.user.username }}-->
-                    </a>
-                </li>
-                {% endif %}
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!--<i class="fas fa-user-tie"></i> {{ request.user.username }}-->
+                            </a>
+                        </li>
+                    {% endif %}
             </ul>
         </div>
     </div>

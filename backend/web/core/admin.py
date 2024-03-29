@@ -77,7 +77,8 @@ class SubcategoryAdmin(admin.ModelAdmin):
 
 @admin.register(CenturyDescription)
 class CenturyDescriptionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['century', 'type']
+    ordering = ['type']
 
 
 @admin.register(Genre)
