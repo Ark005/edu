@@ -74,7 +74,7 @@
                                 allowfullscreen></iframe>
                     </div>
                 {% endfor %}
-                <h6 style="color:#0037ff">нажмите на название снизу, возможно, есть несколько видеороликов</h6>
+                <h6 style="color:#0037ff">нажмите на название снизу, возможно, видеороликов несколько </h6>
                 {% if author.videos.exists %}
                     <div>
                         <select class="select-audio form-select">
@@ -117,8 +117,9 @@
     </div>
     <style>
         .mh-400 {
-            max-height: 100px;
+            max-height: 1000px;
         }
+
     </style>
     {% if author.antagonist.name.exists %}
         <h6>антагонист:</h6>

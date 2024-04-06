@@ -38,12 +38,14 @@ class AuthorAdmin(admin.ModelAdmin):
 @admin.register(Singer)
 class SingerAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
+    search_fields = ['name']
 
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
     pass
     prepopulated_fields = {"slug": ["name"]}
+    search_fields = ['name']
 
 
 @admin.register(Category)
@@ -55,12 +57,14 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
+    search_fields = ['name']
 
 
 @admin.register(Picture)
 class PictureAdmin(admin.ModelAdmin):
     pass
     prepopulated_fields = {"slug": ["name"]}
+    search_fields = ['name']
 
 
 @admin.register(Century)
@@ -83,7 +87,8 @@ class CenturyDescriptionAdmin(admin.ModelAdmin):
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
+    search_fields = ['name']
     list_display = ('name', 'type')
     prepopulated_fields = {"slug": ["name"]}
-    ordering = ['type']
+    ordering = ['name']
 
