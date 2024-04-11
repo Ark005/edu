@@ -27,6 +27,11 @@ class Category(models.Model):
         null=True,
         choices=author_type_choices
     )
+    website = models.URLField(
+        max_length=250,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return self.name
