@@ -151,12 +151,19 @@
             {{ description.text }}
         </ul>
     {% endif %}
+    {% if view.kwargs.category == 'artist' %}
+        <ul>
+            <p><strong> художественные стили {{ century.slug }} столетия в контексте {{ century.slug }} века:
+            </p></strong>
+            {{ description.text }}
+        </ul>
+    {% endif %}
     {% if view.kwargs.category == 'spiritual' %}
         <ul>
-                <div>
-                    <p><strong>христиансво в {{ century.slug }} веке:</strong></p>
-                </div>
-           <div>
+            <div>
+                <p><strong>христиансво в {{ century.slug }} веке:</strong></p>
+            </div>
+            <div>
                 {{ description.detailed_text }}
             </div>
         </ul>
@@ -175,7 +182,7 @@
 
     {% endfor %}
 
-    {% if view.kwargs.category == 'philosopher'%}
+    {% if view.kwargs.category == 'philosopher' %}
 
         <a class="btn btn-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
            aria-controls="offcanvasExample">
@@ -183,13 +190,14 @@
         </a>
 
     {% endif %}
-      {% if view.kwargs.category == 'spiritual'%}
+    {% if view.kwargs.category == 'spiritual' %}
 
         <a class="btn btn-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
            aria-controls="offcanvasExample">
-            краткая информация об иудаизме и мусульманстве в {{ century.slug }} веке
-        </a>
-
+            {% if centurydescription.rel_changes_text %}
+                краткая информация об иудаизме и мусульманстве в {{ century.slug }} веке
+                </a>
+            {% endif %}
     {% endif %}
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -205,10 +213,10 @@
                 </div>
             {% endif %}
             {% if view.kwargs.category == 'spiritual' %}
-         <p><strong> мировые религии в {{ century.slug }} веке:</p></strong>
-            {{ description.text }}
+                <p><strong> мировые религии в {{ century.slug }} веке:</p></strong>
+                {{ description.text }}
             {% endif %}
-            
+
             <br>
             {% if view.kwargs.category == 'philosopher' %}
                 <div>
