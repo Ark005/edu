@@ -1,0 +1,6 @@
+.author-description-text, .pre-line-text {
+    white-space: pre-line
+}
+.pre-line-child *:not(strong) {
+    white-space: pre-line;
+}
