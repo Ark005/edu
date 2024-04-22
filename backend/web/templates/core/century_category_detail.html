@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="container mt-3">
+        <div style="flex-wrap: wrap" class="d-flex justify-content-center">
+            {% for object in object_list %}
+                <div class="bg-link d-inline-block p-1">
+                    <div>
+                        {% if object.image %}
+                            <div class="flip-card audio-root">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <img class="" src="{{ object.image.url }}" alt=""
+                                             style="width:250px;height:300px;">
+                                    </div>
+                                    <div class="flip-card-back">
+                                        {% if object.website %}
+                                            <div id="ytplayer">
+                                                <iframe width="250" height="315" src="{{ object.website }}"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                        allowfullscreen></iframe>
+                                            </div>
+                                        {% else %}
+                                            <div>
+                                                {{ object.text_preview }}
+                                                {% for song in object.songs.all %}
+                                                    {% if song.file %}
+                                                        <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}"
+                                                             id="id_{{ song.id }}">
+                                                            <audio style="width: 250px" controls
+                                                                   src="{{ song.file.url }}"></audio>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if object.songs.exists %}
+                                                    <select class="select-audio" name="audio" id="id_audio">
+                                                        {% for song in object.songs.all %}
+                                                            {% if song.file %}
+                                                                <option value="{{ song.id }}">
+                                                                    {{ song.name }}
+                                                                </option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div>
+                            <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <style>
+        img {
+            height: 150px;
+            width: 120px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 250px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            vertical-align: middle;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+        }
+
+        .flip-card-back {
+            background-color: #2980b9;
+            color: white;
+            text-align: center;
+            transform: rotateY(180deg);
+        }
+    </style>
+
+    <article class="card-body p-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <p><strong>исторический контекст {{ century.slug }} века </strong></p>
+                        <p class="pre-line-text">{{ century.text }}</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        {% if view.kwargs.category == 'philosopher' %}
+                            <p><strong>философские представления {{ century.slug }} века:</p></strong>
+                            <p class="pre-line-text">{{ description.text }}</p>
+                        {% endif %}
+                        {% if view.kwargs.category == 'spiritual' %}
+                            <div>
+                                <p><strong>христиансво в {{ century.slug }} веке:</strong></p>
+                            </div>
+                            <p class="pre-line-text">
+                                {{ description.detailed_text }}
+                            </p>
+                        {% endif %}
+                        {% if view.kwargs.category == 'music' %}
+                            <p><strong> музыка в {{ century.slug }} веке:</p></strong>
+                            <p class="pre-line-text">{{ description.text }}</p>
+                        {% endif %}
+
+                        {% for subcategory in subcategorylist %}
+                            <div>
+                                <a href="?sub={{ subcategory.slug }}">{{ subcategory.name }}</a>
+                            </div>
+                        {% endfor %}
+
+                        {% if view.kwargs.category == 'philosopher' %}
+
+                            <a class="btn btn-link" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                               role="button"
+                               aria-controls="offcanvasExample">
+                                подробнее
+                            </a>
+
+                        {% endif %}
+                        {% if view.kwargs.category == 'spiritual' %}
+
+                            <a class="btn btn-link" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                               role="button"
+                               aria-controls="offcanvasExample">
+                                краткая информация об иудаизме и мусульманстве в {{ century.slug }} веке
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">подробности</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Закрыть"></button>
+        </div>
+        <div class="offcanvas-body">
+            {% if view.kwargs.category == 'philosopher' %}
+                <div>
+                    <p><strong>философские ответы на вызовы {{ century.slug }} века:</strong></p>
+                </div>
+            {% endif %}
+            {% if view.kwargs.category == 'spiritual' %}
+                <p><strong> мировые религии в {{ century.slug }} веке:</p></strong>
+                <p>{{ description.text }}</p>
+            {% endif %}
+
+            <br>
+            {% if view.kwargs.category == 'philosopher' %}
+                <div>
+                    <p><strong>религиозные изменения {{ century.slug }} века:</strong></p>
+                </div>
+            {% endif %}
+            {% if view.kwargs.category == 'spiritual' %}
+                <div>
+                    <p><strong>иудаизм в {{ century.slug }} веке:</strong></p>
+                </div>
+                <div>
+                    <p class="pre-line-text">{{ description.rel_changes_text }}</p>
+                </div>
+            {% endif %}
+            {% if view.kwargs.category == 'philosopher' %}
+                <div>
+                    <p class="pre-line-text">{{ description.rel_changes_text }}</p>
+                </div>
+            {% endif %}
+            {% if view.kwargs.category == 'philosopher' %}
+                <div>
+                    <p><strong>философские ошибки {{ century.slug }} века:</strong></p>
+                </div>
+            {% endif %}
+            {% if view.kwargs.category == 'spiritual' %}
+                <div>
+                    <p><strong> мусульманство в {{ century.slug }} веке:</strong></p>
+                </div>
+            {% endif %}
+            <div>
+                <p class="pre-line-text">{{ description.mistake_text }}</p>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'core/player.js' %}"></script>
+{% endblock %}
+
+
+
+
+

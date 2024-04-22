@@ -1,0 +1,10 @@
+{%extends "base.html" %}
+{% block content %}
+<p></p>
+{% for search in search_data %}
+<div>
+    <a href="{{search.link}}">{{search.name}}</a>
+</div>
+{% endfor %}
+
+{% endblock  %}

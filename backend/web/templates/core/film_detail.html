@@ -1,0 +1,36 @@
+{%extends "base.html" %}
+{% block content %}
+<p></p>
+
+
+<center><h6>{{object}}</h6>
+
+<p></p>
+<div class="container">
+    <div class="row">
+
+
+        {% for film in object.films.all %}
+
+
+        <div class="card" style="width: 16rem;">
+            <div class="col-md-3 col-lg-12   col-sm-6">
+                <div class="row">
+                    <div class="card-img">
+                        <a href="{{film.get_absolute_url }}"><img class="" src="{{film.image.url}}"
+                        style="width:200px;height:200px;"></a>
+                        <h7 class="card-title"></h7>
+                        <p class="card-text"></p>
+                        <a href="{{film.get_absolute_url}}"> {{film.name}} </a></p>
+                        {{ category.about_text }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        {% endfor %}
+    </div>
+
+    {%endblock%}
