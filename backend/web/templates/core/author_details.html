@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
     {% load static %}
-
+    
     <script src="{% static 'core/player.js' %}"></script>
     <div class="container my-5">
         <div class="card">
             <div class="row audio-root">
                 <div class="img-big-wrap">
-                    <img src="{{ author.image.url }}" class="img-fluid" style="width: 250px;">
+                    <img src="{{ author.image.url }}" class="img-fluid" style="width: 350px;">
                 </div>
                 <div class="h3">{{ author.name }}</div>
                 <div>
@@ -28,6 +28,7 @@
                             {{ song.about }}
                         </div>
                         <div class="main-song">
+                     
                             {% if song.type == 'youtube' %}
                                 <div id="ytplayer">
                                     <iframe width="250" height="110" src="{{ song.youtube_link }}"
