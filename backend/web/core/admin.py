@@ -43,10 +43,8 @@ class SingerAdmin(admin.ModelAdmin):
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
-    pass
     prepopulated_fields = {"slug": ["name"]}
-    search_fields = ['name']
-
+    search_field = ['author']
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
