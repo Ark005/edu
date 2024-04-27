@@ -45,12 +45,7 @@ class Author(models.Model):
         max_length=255,
         verbose_name='Имя'
     )
-    # dob = models.TextField(
-    # date = models.DateTimeField(default=datetime.now, blank=True)
-    # verbose_name='дата',
-    # blank=True,
-    # null=True
-    # )
+    
     category = models.ForeignKey(
         to='Category',
         related_name='authors',
@@ -88,6 +83,18 @@ class Author(models.Model):
         verbose_name='ссылка',
         null=True,
         unique=True
+    )
+    slug2 = models.CharField(
+        max_length=255,
+        verbose_name='слаг автора',
+        null=True,
+        blank=True
+    )
+    slug3 = models.CharField(
+        max_length=255,
+        verbose_name='имя автора произведения',
+        null=True,
+        blank=True
     )
     type = models.CharField(
         choices=author_type_choices,

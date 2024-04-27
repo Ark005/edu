@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     {% load static %}
-    
+
     <script src="{% static 'core/player.js' %}"></script>
     <div class="container my-5">
         <div class="card">
@@ -9,7 +9,11 @@
                 <div class="img-big-wrap">
                     <img src="{{ author.image.url }}" class="img-fluid" style="width: 350px;">
                 </div>
-             <div class="h3">{{ author.name }}</div>
+                <div class="h4">{{ author.name }}
+                    {% if author.slug2 %}
+                        <a href=" /{{ author.slug2 }}/detail">({{ author.slug3 }})</a>
+                    {% endif %}
+                </div>
                 <div>
                     {% include 'core/includes/author_accordion.html' %}
                 </div>
@@ -22,16 +26,16 @@
                 {% for song in author.songs.all %}
                     <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}" id="id_{{ song.id }}">
                         <div>
-                            {{ song.name }}
-                            {{ song.singer }}
+                            "{{ song.name }}".    
+                            Исполнитель {{ song.singer }}
                             {{ song.text }}
                             {{ song.about }}
                         </div>
                         <div class="main-song">
-                     
+
                             {% if song.type == 'youtube' %}
                                 <div id="ytplayer">
-                                    <iframe width="250" height="110" src="{{ song.youtube_link }}"
+                                    <iframe width="350" height="250" src="{{ song.youtube_link }}"
                                             title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                             allowfullscreen></iframe>

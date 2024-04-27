@@ -3,10 +3,11 @@
         <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                {% if view.kwargs.slug != 'writer' %}
-                    Об авторе
-                {% else %}
-                    Краткое содержание
+                
+                {% if author.slug3 == none %}
+                 {{ author.name }}. Краткая биография
+                 {% else %}  
+                    краткое содержание произведения
                 {% endif %}
             </button>
         </h2>
