@@ -45,6 +45,8 @@ class SingerAdmin(admin.ModelAdmin):
 class SongAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
     search_field = ['author']
+    ordering = ['type']
+    list_display = ('name', 'type')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

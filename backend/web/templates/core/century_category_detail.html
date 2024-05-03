@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
@@ -52,7 +51,9 @@
                             </div>
                         {% endif %}
                         <div>
-                            <a href="{{ object.get_absolute_url }}"><center>{{ object }}</center></a>
+                            <a href="{{ object.get_absolute_url }}">
+                                <center>{{ object }}</center>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -128,6 +129,14 @@
                     <div>
                         {% if view.kwargs.category == 'philosopher' %}
                             <p><strong>философские представления {{ century.slug }} века:</p></strong>
+                            <p class="pre-line-text">{{ description.text }}</p>
+                        {% endif %}
+                        {% if view.kwargs.category == 'artist' %}
+                            <p><strong>художественный контекст {{ century.slug }} века:</p></strong>
+                            <p class="pre-line-text">{{ description.text }}</p>
+                        {% endif %}
+                        {% if view.kwargs.category == 'writer' %}
+                            <p><strong>литературный контекст {{ century.slug }} века:</p></strong>
                             <p class="pre-line-text">{{ description.text }}</p>
                         {% endif %}
                         {% if view.kwargs.category == 'spiritual' %}
