@@ -1,15 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
     {% load static %}
+    
+    {% comment %} <div class="container">
+        <div class="row">
+            <div class="col-sm-8">col-sm-8</div>
+            <div class="col-sm-4">col-sm-4</div>
+        </div>
+        <div class="row">
+            <div class="col-sm">col-sm</div>
+            <div class="col-sm">col-sm</div>
+            <div class="col-sm">col-sm</div>
+        </div>
+    </div>{% endcomment %}
 
     <script src="{% static 'core/player.js' %}"></script>
     <div class="container my-5">
         <div class="card">
             <div class="row audio-root">
                 <div class="img-big-wrap">
-                    <img src="{{ author.image.url }}" class="img-fluid" style="width: 350px;">
+                    <img src="{{ author.image.url }}" class="img-fluid" style="width: 210px;">
                 </div>
-                <div class="h4">{{ author.name }}
+                <div class="h6">{{ author.name }}
                     {% if author.slug2 %}
                         <a href=" /{{ author.slug2 }}/detail">({{ author.slug3 }})</a>
                     {% endif %}
@@ -26,10 +38,10 @@
                 {% for song in author.songs.all %}
                     <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}" id="id_{{ song.id }}">
                         <div>
-                            "{{ song.name }}".    
-{#                            Исполнитель {{ song.singer }}#}
-{#                            {{ song.text }}#}
-{#                            {{ song.about }}#}
+                            "{{ song.name }}".
+                            {#                            Исполнитель {{ song.singer }}#}
+                            {#                            {{ song.text }}#}
+                            {#                            {{ song.about }}#}
                         </div>
                         <div class="main-song">
 
@@ -130,6 +142,4 @@
         <h6>антагонист:</h6>
         {{ author.antagonist.name.get_absolute_url }}{{ author.antagonist.name.display_name }}
     {% endif %}
-
-
 {% endblock %}

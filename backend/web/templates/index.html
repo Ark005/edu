@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-
     <div class="d-flex justify-content-center mb-3">
         <div>
-            <h5>столетия:</h5>
+            <label for="customRange3" class="form-label"><strong>век:</strong></label>
             {% for century in centuries %}
                 <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
             {% endfor %}
+            <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
+
+            {% comment %}<input type="range" class="form-range" min="-8" max="21" step="1" id="customRange3">{% endcomment %}
         </div>
     </div>
-
 
     <div>
         <div class="container">

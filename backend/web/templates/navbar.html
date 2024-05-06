@@ -1,46 +1,107 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
+    {% comment %}<nav class="navbar navbar-expand-lg navbar-light bg-light">{% endcomment %}
     <div class="container-fluid">
-        <a class="nav-link active" aria-current="page" href="/">мыслю, значит существую</a>
+
+        {% comment %} <a class="navbar-brand" href="#">
+      <img src="/media/image/logo.jpeg" width="20" height="16" class="d-inline-block align-text-center">
+    </a>{% endcomment %}
+        <a class="navbar-brand" href="/">005.ru: мыслю, значит существую 
+    
+            {% comment %}<img src="" alt="" width="" height="" alt="">{% endcomment %}
+        </a>
+        {% comment %}<a class="nav-link active" aria-current="page" href="/">мыслю, значит существую</a>{% endcomment %}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/5.html">005.ru: что можно сделать за 5 минут?</a>
-                <li class="nav-item dropdown">
-                <li class="nav-item">
-                    <a class="nav-link" href="/about.html">о проекте</a>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        категории
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/category/artist">арт</a></li>
-                        <li><a class="dropdown-item" href="/category/director">кино</a></li>
-                        <li><a class="dropdown-item" href="/category/writer">литература</a></li>
-                        <li><a class="dropdown-item" href="/category/music">музыка</a></li>
-                        <li><a class="dropdown-item" href="/category/spiritual">религия</a></li>
-                        <li><a class="dropdown-item" href="/category/philosopher">философия</a></li>
+        <ul class="navbar-nav navbar-light">
+
+            <body>
+            <div class="container position-relative">
+                <form action="/search" method="get">
+                    <input name="search" class="form-control" id="id_search" type="text" placeholder="поиск">
+                </form>
+                <div class="position-absolute search-result"></div>
+            </div>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                {
+                    box-sizing: border-box
+                ;
+                }
+                form {
+                    position: relative;
+                    width: 300px;
+                    margin: 40 auto;
+                }
+
+                input {
+                    width: 100%;
+                    height: 42px;
+                    padding-left: 10px;
+                    border: 2px solid #7BA7AB;
+                    border-radius: 5px;
+                    outline: none;
+                    background: #F9F0DA;
+                    color: #9E9C9C;
+                }
+
+                button {
+                    width: 215px;
+                    height: 35px;
+                    border: none;
+                    background: #e2e7d7;
+                    border-radius: 0 5px 5px 0;
+                    cursor: pointer;
+                }
+
+                <
+                /
+                body >
+            </style>
+
+            {% block content %}
+            {% endblock %}
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    о проекте
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/5.html">005.ru за 5 минут</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about.html">информация о проекте</a>
+                    <li class="nav-item dropdown">
+                </ul>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    категории
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/category/artist">арт</a></li>
+                    <li><a class="dropdown-item" href="/category/director">кино</a></li>
+                    <li><a class="dropdown-item" href="/category/writer">литература</a></li>
+                    <li><a class="dropdown-item" href="/category/music">музыка</a></li>
+                    <li><a class="dropdown-item" href="/category/spiritual">религия</a></li>
+                    <li><a class="dropdown-item" href="/category/philosopher">философия</a></li>
 
 
-                    </ul>
-                    {% if request.user.is_authenticated %}
+                </ul>
+                {% comment %}  {% if request.user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <!--<i class="fas fa-user-tie"></i> {{ request.user.username }}-->
                             </a>
                         </li>
-                    {% endif %}
-            </ul>
-        </div>
+                    {% endif %}{% endcomment %}
+        </ul>
+    </div>
     </div>
 
 </nav>

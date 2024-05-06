@@ -5,7 +5,9 @@
     <center>
 
         {% if view.kwargs.slug != 'director' %} 
-            <h6 style="color:#0037ff">столетия:</h6>
+            <br>
+            <label for="customRange3" class="form-label">столетие:</label>
+{% comment %}<input type="range" class="form-range" min="0" max="5" step="1" id="customRange3">{% endcomment %}
         {% endif %}
         {% for century in centuries %}
             <a class="text-dark" href="{{ century.get_absolute_url }}"> {{ century.century.display_name }}</a>

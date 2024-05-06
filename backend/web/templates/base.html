@@ -16,9 +16,9 @@
 <br>
 <body
 <div class="container position-relative">
-    <form action="/search" method="get">
-        <input name="search" class="form-control" id="id_search" type="text" placeholder="введите поисковый запрос">
-    </form>
+    {% comment %}<form action="/search" method="get">
+        <input name="search" class="form-control" id="id_search" type="text" placeholder="поиск">
+    </form>{% endcomment %}
     <div class="position-absolute search-result"></div>
 </div>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,7 @@
     }
     form {
         position: relative;
-        width: 1290px;
+        width: 300px;
         margin: 40 auto;
     }
 
