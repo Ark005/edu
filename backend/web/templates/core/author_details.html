@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     {% load static %}
-    
+
     {% comment %} <div class="container">
         <div class="row">
             <div class="col-sm-8">col-sm-8</div>
@@ -19,9 +19,10 @@
         <div class="card">
             <div class="row audio-root">
                 <div class="img-big-wrap">
-                    <img src="{{ author.image.url }}" class="img-fluid" style="width: 210px;">
+                    <img src="{{ author.image.url }}" class="img-fluid" style="width: 565px;">
                 </div>
                 <div class="h6">{{ author.name }}
+                    <br>
                     {% if author.slug2 %}
                         <a href=" /{{ author.slug2 }}/detail">({{ author.slug3 }})</a>
                     {% endif %}
@@ -35,23 +36,29 @@
                     {% endfor %}
                 </div>
 
+                <br>
+
                 {% for song in author.songs.all %}
                     <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}" id="id_{{ song.id }}">
                         <div>
-                            "{{ song.name }}".
-                            {#                            Исполнитель {{ song.singer }}#}
-                            {#                            {{ song.text }}#}
-                            {#                            {{ song.about }}#}
+                            <center>
+                                "{{ song.name }}"
+                                {% comment %}{% if song.singer % }{% endcomment %}
+                                    . читает {{ song.singer }} 
+                               {% comment %} {% endif %}{% endcomment %}
+                            </center>
                         </div>
                         <div class="main-song">
 
                             {% if song.type == 'youtube' %}
-                                <div id="ytplayer">
-                                    <iframe width="350" height="250" src="{{ song.youtube_link }}"
-                                            title="YouTube video player" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            allowfullscreen></iframe>
-                                </div>
+                                <center>
+                                    <div id="ytplayer">
+                                        <iframe width="565" height="250" src="{{ song.youtube_link }}"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                </center>
                             {% else %}
                                 {% if song.file %}
                                     <audio controls src="{{ song.file.url }}" preload="auto">
@@ -69,6 +76,7 @@
                 {% endfor %}
                 {% if author.songs.exists %}
                     <select class="select-audio form-select" name="audio" id="id_audio">
+                        
                         {% for song in author.songs.all %}
                             {% if song.file or song.youtube_link %}
                                 <option value="{{ song.id }}">
@@ -81,6 +89,7 @@
                 {% endif %}
             </div>
         </div>
+        <br>
         <div class="videos my-2">
             <div class="audio-root">
                 {% for video in author.videos.all %}

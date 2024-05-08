@@ -1,24 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     {% comment %}<nav class="navbar navbar-expand-lg navbar-light bg-light">{% endcomment %}
     <div class="container-fluid">
-
-        {% comment %} <a class="navbar-brand" href="#">
-      <img src="/media/image/logo.jpeg" width="20" height="16" class="d-inline-block align-text-center">
-    </a>{% endcomment %}
-        <a class="navbar-brand" href="/">005.ru: мыслю, значит существую 
-    
-            {% comment %}<img src="" alt="" width="" height="" alt="">{% endcomment %}
+        <a class="navbar-brand" href="/">
+            {% comment %}<img src="/media/image/005.jpg" width="100" height="" >{% endcomment %}
+            {% comment %}   <img src="/media/image/logo.jpeg" alt="25" width="25" height="" alt="">
+            <img src="/media/image/logo.jpeg" alt="25" width="25" height="" alt="">{% endcomment %}
+            {% comment %} 005{% endcomment %}{% comment %}<img src="/media/image/5.jpeg" alt="25%" width="25" height="">{% endcomment %}
+            {% comment %}    <img src="/media/image/ru.webp" alt="25" width="25" height="" alt="">{% endcomment %}
+            мыслю, значит существую
         </a>
-        {% comment %}<a class="nav-link active" aria-current="page" href="/">мыслю, значит существую</a>{% endcomment %}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         <ul class="navbar-nav navbar-light">
-
+            <br>
             <body>
-            <div class="container position-relative">
+            <div class="container position-relative" >
                 <form action="/search" method="get">
                     <input name="search" class="form-control" id="id_search" type="text" placeholder="поиск">
                 </form>
@@ -60,10 +59,10 @@
                 /
                 body >
             </style>
-
-            {% block content %}
+            </body>
+            {% comment %}   {% block content %}
             {% endblock %}
-
+{% endcomment %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                    aria-expanded="false">

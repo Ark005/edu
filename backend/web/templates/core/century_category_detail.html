@@ -33,7 +33,7 @@
                                                         </div>
                                                     {% endif %}
                                                 {% endfor %}
-                                                {% if object.songs.exists %}
+                                               {% comment %} {% if object.songs.exists %}
                                                     <select class="select-audio" name="audio" id="id_audio">
                                                         {% for song in object.songs.all %}
                                                             {% if song.file %}
@@ -43,7 +43,7 @@
                                                             {% endif %}
                                                         {% endfor %}
                                                     </select>
-                                                {% endif %}
+                                                {% endif %}{% endcomment %}
                                             </div>
                                         {% endif %}
                                     </div>
