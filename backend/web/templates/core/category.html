@@ -7,7 +7,7 @@
         {% if view.kwargs.slug != 'director' %}
             <br>
             <label for="customRange3" class="form-label">столетие:</label>
-{% comment %}<input type="range" class="form-range" min="0" max="5" step="1" id="customRange3">{% endcomment %}
+            {% comment %}<input type="range" class="form-range" min="0" max="5" step="1" id="customRange3">{% endcomment %}
         {% endif %}
         {% for century in centuries %}
             <a class="text-dark" href="{{ century.get_absolute_url }}"> {{ century.century.display_name }}</a>
@@ -93,6 +93,7 @@
             <img src="/media/images/1.webp" width="600" height="400">
             <img src="/media/images/2.webp" width="600" height="400">
             <img src="/media/images/3.webp" width="600" height="400">
+            <img src="/media/images/4.webp" width="600" height="400">
 
         </div>
     {% endif %}

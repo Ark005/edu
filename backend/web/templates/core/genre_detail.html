@@ -50,7 +50,7 @@
                                                             </div>
                                                         {% endif %}
                                                     {% endfor %}
-                                                 {% comment %}   {% if object.songs.exists %}
+                                                    {% comment %}   {% if object.songs.exists %}
                                                         <select class="select-audio" name="audio" id="id_audio">
                                                             {% for song in object.songs.all %}
                                                                 {% if song.file %}
@@ -76,6 +76,14 @@
             </div>
     </center>
     </div>
+ 
+  {% comment %}  <script src="{% static 'core/player.js' %}"></script>{% endcomment %}
+    {% if view.kwargs.slug == ' genre/srednevekovaya-v-xv-vek/detail' %}
+       
+        <div class="scroll-container">
+            <img src="/media/images/1.webp" width="600" height="400">
+        </div>
+    {% endif %}
 
     <style>
         img {
