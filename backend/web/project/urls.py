@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('about.html/', TemplateView.as_view(template_name="core/about.html")),
     path('5.html/', TemplateView.as_view(template_name="core/5.html")),
+    path('why.html/', TemplateView.as_view(template_name="core/why.html")),
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_DIR)

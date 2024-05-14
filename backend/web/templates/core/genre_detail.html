@@ -33,7 +33,7 @@
                                                             режиссер {{ object.director }}
 
                                                         <p>Нажмите  на изображение.
-                                                        В правом нижнем углу видео появится логотип Youtube b квадратик.
+                                                        В правом нижнем углу видео появится логотип Youtube и квадратик.
                                                         При повторном нажатии на квадрат, видео развернется на весь
                                                         экран
                                                     {% endif %}
@@ -68,7 +68,11 @@
                                 </div>
                             {% endif %}
                             <div>
-                                <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                                <a href="{{ object.get_absolute_url }}">{{ object }} </a>
+                                 <br>
+                                {% if object.slug3 %}
+                                <a href="{{ object.get_absolute_url }}"> {{ object.slug3 }}</a>
+                                {%  endif %}
                             </div>
                         </div>
                     </div>
@@ -76,14 +80,14 @@
             </div>
     </center>
     </div>
- 
-  {% comment %}  <script src="{% static 'core/player.js' %}"></script>{% endcomment %}
-    {% if view.kwargs.slug == ' genre/srednevekovaya-v-xv-vek/detail' %}
+
+    {% comment %}  <script src="{% static 'core/player.js' %}"></script>{% endcomment %}
+    {% comment %}   {% if view.kwargs.slug == ' genre/srednevekovaya-v-xv-vek/detail' %}
        
         <div class="scroll-container">
             <img src="/media/images/1.webp" width="600" height="400">
         </div>
-    {% endif %}
+    {% endif %}{% endcomment %}
 
     <style>
         img {
