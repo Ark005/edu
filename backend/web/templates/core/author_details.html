@@ -1,64 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
     {% load static %}
-
-    {% comment %} <div class="container">
-        <div class="row">
-            <div class="col-sm-8">col-sm-8</div>
-            <div class="col-sm-4">col-sm-4</div>
-        </div>
-        <div class="row">
-            <div class="col-sm">col-sm</div>
-            <div class="col-sm">col-sm</div>
-            <div class="col-sm">col-sm</div>
-        </div>
-    </div>{% endcomment %}
-
     <script src="{% static 'core/player.js' %}"></script>
     <div class="container my-5">
-        <div class="card">
+        <div class="card p-3">
             <div class="row audio-root">
                 <div class="img-big-wrap">
                     <img src="{{ author.image.url }}" class="img-fluid" style="width: 565px;">
                 </div>
-                <div class="h6">{{ author.name }}
-                    <br>
+                <div class="h6 my-3">
+                    <p class="mb-1">{{ author.name }}</p>
                     {% if author.slug2 %}
                         <a href=" /{{ author.slug2 }}/detail">({{ author.slug3 }})</a>
                     {% endif %}
                 </div>
-                <div>
+                {% if author.creations.exists %}
+                    <div>
+                        {% for creation in author.creations.all %}
+                            <div class="d-inline-block"><a
+                                    href="{{ creation.get_absolute_url }}">{{ creation.name }}</a></div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="mb-3">
                     {% include 'core/includes/author_accordion.html' %}
                 </div>
+                {% if author.creation_author %}
+                    <div class="mt-3">
+                        <p class="h3">Произведение</p>
+                    </div>
+                {% endif %}
                 <div>
                     {% for century in centuries %}
                         <a href="/antogonist/{{ antogonist.0 }}">{{ antogonist.1 }}</a>
                     {% endfor %}
                 </div>
-
-                <br>
-
                 {% for song in author.songs.all %}
                     <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}" id="id_{{ song.id }}">
-                        <div>
-                            <center>
-                                "{{ song.name }}"
-                                {% comment %}{% if song.singer % }{% endcomment %}
-                                . читает {{ song.singer }}
-                                {% comment %} {% endif %}{% endcomment %}
-                            </center>
-                        </div>
                         <div class="main-song">
-
                             {% if song.type == 'youtube' %}
-                                <center>
-                                    <div id="ytplayer">
-                                        <iframe width="565" height="250" src="{{ song.youtube_link }}"
-                                                title="YouTube video player" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </center>
+                                <div id="ytplayer">
+                                    <iframe width="565" height="250" src="{{ song.youtube_link }}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe>
+                                </div>
                             {% else %}
                                 {% if song.file %}
                                     <audio controls src="{{ song.file.url }}" preload="auto">
@@ -75,35 +61,37 @@
                     </div>
                 {% endfor %}
                 {% if author.songs.exists %}
-                    <select class="select-audio form-select" name="audio" id="id_audio">
+                    <div class="mt-3">
+                        <select class="select-audio form-select form-select-sm popover-note-2" name="audio"
+                                id="id_audio">
 
-                        {% for song in author.songs.all %}
-                            {% if song.file or song.youtube_link %}
-                                <option value="{{ song.id }}">
-                                    {{ song.name }}
-                                    {{ song.text }}
-                                </option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
+                            {% for song in author.songs.all %}
+                                {% if song.file or song.youtube_link %}
+                                    <option value="{{ song.id }}">
+                                        {{ song.name }}
+                                        {{ song.text }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
                 {% endif %}
             </div>
         </div>
-        <br>
-        <div class="videos my-2">
-            <div class="audio-root">
-                {% for video in author.videos.all %}
-                    <div id="id_{{ video.id }}" class="audio {% if forloop.counter != 1 %}hidden{% endif %}">
-                        <iframe width="560" height="315" src="{{ video.slug }}"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                    </div>
-                {% endfor %}
-                <h6 style="color:#0037ff">нажмите на название снизу, возможно, видеороликов несколько </h6>
-                {% if author.videos.exists %}
-                    <div>
-                        <select class="select-audio form-select">
+        {% if author.videos.exists %}
+            <div class="videos card my-2 p-3">
+                <p class="h3">{% if author.creation_author %}О произведении{% else %}Об авторе{% endif %}</p>
+                <div class="audio-root">
+                    {% for video in author.videos.all %}
+                        <div id="id_{{ video.id }}" class="audio {% if forloop.counter != 1 %}hidden{% endif %}">
+                            <iframe width="560" height="315" src="{{ video.slug }}"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                        </div>
+                    {% endfor %}
+                    <div class="mt-2">
+                        <select class="select-audio form-select form-select-sm popover-note">
                             {% for video in author.videos.all %}
                                 <option value="{{ video.id }}">
                                     {{ video.name }}
@@ -112,9 +100,9 @@
 
                         </select>
                     </div>
-                {% endif %}
+                </div>
             </div>
-        </div>
+        {% endif %}
         {% if author.pictures.exists %}
             <div class="pictures d-flex justify-content-center my-2">
                 <div class="audio-root">
@@ -132,7 +120,6 @@
                                 {% if picture.file %}
                                     <option value="{{ picture.id }}">
                                         {{ picture.name }}
-                                 {% comment %}   {{ book.name }}{% endcomment %}
                                     </option>
                                 {% endif %}
                             {% endfor %}
@@ -153,27 +140,24 @@
         {{ author.antagonist.name.get_absolute_url }}{{ author.antagonist.name.display_name }}
     {% endif %}
 
- {% comment %}   <div>
-        <select class="select-audio form-select">
-            {% for book in author.books.all %}
-                {% if books.file %}
-                    <option value="{{ book.id }}">
-                        {{ book.name }}
-                    </option>
-                {% endif %}
-            {% endfor %}
-        </select>
-    </div>{% endcomment %}
-
-{% comment %}
-    {% if author.book %}
-        <a href=" /{{ author.book }}/detail">({{ author.book.name}})</a>
-    {% endif %}{% endcomment %}
+    <script>
+        var popover = new bootstrap.Popover(document.querySelector('.popover-note'), {
+            content: "Нажмите, чтобы выбрать ролик",
+            trigger: "hover"
+        })
+        popover.show()
+    
+        var popover2 = new bootstrap.Popover(document.querySelector('.popover-note-2'), {
+            content: "Нажмите, чтобы выбрать произведение",
+            trigger: "hover"
+        })
+        popover2.show()
 
 
+    </script>
 {% endblock %}
 
- {% if author.book.name.exists %}
-        <h6>антагонист:</h6>
-        {{ author.book.name.get_absolute_url }}{{ author.book.name.display_name }}
-    {% endif %}
+{% if author.book.name.exists %}
+    <h6>антагонист:</h6>
+    {{ author.book.name.get_absolute_url }}{{ author.book.name.display_name }}
+{% endif %}

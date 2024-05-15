@@ -9,15 +9,20 @@ class VideoInLineAdmin(TabularInline):
 class PictureInLineAdmin(StackedInline):
     model = Picture
 
+class CreationInline(TabularInline):
+    model = Author
+    fields = ("name", "slug")
+
 # Register your models here.
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
+    change_form_template = "admin/select2_admin_form.html"
     list_display = ('id', 'name', 'category', 'text_preview', 'get_type_display')
     ordering = ['type']
     prepopulated_fields = {"slug": ["name"]}
     list_display_links = ["name"]
-    inlines = [VideoInLineAdmin, PictureInLineAdmin, BookInLineAdmin]
+    inlines = [VideoInLineAdmin, PictureInLineAdmin, BookInLineAdmin, CreationInline]
     search_fields = ['name']
     actions = ["set_category"]
 

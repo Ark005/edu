@@ -45,7 +45,15 @@ class Author(models.Model):
         max_length=255,
         verbose_name='Имя'
     )
-    
+    creation_author = models.ForeignKey(
+        to="self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Автор произведения",
+        related_name="creations"
+    )
+
     category = models.ForeignKey(
         to='Category',
         related_name='authors',
@@ -121,6 +129,13 @@ class Author(models.Model):
         related_name='authors',
         blank=True
     )
+    last_name = models.CharField(
+        max_length=1024,
+        null=True,
+        blank=True,
+        verbose_name="Фамилия"
+    )
+
     def __str__(self):
         return f'{self.name}'
 
@@ -169,8 +184,3 @@ def func_name(sender, instance: Author, save=None, **kwargs):
         century = instance.year / 100 - 1
     x = Century.objects.filter(value=century).first()
     instance.century = x
-
-
-
-
-

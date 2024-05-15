@@ -7,4 +7,10 @@
 
 
 .centurydescription-text, .pre-line-text {
-    white-space: pre-line
+    white-space: pre-line;
+}
+
+.logotype-images > img {
+    width: 25px!important;
+    height: 25px!important;
+}

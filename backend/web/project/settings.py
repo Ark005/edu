@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.get("SECRET")
 DEBUG = bool(int(os.environ.get("DEBUG")))
 DEVOLOP = bool(int(os.environ.get("DEVELOP")))
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_ORIGINS").split(" ")
 
 # Application definition
 

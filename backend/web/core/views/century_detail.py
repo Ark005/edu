@@ -5,8 +5,6 @@ from ..models import Author, Category, Century, century
 from django.db.models import Prefetch
 
 
-
-
 class CenturyDetailView(ListView):
     template_name = "core/century_details.html"
 
@@ -16,7 +14,7 @@ class CenturyDetailView(ListView):
     def get_queryset(self):
 
         queryset = Category.objects.prefetch_related(
-            Prefetch("authors", queryset=Author.objects.filter(century__slug=self.century))
+            Prefetch("authors", queryset=Author.objects.filter(century__slug=self.century).order_by("last_name"))
         ).filter(authors__century__slug=self.century).distinct()
         return queryset
     def get_context_data(self):
