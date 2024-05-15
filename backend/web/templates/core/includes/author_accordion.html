@@ -3,21 +3,13 @@
         <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-
-                {% if author.slug3 == none %}
-                    <center>
-                        {{ author.name }}. Краткая биография
-                        {% else %}
-                        <body>
-                        <h4 style="color:DarkBlue;">краткое содержание произведения</h4>
-                        </body>
-                    </center>
-                {% endif %}
-               {% comment %} {% if author.view.kwargs == 'spiritual' %}
-                    <center>
-                        {{ author.name }}
-                    </center>
-                {% endif %}{% endcomment %}
+                <div class="d-flex align-items-center justify-content-center">
+                    {% if not author.creation_author %}
+                        <p class="m-0 text-center">{{ author.name }}. Краткая биография</p>
+                    {% else %}
+                        <p class="m-0 text-center">Краткое содержание произведения</p>
+                    {% endif %}
+                </div>
             </button>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
