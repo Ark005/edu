@@ -10,9 +10,15 @@
                 </div>
                 <div class="h6 my-3">
                     <p class="mb-1">{{ author.name }}</p>
-                    {% if author.slug2 %}
-                        <a href=" /{{ author.slug2 }}/detail">({{ author.slug3 }})</a>
+
+
+                    {% if author.creation_author %}
+                        <a href=" /{{ author.creation_author.slug }}/detail">{{ author.creation_author }}</a>
                     {% endif %}
+           
+{% comment %}                    {% if author.slug2 %}
+                        <a href=" /{{ author.slug2 }}/detail">({{ author.slug3 }})</a>
+                    {% endif %}{% endcomment %}
                 </div>
                 {% if author.creations.exists %}
                     <div>
@@ -146,7 +152,7 @@
             trigger: "hover"
         })
         popover.show()
-    
+
         var popover2 = new bootstrap.Popover(document.querySelector('.popover-note-2'), {
             content: "Нажмите, чтобы выбрать произведение",
             trigger: "hover"
