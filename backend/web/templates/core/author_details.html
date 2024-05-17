@@ -9,14 +9,12 @@
                     <img src="{{ author.image.url }}" class="img-fluid" style="width: 565px;">
                 </div>
                 <div class="h6 my-3">
-                    <p class="mb-1">{{ author.name }}</p>
-
-
+                    <p class="mb-1">{{ author.name }} </p>
                     {% if author.creation_author %}
                         <a href=" /{{ author.creation_author.slug }}/detail">{{ author.creation_author }}</a>
                     {% endif %}
-           
-{% comment %}                    {% if author.slug2 %}
+
+                    {% comment %}                    {% if author.slug2 %}
                         <a href=" /{{ author.slug2 }}/detail">({{ author.slug3 }})</a>
                     {% endif %}{% endcomment %}
                 </div>
@@ -31,7 +29,8 @@
                 <div class="mb-3">
                     {% include 'core/includes/author_accordion.html' %}
                 </div>
-                {% if author.creation_author %}
+
+                {% if author.songs.exists %}
                     <div class="mt-3">
                         <p class="h3">Произведение</p>
                     </div>

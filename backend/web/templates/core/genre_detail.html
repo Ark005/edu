@@ -67,12 +67,15 @@
                                     </div>
                                 </div>
                             {% endif %}
+
+
                             <div>
                                 <a href="{{ object.get_absolute_url }}">{{ object }} </a>
-                                 <br>
-                            {{ object.creation_author}}
-                                
-                               {% comment %} {% if object.slug3 %}
+                                <br>
+                                {% if object.creation_author %}
+                                    <a href="{{ object.get_absolute_url }}"> {{ object.creation_author }}</a>
+                                {% endif %}
+                                {% comment %}   {% if object.slug3 %}
                                 <a href="{{ object.get_absolute_url }}"> {{ object.slug3 }}</a>
                                 {%  endif %}{% endcomment %}
                             </div>
