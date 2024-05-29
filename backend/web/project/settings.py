@@ -133,3 +133,5 @@ MEDIA_URL = '/media/'
 # MEDIA_URL = '/media/'
 MEDIA_DIR = os.path.join(BASE_DIR, 'media/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+BOT_TOKEN = "7493000911:AAG0dj73Kk2XKysBh7lejnxlTJ6DZoLPI6o"
+ADMIN_CHAT_ID = "434085159"
