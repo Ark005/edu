@@ -16,7 +16,7 @@ def get_author_centuries():
 def index_view(request):
    
 
-    category_list  = Category.objects.all()
+    category_list  = Category.objects.all().order_by("name")
     centuries = get_author_centuries()
     genre_list = Genre.objects.all()
     film_list = Film.objects.all()
