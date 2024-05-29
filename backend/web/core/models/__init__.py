@@ -10,4 +10,5 @@ from .video import Video
 from .book import Book
 from .subcategory import Subcategory
 from .century_description import CenturyDescription
+from .feedback import Feedback
 

@@ -17,35 +17,35 @@
             <div class="row">
                 {% for category in categories %}
                     {% if category.main_image %}
-                        <div class="col-4 p-2 mb-2">
+                        <div class="col-12 col-md-6 col-lg-4 p-2 mb-2">
                             <div class="card category-card">
-                                            <div class="flip-card">
-                                                <div class="d-flex justify-content-center">
-                                                    <div class="flip-card-inner">
-                                                        <div class="flip-card-front">
-                                                            <img src="{{ category.main_image.url }}"
-                                                                 style="width:210px;height:100px;">
-                                                        </div>
-                                                        <div class="flip-card-back">
-                                                            {% if category.website %}
-                                                                <div id="ytplayer">
-                                                                    <iframe width="210" height="100"
-                                                                            src="{{ category.website }} "
-                                                                            title="YouTube video player" frameborder="0"
-                                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                                            allowfullscreen></iframe>
-                                                                </div>
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex justify-content-center my-3">
-                                                    <a href="{{ category.get_absolute_url }}" type="button"
-                                                       class="btn btn-outline-secondary">{{ category.name }}</a>
-                                                </div>
-                                                <p class="text-center">{{ category.about_text }}</p>
+                                <div class="flip-card">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img src="{{ category.main_image.url }}"
+                                                     style="width:210px;height:100px;">
                                             </div>
-                            
+                                            <div class="flip-card-back">
+                                                {% if category.website %}
+                                                    <div id="ytplayer">
+                                                        <iframe width="210" height="100"
+                                                                src="{{ category.website }} "
+                                                                title="YouTube video player" frameborder="0"
+                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                                allowfullscreen></iframe>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center my-3">
+                                        <a href="{{ category.get_absolute_url }}" type="button"
+                                           class="btn btn-outline-secondary">{{ category.name }}</a>
+                                    </div>
+                                    <p class="text-center">{{ category.about_text }}</p>
+                                </div>
+
                             </div>
                         </div>
                     {% endif %}

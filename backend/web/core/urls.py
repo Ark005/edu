@@ -2,6 +2,13 @@ from django.urls import path
 from core import views
 from django.views.generic import TemplateView
 
+from core.sitemap import AuthorSitemap
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps = {
+    "author": AuthorSitemap,
+}
+
 urlpatterns = [
 
     path('', views.index_view),
@@ -16,6 +23,6 @@ urlpatterns = [
     path('search', views.SearchView.as_view()),
     path('century/<str:century>/category/<str:category>', views.CenturyCategoryDetailView.as_view(),
          name="category_century_detail"),
-
-
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
+    path('feedback/create', views.FeebackCreateView.as_view(), name="feedback_create")
 ]

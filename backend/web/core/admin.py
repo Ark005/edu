@@ -2,16 +2,24 @@ from django.contrib import admin
 from django.contrib.admin import TabularInline, StackedInline
 from .models import *
 from .models.author import TypeChoices
+
+
 class BookInLineAdmin(TabularInline):
     model = Book
+
+
 class VideoInLineAdmin(TabularInline):
     model = Video
+
+
 class PictureInLineAdmin(StackedInline):
     model = Picture
+
 
 class CreationInline(TabularInline):
     model = Author
     fields = ("name", "slug")
+
 
 # Register your models here.
 
@@ -37,28 +45,36 @@ class AuthorAdmin(admin.ModelAdmin):
             "Для авторов были назначены категории"
         )
 
+
 @admin.register(Singer)
 class SingerAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
     search_fields = ['name']
 
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    search_fields = ['name', 'created_date']
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
+    change_form_template = "admin/select2_admin_form.html"
     prepopulated_fields = {"slug": ["name"]}
     search_field = ['author']
     ordering = ['type']
     list_display = ('name', 'type')
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     pass
     # prepopulated_fields={"slug": ["name"]}
 
+
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
     search_fields = ['name']
+
 
 @admin.register(Picture)
 class PictureAdmin(admin.ModelAdmin):
@@ -66,15 +82,16 @@ class PictureAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
     search_fields = ['name']
 
+
 @admin.register(Century)
 class CenturyAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["display_name"]}
+
 
 @admin.register(Subcategory)
 class SubcategoryAdmin(admin.ModelAdmin):
     ordering = ['name']
     prepopulated_fields = {"slug": ["name"]}
-
 
 
 @admin.register(CenturyDescription)
@@ -89,4 +106,3 @@ class GenreAdmin(admin.ModelAdmin):
     list_display = ('name', 'type')
     prepopulated_fields = {"slug": ["name"]}
     ordering = ['name']
-

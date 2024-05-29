@@ -12,6 +12,7 @@ from .genre_list import genre_list_view
 from .genre_detail import GenreDetailView
 from .image import image
 from .century_category_view import CenturyCategoryDetailView
+from .feeback_view import FeebackCreateView
 
 
 

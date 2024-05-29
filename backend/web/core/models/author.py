@@ -144,7 +144,8 @@ class Author(models.Model):
 
     class Meta:
         # verbose_name_plural = "Категории"
-        ordering = ['century']
+        # ordering = ['century']
+        ordering = ["name"]
 
     @staticmethod
     def get_search_field():
@@ -170,8 +171,7 @@ class Author(models.Model):
         blank=True,
     )
 
-    class Meta:
-        ordering = ["name"]
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
 
 
 @receiver(pre_save, sender=Author)
