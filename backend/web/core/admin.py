@@ -63,12 +63,10 @@ class SongAdmin(admin.ModelAdmin):
     ordering = ['type']
     list_display = ('name', 'type')
 
-
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     pass
     # prepopulated_fields={"slug": ["name"]}
-
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):

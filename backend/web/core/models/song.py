@@ -74,6 +74,13 @@ class Song(models.Model):
         blank=True,
         null=True
     )
+
+    youtube_film = models.URLField(
+        max_length=250,
+        blank=True,
+        null=True
+    )
+
     type = models.CharField(
         choices=PlayerTypeChoices.choices,
         max_length=255,
