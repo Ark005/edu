@@ -29,7 +29,7 @@
 
                                                     {% if object.director %}
                                                         <p>
-                                                            {{ object.name }}
+                                                            {{ object.name }} 
                                                             режиссер {{ object.director }}
 
                                                         <p>Нажмите  на изображение.
@@ -50,17 +50,7 @@
                                                             </div>
                                                         {% endif %}
                                                     {% endfor %}
-                                                    {% comment %}   {% if object.songs.exists %}
-                                                        <select class="select-audio" name="audio" id="id_audio">
-                                                            {% for song in object.songs.all %}
-                                                                {% if song.file %}
-                                                                    <option value="{{ song.id }}">
-                                                                        {{ song.name }}
-                                                                    </option>
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                        </select>
-                                                    {% endif %}{% endcomment %}
+                                                    
                                                 </div>
                                             {% endif %}
                                         </div>
@@ -75,9 +65,7 @@
                                 {% if object.creation_author %}
                                     <a href="{{ object.get_absolute_url }}"> {{ object.creation_author }}</a>
                                 {% endif %}
-                                {% comment %}   {% if object.slug3 %}
-                                <a href="{{ object.get_absolute_url }}"> {{ object.slug3 }}</a>
-                                {%  endif %}{% endcomment %}
+                               
                             </div>
                         </div>
                     </div>
@@ -86,13 +74,7 @@
     </center>
     </div>
 
-    {% comment %}  <script src="{% static 'core/player.js' %}"></script>{% endcomment %}
-    {% comment %}   {% if view.kwargs.slug == ' genre/srednevekovaya-v-xv-vek/detail' %}
-       
-        <div class="scroll-container">
-            <img src="/media/images/1.webp" width="600" height="400">
-        </div>
-    {% endif %}{% endcomment %}
+   
 
     <style>
         img {

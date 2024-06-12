@@ -24,12 +24,12 @@
                                         <div class="flip-card-inner">
                                             <div class="flip-card-front">
                                                 <img src="{{ category.main_image.url }}"
-                                                     style="width:210px;height:100px;">
+                                                     style="width:290px;height:100px;">
                                             </div>
                                             <div class="flip-card-back">
                                                 {% if category.website %}
                                                     <div id="ytplayer">
-                                                        <iframe width="210" height="100"
+                                                        <iframe width="290" height="100"
                                                                 src="{{ category.website }} "
                                                                 title="YouTube video player" frameborder="0"
                                                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -70,12 +70,12 @@
             flex-direction: column;
             justify-content: space-between;
             background-color: transparent;
-        {#width: 210px;#}{#height: 100px;#}{#perspective: 1000px;#}
+        {#width: 210px;}{#height: 100px;#}{#perspective: 1000px;#}
         }
 
         .flip-card-inner {
             position: relative;
-            width: 210px;
+            width: 290px;
             height: 100px;
             text-align: center;
             transition: transform 0.6s;
@@ -89,7 +89,7 @@
 
         .flip-card-front, .flip-card-back {
             position: absolute;
-            width: 210px;
+            width: 290px;
             height: 100px;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
