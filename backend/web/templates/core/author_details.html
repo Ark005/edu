@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     {% load static %}
+
     <script src="{% static 'core/player.js' %}"></script>
     <div class="container my-5">
         <div class="card p-3">
@@ -32,11 +33,6 @@
                     </div>
                 {% endif %}
 
-                 {% if author.songs.youtube_film.exists %}
-                    <div class="mt-3">
-                        <p class="h3">Экранизация</p>
-                    </div>
-                {% endif %}
 
                 <div>
                     {% for century in centuries %}
@@ -54,16 +50,36 @@
                                             allowfullscreen></iframe>
                                 </div>
 
-                          {% comment %}  <div class="main-song h_iframe">
-                                {% if song.type == 'youtube' %}
-                                    <div id="ytplayer">
+
+                            {% else %}
+                                {% if song.file %}
+                                    <audio controls src="{{ song.file.url }}" preload="auto">
+                                    </audio>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="analysis">
+                            {% if song.analysis %}
+                                <audio controls src="{{ song.analysis.url }}" preload="auto">
+                                </audio>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% for song in author.songs.all %}
+                    <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}" id="id_{{ song.id }}">
+                        <div class="main-song h_iframe">
+                            {% if song.type == 'youtube' %}
+                                <div id="ytplayer">
+                                    {% if song.youtube_film %}
+                                       <h3> Экранизация </h3>   
                                         <iframe src="{{ song.youtube_film }}"
                                                 title="YouTube video player"
                                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                 allowfullscreen></iframe>
-                                    </div>{% endcomment %}
-
-
+                                        </div>
+                                    {% endif %}
                             {% else %}
                                 {% if song.file %}
                                     <audio controls src="{{ song.file.url }}" preload="auto">
