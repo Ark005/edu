@@ -51,9 +51,11 @@ class SingerAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
     search_fields = ['name']
 
+
 @admin.register(Feedback)
 class FeedbackAdmin(admin.ModelAdmin):
     search_fields = ['name', 'created_date']
+
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
@@ -63,10 +65,24 @@ class SongAdmin(admin.ModelAdmin):
     ordering = ['type']
     list_display = ('name', 'type')
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
-    # prepopulated_fields={"slug": ["name"]}
+    list_display = ["name", "is_active"]
+    actions = ["action_disable", "action_enable"]
+
+    @admin.display(description="Раздел активен", boolean=True)
+    def is_active(self, obj):
+        return not obj.is_disabled
+
+    @admin.action(description="Выключить выбранные")
+    def action_disable(self, request, qs):
+        return qs.update(is_disabled=True)
+
+    @admin.action(description="Включить выбранные")
+    def action_enable(self, request, qs):
+        return qs.update(is_disabled=False)
+
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):

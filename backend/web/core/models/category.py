@@ -32,6 +32,7 @@ class Category(models.Model):
         blank=True,
         null=True
     )
+    is_disabled = models.BooleanField(default=False, verbose_name="Раздел выключен")
 
     def __str__(self):
         return self.name
