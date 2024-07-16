@@ -14,3 +14,8 @@
     width: 25px!important;
     height: 25px!important;
 }
+.flipcard-image-front {
+    height: 300px;
+    width: 250px;
+    object-fit: cover;
+}
