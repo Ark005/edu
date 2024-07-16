@@ -10,15 +10,18 @@ from ..models.author import TypeChoices
 class GenreDetailView(ListView):
     template_name = "core/genre_detail.html"
     model = Author
+
     def get_queryset(self):
         genre = Genre.objects.get(slug=self.kwargs.get('slug'))
-        #genre = Genre.objects.prefetch_related(
-            #Prefetch("authors", queryset=Author.objects.filter(century__slug=self.century))
-        #).filter(authors__century__slug=self.century).distinct()
         if genre.type == TypeChoices.DIRECTOR:
             return genre.films.all()
         if genre.parent:
             return genre.authors.all()
         else:
             return genre.children.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context["object"] = Genre.objects.get(slug=self.kwargs.get('slug'))
+        return context
 
