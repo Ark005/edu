@@ -175,6 +175,14 @@ class Author(models.Model):
         blank=True,
     )
 
+    def get_reversed_name(self):
+        if not self.last_name:
+            return self.name
+        last_name = self.last_name
+        name = self.name
+        name = name.replace(last_name, "").strip()
+        return " ".join([last_name, name])
+
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
 
 

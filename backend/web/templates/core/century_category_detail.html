@@ -10,8 +10,7 @@
                             <div class="flip-card audio-root">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
-                                        <img class="" src="{{ object.image.url }}" alt=""
-                                             style="width:250px;height:300px;">
+                                        <img class="flipcard-image-front" src="{{ object.image.url }}" alt="">
                                     </div>
                                     <div class="flip-card-back">
                                         {% if object.website %}
@@ -52,7 +51,7 @@
                         {% endif %}
                         <div>
                             <a href="{{ object.get_absolute_url }}">
-                                <center>{{ object }}</center>
+                                <center>{{ object.get_reversed_name }}</center>
                             </a>
                         </div>
                     </div>

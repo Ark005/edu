@@ -13,7 +13,3 @@ class Command(BaseCommand):
                     last_name = author.name.split(" ")[-1]
                     author.last_name = last_name
                     author.save()
-                    print(last_name)
-
-
-
