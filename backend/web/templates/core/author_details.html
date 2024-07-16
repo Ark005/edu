@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block title %}{{ author.name }}{% endblock %}
+{% block description %}
+    Кратко о жизни и вкладе деятеля {{ author.name }}: биография, ключевые тезисы и идеи. Узнайте о значимых достижениях и влиянии автора {{ author.name }} на культуру и общество.
+{% endblock %}
 {% block content %}
     {% load static %}
 

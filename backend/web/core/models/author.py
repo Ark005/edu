@@ -40,6 +40,10 @@ author_type_choices = [
 ]
 
 
+def get_category_name_by_type(name: str) -> str:
+    return list(filter(lambda item: item[0] == name, author_type_choices))[0][1]
+
+
 class Author(models.Model):
     name = models.CharField(
         max_length=255,

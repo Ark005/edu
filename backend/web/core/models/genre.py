@@ -6,7 +6,7 @@ from core.models.author import author_type_choices
 
 class Genre(models.Model):
 
-    parent = models.ForeignKey('self',on_delete=models.CASCADE,related_name='children',null=True,blank=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', null=True, blank=True)
     name = models.CharField(max_length=100)
     slug = models.CharField(
         max_length=255,
