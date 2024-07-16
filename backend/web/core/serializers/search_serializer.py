@@ -7,6 +7,8 @@ class SearchSerializer:
                     'name': i.name,
                     'link': i.get_absolute_url()
                 }
+                if hasattr(i, "get_search_description"):
+                    item_serialized["description"] = i.get_search_description()
                 item_list_serialized.append(item_serialized)
         return item_list_serialized
     

@@ -140,6 +140,14 @@ class Author(models.Model):
         verbose_name="Фамилия"
     )
 
+    def get_search_description(self):
+        values = [
+            getattr(self.century, "display_name", None),
+            getattr(self.genre, "name", None),
+            getattr(self.category, "name", None),
+        ]
+        return ", ".join(list(filter(lambda item: item is not None, values)))
+
     def __str__(self):
         return f'{self.name}'
 

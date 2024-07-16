@@ -2,8 +2,8 @@
 {% block content %}
 <p></p>
 {% for search in search_data %}
-<div>
-    <a href="{{search.link}}">{{search.name}}</a>
+<div class="container">
+    <a href="{{search.link}}">{{search.name}}{% if search.description %} ({{ search.description }}){% endif %}</a>
 </div>
 {% endfor %}
 
