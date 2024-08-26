@@ -47,7 +47,7 @@
                     <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}" id="id_{{ song.id }}">
                         <div class="main-song h_iframe">
                             {% if song.type == 'youtube' %}
-                                <div id="ytplayer">
+                                <div class="video-player" id="ytplayer">
                                     <iframe src="{{ song.youtube_link }}"
                                             title="YouTube video player"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -70,30 +70,6 @@
                         </div>
                     </div>
                 {% endfor %}
-    
-      {% comment %}      {% for song in author.songs.all %}
-                    <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}" id="id_{{ song.id }}">
-                        <div class="main-song h_iframe">
-                            {% if song.type == 'youtube' %}
-                                <div id="ytplayer">
-                                    {% if song.youtube_film %}
-                                       <h3> Экранизация </h3>
-                                        <iframe src="{{ song.youtube_film }}"
-                                                title="YouTube video player"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                allowfullscreen></iframe>
-                                        </div>
-                                    {% endif %}
-                            {% endif %}
-                        </div>
-                        <div class="analysis">
-                            {% if song.analysis %}
-                                <audio controls src="{{ song.analysis.url }}" preload="auto">
-                                </audio>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}{% endcomment %}
             
             {% if author.songs.exists %}
                 <div class="mt-3">
@@ -118,7 +94,7 @@
             <p class="h3">{% if author.creation_author %}О произведении{% else %}Об авторе{% endif %}</p>
             <div class="audio-root h_iframe">
                 {% for video in author.videos.all %}
-                    <div id="id_{{ video.id }}" class="audio {% if forloop.counter != 1 %}hidden{% endif %}">
+                    <div id="id_{{ video.id }}" class="audio video-player {% if forloop.counter != 1 %}hidden{% endif %}">
                         <iframe src="{{ video.slug }}"
                                 height="100%"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -198,6 +174,11 @@
             trigger: "hover"
         })
         popover2.show()
+        
+        let playersWrapper = $('.video-player')
+        playersWrapper.click(function (event) {
+            window.location.reload()
+        })
 
 
     </script>
