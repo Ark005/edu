@@ -16,7 +16,6 @@ def build_proxy_link(video_id) -> str:
 
 
 class Command(BaseCommand):
-
     def handle(self, *args, **options):
         video_new = Video.objects.filter(Q(slug__icontains="youtube") | Q(slug__icontains="edu005.ru"))
         print("total videos:,", video_new.count())
