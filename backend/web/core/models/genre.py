@@ -41,6 +41,7 @@ class Genre(models.Model):
         blank=True,
         null=True
     )
+    is_blocked = models.BooleanField(default=False, verbose_name="Раздел заблокирован")
 
 
     class Meta:

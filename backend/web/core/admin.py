@@ -116,7 +116,11 @@ class CenturyDescriptionAdmin(admin.ModelAdmin):
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
-    search_fields = ['name']
-    list_display = ('name', 'type')
+    search_fields = ['name', 'parent__name']
+    list_display = ('id', 'parent', 'name', 'type', 'is_blocked')
+    list_editable = ('is_blocked', )
     prepopulated_fields = {"slug": ["name"]}
     ordering = ['name']
+
+    def get_queryset(self, request):
+        return Genre.objects.select_related('parent').all()

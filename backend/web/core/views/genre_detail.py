@@ -18,7 +18,7 @@ class GenreDetailView(ListView):
         if genre.parent:
             return genre.authors.all()
         else:
-            return genre.children.all()
+            return genre.children.filter(is_blocked=False)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
