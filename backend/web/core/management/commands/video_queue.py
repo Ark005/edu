@@ -9,4 +9,5 @@ class Command(BaseCommand):
         print("total videos:,", video_new.count())
         for video in video_new:
             url = video.slug
-            requests.get(url)
+            response = requests.get(url)
+            print(f"Response for {url} {response.status_code}")
