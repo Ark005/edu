@@ -17,7 +17,11 @@ class CategoryDetailView(ListView):
     model = Author
 
     def get_queryset(self):
-        return Genre.objects.filter(type=self.kwargs.get('slug'), parent__isnull=True).order_by("order")
+        return Genre.objects.filter(
+            type=self.kwargs.get('slug'),
+            parent__isnull=True,
+            is_blocked=False
+        ).order_by("order")
 
     def get_context_data(self):
         context = super().get_context_data()
