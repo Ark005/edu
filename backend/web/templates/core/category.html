@@ -8,7 +8,7 @@
 
         {% if view.kwargs.slug != 'director' %}
             <br>
-            <label for="customRange3" class="form-label">столетие:</label>
+            <h6 style="color: #29b997;"> <label for="customRange3" class="form-label">столетие:</label> </h6>
             {% comment %}<input type="range" class="form-range" min="0" max="5" step="1" id="customRange3">{% endcomment %}
         {% endif %}
         {% for century in centuries %}
@@ -34,7 +34,7 @@
                                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                         allowfullscreen></iframe>
                                             </div>
-                                            {{ object.text_preview }}
+                                          {{ object.text_preview }}
                                             <div>
                                                 {% for song in object.songs.all %}
                                                     {% if song.file %}
@@ -63,7 +63,8 @@
                             </div>
                         {% endif %}
                         <div>
-                            <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                     {% comment %}       <a href="{{ object.get_absolute_url }}">123{{ object }}</a>{% endcomment %}
+                            <h6 style="color: #267cab ;"> <label for="customRange3" class="form-label">{{ object }}</label> </h6></a>
                         </div>
                     </div>
                 </div>
