@@ -15,6 +15,15 @@ class Category(models.Model):
         blank=True,
         null=True
     )
+    supercategory = models.ForeignKey(
+        to="SuperCategory",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Суперкатегория",
+        related_name="categories"
+    )
+
     about_text = models.TextField(
         max_length= 300,
         verbose_name='about',

@@ -24,5 +24,6 @@ urlpatterns = [
     path('century/<str:century>/category/<str:category>', views.CenturyCategoryDetailView.as_view(),
          name="category_century_detail"),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
-    path('feedback/create', views.FeebackCreateView.as_view(), name="feedback_create")
+    path('feedback/create', views.FeebackCreateView.as_view(), name="feedback_create"),
+    path('supercategory/<str:slug>', views.SuperCategoryDetailView.as_view(), name="supercategory_detail"),
 ]

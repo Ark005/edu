@@ -11,4 +11,6 @@ from .book import Book
 from .subcategory import Subcategory
 from .century_description import CenturyDescription
 from .feedback import Feedback
+from .super_category import SuperCategory
+
 
