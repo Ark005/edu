@@ -42,7 +42,7 @@ class Genre(models.Model):
         null=True
     )
     is_blocked = models.BooleanField(default=False, verbose_name="Раздел заблокирован")
-
+    is_disabled = models.BooleanField(default=False, verbose_name="Раздел выключен")
 
     class Meta:
         ordering = ["name"]

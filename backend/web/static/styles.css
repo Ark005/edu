@@ -1,6 +1,7 @@
 .author-description-text, .pre-line-text {
     white-space: pre-line
 }
+
 .pre-line-child *:not(strong) {
     white-space: pre-line;
 }
@@ -11,11 +12,16 @@
 }
 
 .logotype-images > img {
-    width: 25px!important;
-    height: 25px!important;
+    width: 25px !important;
+    height: 25px !important;
 }
+
 .flipcard-image-front {
     height: 300px;
     width: 250px;
     object-fit: cover;
+}
+
+.text-blue {
+    color: #267cab;
 }

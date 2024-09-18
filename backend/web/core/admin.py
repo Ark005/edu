@@ -117,10 +117,22 @@ class CenturyDescriptionAdmin(admin.ModelAdmin):
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     search_fields = ['name', 'parent__name']
-    list_display = ('id', 'parent', 'name', 'type', 'is_blocked')
-    list_editable = ('is_blocked', )
+    list_display = ('id', 'parent', 'name', 'type', 'is_active')
     prepopulated_fields = {"slug": ["name"]}
     ordering = ['name']
+    actions = ["action_disable", "action_enable"]
+
+    @admin.display(description="Раздел активен", boolean=True)
+    def is_active(self, obj):
+        return not obj.is_blocked
+
+    @admin.action(description="Выключить выбранные")
+    def action_disable(self, request, qs):
+        return qs.update(is_blocked=True)
+
+    @admin.action(description="Включить выбранные")
+    def action_enable(self, request, qs):
+        return qs.update(is_blocked=False)
 
     def get_queryset(self, request):
         return Genre.objects.select_related('parent').all()
