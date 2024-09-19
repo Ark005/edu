@@ -21,6 +21,11 @@ class SuperCategory(models.Model):
         verbose_name='Имя'
     )
 
+    description = models.CharField(
+        max_length=500,
+        verbose_name='Описание'
+    )
+
     def get_absolute_url(self):
         return reverse('supercategory_detail', kwargs={'slug': self.slug})
 
