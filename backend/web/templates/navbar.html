@@ -3,6 +3,19 @@
         <a class="navbar-brand logotype-images" href="/">
             <img src="/media/image/logo.jpeg" alt="25" width="25">мыслю, значит существую</a>
 
+
+        <div class="container">
+            <div id="container">
+                    {% comment %}  <li><a class=checkbox-row  href="/category/music">музыка</a></li>{% endcomment %}
+                    <li><a class=checkbox-row href="/category/spiritual">религия</a></li>
+                    <li><a class=checkbox-row href="/category/philosopher">философия</a></li>
+                    <li><a class=checkbox-row href="/category/artist">живопись</a></li>
+                    <li><a class=checkbox-row href="/category/director">кино</a></li>
+                    <li><a class=checkbox-row href="/category/writer">литература</a></li>
+
+                </div>
+        </div>
+
         <ul class="navbar-nav navbar-light">
 
             <div class="container position-relative">
@@ -37,12 +50,13 @@
                     <li><a class="dropdown-item" href="/category/artist">арт</a></li>
                     <li><a class="dropdown-item" href="/category/director">кино</a></li>
                     <li><a class="dropdown-item" href="/category/writer">литература</a></li>
-                  {% comment %}  <li><a class="dropdown-item" href="/category/music">музыка</a></li>{% endcomment %}
-                   {% comment %} <li><a class="dropdown-item" href="/category/spiritual">религия</a></li>{% endcomment %}
+                    {% comment %}  <li><a class="dropdown-item" href="/category/music">музыка</a></li>{% endcomment %}
+                    <li><a class="dropdown-item" href="/category/spiritual">религия</a></li>
                     <li><a class="dropdown-item" href="/category/philosopher">философия</a></li>
 
 
                 </ul>
+
                 {% comment %}  {% if request.user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -53,7 +67,13 @@
                     {% endif %}{% endcomment %}
         </ul>
     </div>
-    </div>
-
+    <style>
+        #container {
+            color: green;
+            list-style-type: "-"; /* Убирает буллиты */
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </nav>
 
