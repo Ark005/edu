@@ -1,25 +1,38 @@
 {% extends 'base.html' %}
 {% block title %}Исследование мировоззрения Человека.Великие деятели культуры: биографии, труды и влияние{% endblock %}
-{% block description %}Откройте для себя образ мысли великих деятелей культуры: биографии, ключевые работы, трактаты и влияние на
+{% block description %}Откройте для себя образ мысли великих деятелей культуры: биографии, ключевые работы, трактаты и
+    влияние на
     мировую историю. Кратко и содержательно о выдающихся философах, литераторах и других значимых
     личностях.{% endblock %}
 {% block content %}
 
-{% comment %}   <h5 class="text-green text-center">МИРОВОЗРЕНИЕ ЧЕЛОВЕКА: </h5>{% endcomment %}
-  {% comment %}  <h5 class="text-dark text-center">Уничтожение любой нации не требует атомных бомб
+    {% comment %}   <h5 class="text-green text-center">МИРОВОЗРЕНИЕ ЧЕЛОВЕКА: </h5>{% endcomment %}
+    {% comment %}  <h5 class="text-dark text-center">Уничтожение любой нации не требует атомных бомб
         или использования ракет дальнего радиуса действия.
         Требуется только снижение качества образования. </h5>{% endcomment %}
 
 
     <div class="d-flex justify-content-center mb-3">
+    {% comment %}    <style>
+            .line {
+                border-bottom: 80px solid #29b997;
+                width: 10%; /* Ширина слоя */
+                opacity: 0.5; /* Значение прозрачности */
+                filter: alpha(Opacity=70); /* Прозрачность в IE */
+            }
+        </style>
+
+        <div class="line"></div>{% endcomment %}
+
         <div>
             <label for="customRange3" class="form-label"><strong>век:</strong></label>
             {% for century in centuries %}
-                <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
+                <a class="text-blue" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
             {% endfor %}
             <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
 
         </div>
+    <div class="line"></div>
     </div>
 
     <div>
@@ -28,7 +41,8 @@
                 {% for supercategory in object_list %}
                     <div class="col-12 col-md-3">
                         <div class="card" style="height: 29rem; " style="width: 20rem;">
-                            <div class="text-center text-green p-3">{{ supercategory.name.title }}</div>
+                            <div class="text-center text-blue p-3">{{ supercategory.name.title }}</div>
+                        
                             {% if supercategory.image %}
                                 <div class="card-body">
                                     <img width="260" src="{{ supercategory.image.url }}" alt="{{ supercategory.name }}"
@@ -39,11 +53,20 @@
                             {% endif %}
                             <div class="card-footer text-center text-blue"><a
                                     href="{{ supercategory.get_absolute_url }}">Подробнее</a></div>
-                        </div>
+
+
+                            {% if id == 4 %}
+                                href="{{ supercategory.get_absolute_url }}">страница</div>
+                            {% endif %}
+
+
+                    </div>
                     </div>
                 {% endfor %}
-            </div>
         </div>
     </div>
+
+
+
 
 {% endblock %}
