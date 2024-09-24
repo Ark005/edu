@@ -113,7 +113,7 @@ class SubcategoryAdmin(admin.ModelAdmin):
 class SuperCategoryAdmin(admin.ModelAdmin):
     ordering = ['name']
     prepopulated_fields = {"slug": ["name"]}
-    list_display = ["name", "slug", "image"]
+    list_display = ["name", "slug", "image","id"]
 
 
 @admin.register(CenturyDescription)

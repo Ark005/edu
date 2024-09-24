@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Исследование мировоззрения Человека.Великие деятели культуры: биографии, труды и влияние{% endblock %}
-{% block description %}Откройте для себя образ мысли великих деятелей культуры: биографии, ключевые работы, трактаты и влияние на
+{% block description %}Откройте для себя образ мысли великих деятелей культуры: биографии, ключевые работы, трактаты и
+    влияние на
     мировую историю. Кратко и содержательно о выдающихся философах, литераторах и других значимых
     личностях.{% endblock %}
 {% block content %}
 
-{% comment %}   <h5 class="text-green text-center">МИРОВОЗРЕНИЕ ЧЕЛОВЕКА: </h5>{% endcomment %}
-  {% comment %}  <h5 class="text-dark text-center">Уничтожение любой нации не требует атомных бомб
+    {% comment %}   <h5 class="text-green text-center">МИРОВОЗРЕНИЕ ЧЕЛОВЕКА: </h5>{% endcomment %}
+    {% comment %}  <h5 class="text-dark text-center">Уничтожение любой нации не требует атомных бомб
         или использования ракет дальнего радиуса действия.
         Требуется только снижение качества образования. </h5>{% endcomment %}
 
@@ -39,11 +40,21 @@
                             {% endif %}
                             <div class="card-footer text-center text-blue"><a
                                     href="{{ supercategory.get_absolute_url }}">Подробнее</a></div>
-                        </div>
+                        
+                        
+                            {% if id == 4 %}
+                                href="{{ supercategory.get_absolute_url }}">страница</div>
+                            {% endif %}
+                        
+                        
+                        
+                        
+                        
+                    </div>
                     </div>
                 {% endfor %}
-            </div>
         </div>
+    </div>
     </div>
 
 {% endblock %}
