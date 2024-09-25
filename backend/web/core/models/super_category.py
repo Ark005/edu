@@ -25,6 +25,7 @@ class SuperCategory(models.Model):
         max_length=500,
         verbose_name='Описание'
     )
+    is_disabled = models.BooleanField(default=False, verbose_name="Раздел выключен")
 
     def get_absolute_url(self):
         return reverse('supercategory_detail', kwargs={'slug': self.slug})
