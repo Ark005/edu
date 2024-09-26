@@ -26,7 +26,7 @@
                         <div class="card" style="height: 29rem; " style="width: 20rem;">
                             <div class="text-center text-green p-3">{{ supercategory.name.title }}</div>
                             {% if supercategory.image %}
-                                <div class="card-body">
+                                <div class="img-center card-body">
                                     <img width="260" src="{{ supercategory.image.url }}"
                                          alt="{{ supercategory.name }}"
                                          class="supercategory-image">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             {% endfor %}
-        <div class="mt-5">
+            <div class="mt-5">
                 <h2 class="text-center h4">Фильмы</h2>
                 <div class="row">
                     {% for card in random_films %}

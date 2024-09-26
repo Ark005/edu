@@ -31,12 +31,12 @@ class TypeChoices:
 
 author_type_choices = [
     [TypeChoices.MUSIC, 'Музыкант'],
-    [TypeChoices.WRITER, 'Литератор'],
+    [TypeChoices.WRITER, 'Литератор, Литературное произведение'],
     [TypeChoices.ARTIST, 'Художник'],
     [TypeChoices.PHILOSOPHER, 'Философ'],
     [TypeChoices.LECTOR, 'Лектор'],
     [TypeChoices.DIRECTOR, 'Режиссер'],
-    [TypeChoices.SPIRITUAL, 'Духоносный'],
+    [TypeChoices.SPIRITUAL, 'Духоносная персона'],
 ]
 
 
