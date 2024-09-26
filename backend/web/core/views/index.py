@@ -1,7 +1,9 @@
-from django.db.models import Min, Max
+from typing import Any
+
+from django.db.models import Min, Max, Model
 from django.shortcuts import render
 from ..models import Category, Author, Genre, Film, Century, SuperCategory
-from ..models.author import get_century_choices
+from ..models.author import get_century_choices, author_type_choices, TypeChoices
 from django.http import HttpResponse, HttpRequest
 import random
 
@@ -16,36 +18,46 @@ def get_author_centuries():
     return centuries
 
 
-def get_random_ids(limit: int = 4) -> list[int]:
-    authors_dict = Author.objects.all().aggregate(min=Min("id"), max=Max("id"))
-    min_id = authors_dict["min"]
-    max_id = authors_dict["max"]
-    random_numbers = [random.randint(min_id, max_id) for _ in range(limit)]
-    return random_numbers
+def get_random_model_ids(model, filter_data: dict, limit: int = 4) -> list[int]:
+    model_dict = model.objects.filter(**filter_data).values("id")
+    random_numbers = [random.choice(model_dict)["id"] for _ in range(limit)]
+    return list(set(random_numbers))
 
 
-def get_author_by_id(_id: int) -> Author:
-    author = Author.objects.filter(id=_id).first()
-    if not author:
-        return get_author_by_id(_id + 1)
-    return author
+def get_entity_by_id(model_class, _id: int) -> Author:
+    obj = model_class.objects.filter(id=_id).first()
+    if not obj or not obj.image:
+        return get_entity_by_id(model_class, _id + 1)
+    return obj
 
 
-def get_random_cards() -> list[Author]:
-    random_ids = get_random_ids()
-    random_authors = []
+def get_random_cards(model_class, filter_data: dict, limit: int = 4) -> list[Any]:
+    random_ids = get_random_model_ids(model_class, filter_data, limit)
+    random_cards = []
     for i in random_ids:
-        author = get_author_by_id(i)
-        random_authors.append(author)
-    return random_authors
+        obj = get_entity_by_id(model_class, i)
+        random_cards.append(obj)
+    return random_cards
+
+
+def get_random_authors_by_types():
+    authors_by_types = {}
+    exclude_author_types = [TypeChoices.LECTOR, TypeChoices.DIRECTOR]
+    for _type, _ in author_type_choices:
+        if _type not in exclude_author_types:
+            authors_by_types[_type] = get_random_cards(Author, {"type": _type})
+    return authors_by_types
+
+
+def get_random_films() -> list[Film]:
+    return get_random_cards(Film, {})
 
 
 def index_view(request):
     supercategory_list = SuperCategory.objects.all().order_by("name")
     centuries = get_author_centuries()
     genre_list = Genre.objects.all()
-    film_list = Film.objects.all()
-    random_cards = get_random_cards()
+    random_cards = get_random_cards(Author, {})
 
     return render(
         request,
@@ -54,8 +66,8 @@ def index_view(request):
             'object_list': supercategory_list,
             'centuries': centuries,
             'genre_list': genre_list,
-            'film_list': film_list,
-            'random_cards': random_cards
+            'random_films': get_random_films(),
+            'random_cards': random_cards,
+            'authors_by_types': get_random_authors_by_types()
         }
     )
-
