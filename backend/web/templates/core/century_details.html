@@ -4,7 +4,8 @@
     <br>
     <script src="{% static 'core/player.js' %}"></script>
     <div>
-        <p class="pre-line-text">
+    
+        <p class="text-center pre-line-text">
             {{ century.text }}
         </p>
     </div>
@@ -22,7 +23,8 @@
                                         <div class="flip-card audio-root">
                                             <div class="flip-card-inner">
                                                 <div class="flip-card-front">
-                                                    <img class="flipcard-image-front" src="{{ object.image.url }}" alt="">
+                                                    <img class="flipcard-image-front" src="{{ object.image.url }}"
+                                                         alt="">
                                                 </div>
                                                 <div class="flip-card-back">
                                                     {{ object.text_preview }}
