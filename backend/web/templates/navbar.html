@@ -1,63 +1,64 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
         <a class="navbar-brand logotype-images" href="/">
-            <img src="/media/image/logo.jpeg" alt="25" width="25">мыслю, значит существую</a>
+            <img src="/media/image/logo.jpeg" alt="25" width="25">Мир - комплекс инструментов для строительства
+            человеком самого себя. К. Ясперс</a>
 
 
         <div class="container">
             <div id="container">
-                    {% comment %}  <li><a class=checkbox-row  href="/category/music">музыка</a></li>{% endcomment %}
-                    <li><a class=checkbox-row href="/category/spiritual">религия</a></li>
-                    <li><a class=checkbox-row href="/category/philosopher">философия</a></li>
-                    <li><a class=checkbox-row href="/category/artist">живопись</a></li>
-                    <li><a class=checkbox-row href="/category/director">кино</a></li>
-                    <li><a class=checkbox-row href="/category/writer">литература</a></li>
+                {% comment %}<li><a class=checkbox-row href="/category/music">музыка</a></li>{% endcomment %}
+                <li><a class=checkbox-row  href=/category/spiritual">религия</a></li>
+                <li><a class=checkbox-row href="/category/philosopher">философия</a></li>
+                <li><a class=checkbox-row href="/category/artist">живопись</a></li>
+                <li><a class=checkbox-row href="/category/director">кино</a></li>
+                <li><a class=checkbox-row href="/category/writer">литература</a></li>
 
-                </div>
-        </div>
-
-        <ul class="navbar-nav navbar-light">
-
-            <div class="container position-relative">
-                <form action="/search" method="get">
-                    <input name="search" class="form-control" id="id_search" type="text" placeholder="поиск">
-                </form>
-                <div class="position-absolute search-result"></div>
             </div>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    о проекте
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/5.html">005.ru за 5 минут</a>
-                    <li class="nav-item">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/why.html">зачем создан проект</a>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about.html">информация о проекте</a>
-                    <li class="nav-item dropdown">
-                </ul>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    категории
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/category/artist">арт</a></li>
-                    <li><a class="dropdown-item" href="/category/director">кино</a></li>
-                    <li><a class="dropdown-item" href="/category/writer">литература</a></li>
-                    {% comment %}  <li><a class="dropdown-item" href="/category/music">музыка</a></li>{% endcomment %}
-                    <li><a class="dropdown-item" href="/category/spiritual">религия</a></li>
-                    <li><a class="dropdown-item" href="/category/philosopher">философия</a></li>
 
 
-                </ul>
+            <ul class="navbar-nav navbar-light">
 
-                {% comment %}  {% if request.user.is_authenticated %}
+                <div class="container position-relative">
+                    <form action="/search" method="get">
+                        <input name="search" class="form-control" id="id_search" type="text" placeholder="поиск">
+                    </form>
+                    <div class="position-absolute search-result"></div>
+                </div>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        о проекте
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/5.html">005.ru за 5 минут</a>
+                        <li class="nav-item">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/why.html">зачем создан проект</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about.html">информация о проекте</a>
+                        <li class="nav-item dropdown">
+                    </ul>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        категории
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/category/artist">арт</a></li>
+                        <li><a class="dropdown-item" href="/category/director">кино</a></li>
+                        <li><a class="dropdown-item" href="/category/writer">литература</a></li>
+                        {% comment %}  <li><a class="dropdown-item" href="/category/music">музыка</a></li>{% endcomment %}
+                        <li><a class="dropdown-item" href="/category/spiritual">религия</a></li>
+                        <li><a class="dropdown-item" href="/category/philosopher">философия</a></li>
+
+
+                    </ul>
+
+                    {% comment %}  {% if request.user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,15 +66,15 @@
                             </a>
                         </li>
                     {% endif %}{% endcomment %}
-        </ul>
-    </div>
-    <style>
-        #container {    
-            color: #29b997;
-            list-style-type: "-"; /* Убирает буллиты */
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+            </ul>
+        </div>
+        <style>
+            #container {
+                color: #29b997;
+                list-style-type: "-"; /* Убирает буллиты */
+                display: flex;
+                justify-content: center;
+            }
+        </style>
 </nav>
 
