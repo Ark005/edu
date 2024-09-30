@@ -39,13 +39,6 @@ class Command(BaseCommand):
             video.slug = new_link
             video.save()
 
-    def change_author(self):
-        # youtube_link
-        authors = Author.objects.filter(youtube_link__icontains="youtube")
-        print("Authors", authors.count())
-        for gen in authors:
-            process_record(gen, "youtube_link")
-
     def change_genre(self):
         # website
         genres = Genre.objects.filter(website__icontains="youtube")
@@ -73,4 +66,3 @@ class Command(BaseCommand):
         self.change_songs()
         self.change_categories()
         self.change_genre()
-        self.change_author()
