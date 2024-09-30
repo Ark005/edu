@@ -23,6 +23,7 @@ def process_record(record, field_name: str):
     if not video_id:
         return
     new_link = build_proxy_link(video_id)
+    print(f"New link for {record.__class__.__name__} {record.id} is {new_link}")
     setattr(record, field_name, new_link)
     record.save()
 
