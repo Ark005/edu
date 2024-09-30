@@ -64,7 +64,7 @@ class Command(BaseCommand):
         songs = Song.objects.filter(type="youtube")
         print(f"Songs:", songs.count())
         for song in songs:
-            if "youtube" in song.youtube_link:
+            if song.youtube_link and "youtube" in song.youtube_link:
                 process_record(song, "youtube_link")
 
 
