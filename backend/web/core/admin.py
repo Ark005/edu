@@ -61,7 +61,7 @@ class FeedbackAdmin(admin.ModelAdmin):
 class SongAdmin(admin.ModelAdmin):
     change_form_template = "admin/select2_admin_form.html"
     prepopulated_fields = {"slug": ["name"]}
-    search_field = ['author']
+    search_field = ['author__name', 'name']
     ordering = ['type']
     list_display = ('name', 'type')
 
