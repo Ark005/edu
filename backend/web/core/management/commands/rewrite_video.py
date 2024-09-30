@@ -3,7 +3,7 @@ import re
 from django.core.management import BaseCommand
 from django.db.models import Q
 
-from core.models import Video, Song, Category, Genre
+from core.models import Video, Song, Category, Genre, Author
 
 
 def extract_video_id(link):
@@ -41,7 +41,7 @@ class Command(BaseCommand):
 
     def change_author(self):
         # youtube_link
-        authors = Genre.objects.filter(youtube_link__icontains="youtube")
+        authors = Author.objects.filter(youtube_link__icontains="youtube")
         print("Authors", authors.count())
         for gen in authors:
             process_record(gen, "youtube_link")
