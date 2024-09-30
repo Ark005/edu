@@ -58,6 +58,7 @@ def index_view(request):
     centuries = get_author_centuries()
     genre_list = Genre.objects.all()
     random_cards = get_random_cards(Author, {})
+    children_items = get_random_cards(Author, {"genre__name": "Детская литература"})
 
     return render(
         request,
@@ -68,6 +69,7 @@ def index_view(request):
             'genre_list': genre_list,
             'random_films': get_random_films(),
             'random_cards': random_cards,
-            'authors_by_types': get_random_authors_by_types()
+            'authors_by_types': get_random_authors_by_types(),
+            'children_items': children_items
         }
     )
