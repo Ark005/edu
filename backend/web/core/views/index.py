@@ -59,6 +59,7 @@ def index_view(request):
     genre_list = Genre.objects.all()
     random_cards = get_random_cards(Author, {})
     children_items = get_random_cards(Author, {"genre__name": "Детская литература"})
+    silver_items = get_random_cards(Author, {"genre__name": "Поэты Серебрянного века"})
 
     return render(
         request,
@@ -70,6 +71,8 @@ def index_view(request):
             'random_films': get_random_films(),
             'random_cards': random_cards,
             'authors_by_types': get_random_authors_by_types(),
-            'children_items': children_items
+            'children_items': children_items,
+            'silver_items': silver_items
         }
     )
+
