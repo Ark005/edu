@@ -8,7 +8,7 @@
 
         {% if view.kwargs.slug != 'director' %}
             <br>
-            <h6 style="color: #29b997;"> <label for="customRange3" class="form-label">столетие:</label> </h6>
+            <h6 style="color: #29b997;"><label for="customRange3" class="form-label">столетие:</label></h6>
             {% comment %}<input type="range" class="form-range" min="0" max="5" step="1" id="customRange3">{% endcomment %}
         {% endif %}
         {% for century in centuries %}
@@ -27,17 +27,19 @@
                                     </div>
 
                                     <div class="flip-card-back">
-                                    123
+                                        промотайте до плеера
                                         {% if object.website %}
-                                            <center>
+
                                             <div id="ytplayer">
-                                                <iframe width="250" height="110" src="{{ object.website }}"
-                                                        title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                        allowfullscreen></iframe>
+                                                <center>
+                                                    <iframe width="250" height="110" src="{{ object.website }}"
+                                                            title="YouTube video player" frameborder="0"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            allowfullscreen></iframe>
+                                                </center>
                                             </div>
-                                            </center>
-                                          {{ object.text_preview }}
+
+                                            {{ object.text_preview }}
                                             <div>
                                                 {% for song in object.songs.all %}
                                                     {% if song.file %}
@@ -66,7 +68,8 @@
                             </div>
                         {% endif %}
                         <div>
-                        <a class="text-blue text-decoration-none" href="{{ object.get_absolute_url }}">{{ object }}</a>
+                            <a class="text-blue text-decoration-none"
+                               href="{{ object.get_absolute_url }}">{{ object }}</a>
                         </div>
                     </div>
                 </div>
