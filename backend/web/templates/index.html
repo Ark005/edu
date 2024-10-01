@@ -177,9 +177,11 @@
                                     <div class="text-center p-3">{{ card.name }}</div>
                                     {% if card.image %}
                                         <div class="center card-body">
-                                            <img width="260" src="{{ card.image.url }}"
-                                                 alt="{{ card.name }}"
-                                                 class="supercategory-image">
+                                            <a href="{{ card.get_absolute_url }}">
+                                                <img width="260" src="{{ card.image.url }}"
+                                                     alt="{{ card.name }}"
+                                                     class="supercategory-image">
+                                            </a>
                                         </div>
                                     {% endif %}
                                     <div class="card-footer text-center">
@@ -203,9 +205,11 @@
                                         <div class="text-center p-3">{{ card.name }}</div>
                                         {% if card.image %}
                                             <div class="center card-body">
-                                                <img width="260" src="{{ card.image.url }}"
-                                                     alt="{{ card.name }}"
-                                                     class="supercategory-image">
+                                                <a href="{{ card.get_absolute_url }}">
+                                                    <img width="260" src="{{ card.image.url }}"
+                                                         alt="{{ card.name }}"
+                                                         class="supercategory-image">
+                                                </a>
                                             </div>
                                         {% endif %}
                                         <div class="card-footer text-center">
