@@ -22,6 +22,7 @@
                                                 </div>
                                                 <div class="flip-card-back">
                                                     {% if category.website %}
+                                                        <center>
                                                         <div id="ytplayer">
                                                             <iframe width="280" height="100"
                                                                     src="{{ category.website }} "
@@ -30,6 +31,7 @@
                                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                                     allowfullscreen></iframe>
                                                         </div>
+                                                        </center>
                                                     {% endif %}
                                                 </div>
                                             </div>
