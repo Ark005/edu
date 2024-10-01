@@ -29,16 +29,11 @@
 
         </div>
     </div>
-    
-     <div>
+
+    <div>
         <h1 class="text-center h3">Мир - комплекс инструментов для строительства
             человеком самого себя. К. Ясперс</h1>
     </div>
-
- {% comment %}   <div>
-        <h1 class="text-center h3">Мир - комплекс инструментов для строительства
-            человеком самого себя. К. Ясперс</h1>
-    </div>{% endcomment %}
 
     <div>
         <h2 class="text-center text-blue">Типы мировоззрения человека</h2>
@@ -81,26 +76,27 @@
                     <h2 class=" text-center h3"> Популярные просмотры</h2>
                 </div>
 
-
-                <div class="row">
-                    {% for card in random_cards %}
-                        <div class="col-12 col-md-3 mt-3">
-                            <div class="card">
-                                <div class="text-center p-3">{{ card.name }}</div>
-                                {% if card.image %}
-                                    <div class="center card-body">
-                                        <img width="260" src="{{ card.image.url }}"
-                                             alt="{{ card.name }}"
-                                             class="supercategory-image">
+                <center>
+                    <div class="row">
+                        {% for card in random_cards %}
+                            <div class="col-12 col-md-3 mt-3">
+                                <div class="card">
+                                    <div class="text-center p-3">{{ card.name }}</div>
+                                    {% if card.image %}
+                                        <div class="center card-body">
+                                            <img width="260" src="{{ card.image.url }}"
+                                                 alt="{{ card.name }}"
+                                                 class="supercategory-image">
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-footer text-center">
+                                        <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">Подробнее</h6>
+                                        </a>
                                     </div>
-                                {% endif %}
-                                <div class="card-footer text-center">
-                                    <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">Подробнее</h6></a>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
+                        {% endfor %}
+                    </div>
             </div>
             {% for author_type, authors in authors_by_types.items %}
                 <div class="mt-5">
@@ -204,4 +200,5 @@
                     </div>
                 </div>
             </div>
+            </center>
 {% endblock %}
