@@ -97,89 +97,72 @@
                             </div>
                         {% endfor %}
                     </div>
+                </center>
             </div>
             {% for author_type, authors in authors_by_types.items %}
-                <div class="mt-5">
-                <h2 class="text-center h4"></h2>
-                <h2 class="text-center h3 semiopacity">  {{ authors.0.get_type_display }}</h2>
+                <center>
+                    <div class="mt-5">
+                        <h2 class="text-center h4"></h2>
+                        <h2 class="text-center h3 semiopacity">  {{ authors.0.get_type_display }}</h2>
 
-                <div class="row">
-                    {% for card in authors %}
-                        <div class="col-12 col-md-3 mt-3">
-                            <div class="card">
-                                <div class="text-center p-3">{{ card.name }}</div>
-                                {% if card.image %}
-                                    <div class="center card-body">
-                                        <img width="260" src="{{ card.image.url }}"
-                                             alt="{{ card.name }}"
-                                             class="supercategory-image">
+                        <div class="row">
+                            {% for card in authors %}
+                                <div class="col-12 col-md-3 mt-3">
+                                    <div class="card">
+                                        <div class="text-center p-3">{{ card.name }}</div>
+                                        {% if card.image %}
+                                            <div class="center card-body">
+                                                <img width="260" src="{{ card.image.url }}"
+                                                     alt="{{ card.name }}"
+                                                     class="supercategory-image">
+                                            </div>
+                                        {% endif %}
+                                        <div class="card-footer text-center">
+                                            <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">
+                                                Подробнее</h6></a>
+                                        </div>
                                     </div>
-                                {% endif %}
-                                <div class="card-footer text-center">
-                                    <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">Подробнее</h6></a>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
-                </div>
-
+                </center>
             {% endfor %}
             <div class="mt-5">
+                <center>
+                    <div>
+                        <h2 class=" text-center h3">Кино</h2>
+                    </div>
 
-                <div>
-                    <h2 class=" text-center h3">Кино</h2>
-                </div>
-
-                <h2 class="text-center h4"></h2>
-                <div class="row">
-                    {% for card in random_films %}
-                        <div class="col-12 col-md-3 mt-3">
-                            <div class="card">
-                                <div class="text-center p-3">{{ card.name }}</div>
-                                {% if card.image %}
-                                    <div class="center card-body">
-                                        <img width="260" src="{{ card.image.url }}"
-                                             alt="{{ card.name }}"
-                                             class="supercategory-image">
+                    <h2 class="text-center h4"></h2>
+                    <div class="row">
+                        {% for card in random_films %}
+                            <div class="col-12 col-md-3 mt-3">
+                                <div class="card">
+                                    <div class="text-center p-3">{{ card.name }}</div>
+                                    {% if card.image %}
+                                        <div class="center card-body">
+                                            <img width="260" src="{{ card.image.url }}"
+                                                 alt="{{ card.name }}"
+                                                 class="supercategory-image">
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-footer text-center">
+                                        <a href="{{ card.get_absolute_url }}"><h6 style="color:#267cab;">Подробнее</h6>
+                                        </a>
                                     </div>
-                                {% endif %}
-                                <div class="card-footer text-center">
-                                    <a href="{{ card.get_absolute_url }}"><h6 style="color:#267cab;">Подробнее</h6></a>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
+                        {% endfor %}
+                    </div>
+                </center>
             </div>
             <div class="mt-5">
                 <div>
                     <h2 class=" text-center h3"> Детская литература</h2>
                 </div>
-                <div class="row">
-                    {% for card in children_items %}
-                        <div class="col-12 col-md-3 mt-3">
-                            <div class="card">
-                                <div class="text-center p-3">{{ card.name }}</div>
-                                {% if card.image %}
-                                    <div class="center card-body">
-                                        <img width="260" src="{{ card.image.url }}"
-                                             alt="{{ card.name }}"
-                                             class="supercategory-image">
-                                    </div>
-                                {% endif %}
-                                <div class="card-footer text-center">
-                                    <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">Подробнее</h6></a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="mt-5">
-                    <div>
-                        <h2 class=" text-center h3">Поэты Серебрянного века</h2>
-                    </div>
+                <center>
                     <div class="row">
-                        {% for card in silver_items %}
+                        {% for card in children_items %}
                             <div class="col-12 col-md-3 mt-3">
                                 <div class="card">
                                     <div class="text-center p-3">{{ card.name }}</div>
@@ -198,7 +181,36 @@
                             </div>
                         {% endfor %}
                     </div>
+                </center>
+                <div class="mt-5">
+                <center>
+                    <div>
+                        <h2 class=" text-center h3">Поэты Серебрянного века</h2>
+                    </div>
+                    <div class="row">
+                        {% for card in silver_items %}
+                            <div class="col-12 col-md-3 mt-3">
+                                <div class="card">
+                                    <div class="text-center p-3">{{ card.name }}</div>
+                                    {% if card.image %}
+                                        <div class="center card-body">
+                                            <img width="260" src="{{ card.image.url }}"
+                                                 alt="{{ card.name }}"
+                                                 class="supercategory-image">
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-footer text-center">
+                                        <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">
+                                            Подробнее</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </center>
                 </div>
             </div>
-            </center>
+        </div>
+    </div>
 {% endblock %}
