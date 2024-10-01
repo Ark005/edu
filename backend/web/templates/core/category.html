@@ -29,12 +29,12 @@
                                     <div class="flip-card-back">
                                         {% if object.website %}
                                             <div id="ytplayer">
-                                               
-                                                 <center>   <iframe width="250" height="110" src="{{ object.website }}"></iframe></center>
-                                                            title="YouTube video player" frameborder="0"
-                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                            allowfullscreen></iframe>
-                                                
+
+                                                <iframe width="250" height="110" src="{{ object.website }}"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                        allowfullscreen></iframe>
+
                                             </div>
 
                                             {{ object.text_preview }}
