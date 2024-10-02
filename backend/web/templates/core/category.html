@@ -5,7 +5,16 @@
 
     {% load static %}
     <center>
-
+    
+    
+ 
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+    
         {% if view.kwargs.slug != 'director' %}
             <br>
             <h6 style="color: #29b997;"><label for="customRange3" class="form-label">столетие:</label></h6>
@@ -30,7 +39,7 @@
                                         {% if object.website %}
                                             <div id="ytplayer">
 
-                                                <iframe width="250" height="110" src="{{ object.website }}"
+                                                <iframe width="250" height="350" src="{{ object.website }}"
                                                         title="YouTube video player" frameborder="0"
                                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                         allowfullscreen></iframe>
