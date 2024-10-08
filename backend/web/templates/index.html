@@ -32,32 +32,29 @@
 
     <div>
         <h1 class="text-center h3">Мир - комплекс инструментов для строительства
-            человеком самого себя. К. Ясперс</h1>
+            человеком самого себя. Карл Ясперс</h1>
     </div>
 
-    <div>
+   {% comment %} <div>
         <h2 class="text-center text-blue">Типы мировоззрения человека</h2>
     </div>
-
+{% endcomment %}
     <div>
         <div class="container center">
             <div class="row">
 
                 {% for supercategory in object_list %}
                     <div class="col-12 col-md-3">
-                        <div class="card" style="height: 29rem; " style="width: 20rem;">
-                            <div class="text-center text-blue p-3">{{ supercategory.name.title }}</div>
+                        <div class="card-new" style="height: 29rem; " style="width: 20rem;">
                             {% if supercategory.image %}
-                                <div class="center card-body">
+                                <div class="new-card-body">
 
-                                    <center>
-                                        <a href="{{ supercategory.get_absolute_url }}">
-                                            <img width="260" src="{{ supercategory.image.url }}"
-                                                 alt="{{ supercategory.name }}"
-                                                 class="supercategory-image">
-                                            <h6 class="text-center text-blue">{{ supercategory.description }}</h6>
-                                        </a>
-                                    </center>
+                                    <a href="{{ supercategory.get_absolute_url }}">
+                                        <img width="260" src="{{ supercategory.image.url }}"
+                                             alt="{{ supercategory.name }}"
+                                             class="supercategory-image">
+                                        <h6 class="text-center text-blue">{{ supercategory.description }}</h6>
+                                    </a>
                                 </div>
                             {% endif %}
                             <div class="card-footer text-center text-blue">

@@ -1,79 +1,37 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-        <a class="navbar-brand logotype-images" href="/">
-            <img src="/media/image/logo.jpeg" alt="25" width="25">Мыслю, значит существую</a>
-
-
-        <div class="container">
-            <div id="container">
-                {% comment %}<li><a class=checkbox-row href="/category/music">музыка</a></li>{% endcomment %}
-                <li><a class=checkbox-row  href="/category/spiritual">религия</a></li>
-                <li><a class=checkbox-row href="/category/philosopher">философия</a></li>
-                <li><a class=checkbox-row href="/category/artist">живопись</a></li>
-                <li><a class=checkbox-row href="/category/director">кино</a></li>
-                <li><a class=checkbox-row href="/category/writer">литература</a></li>
-
+    <div class="container flex-column">
+        <div class="d-flex w-100">
+        
+            <div>
+                
+                <a class="ms-2 nav-supercategory"
+                     href="/"><img class="ms-2 logo-img" src="/media/image/logo.jpeg" alt="" > 005.ru</a>
             </div>
-
-
-            <ul class="navbar-nav navbar-light">
-
-                <div class="container position-relative">
-                    <form action="/search" method="get">
-                        <input name="search" class="form-control" id="id_search" type="text" placeholder="поиск">
-                    </form>
-                    <div class="position-absolute search-result"></div>
+            <div class="ms-auto mt-2 d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                    {% for nav_category in navbar_categories %}
+                        <a class="nav-category ms-2"
+                           href="{{ nav_category.get_absolute_url }}">{{ nav_category.short_name.capitalize }}</a>
+                    {% endfor %}
                 </div>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        о проекте
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/5.html">005.ru за 5 минут</a>
-                        <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/why.html">зачем создан проект</a>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/about.html">информация о проекте</a>
-                        <li class="nav-item dropdown">
-                    </ul>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        категории
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/category/artist">арт</a></li>
-                        <li><a class="dropdown-item" href="/category/director">кино</a></li>
-                        <li><a class="dropdown-item" href="/category/writer">литература</a></li>
-                        {% comment %}  <li><a class="dropdown-item" href="/category/music">музыка</a></li>{% endcomment %}
-                        <li><a class="dropdown-item" href="/category/spiritual">религия</a></li>
-                        <li><a class="dropdown-item" href="/category/philosopher">философия</a></li>
-
-
-                    </ul>
-
-                    {% comment %}  {% if request.user.is_authenticated %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <!--<i class="fas fa-user-tie"></i> {{ request.user.username }}-->
-                            </a>
-                        </li>
-                    {% endif %}{% endcomment %}
-            </ul>
+                <div class="search-wrapper ms-4">
+                    <form action="/search" method="get">
+                        <input name="search" class="search-input" id="id_search" placeholder="Поиск" title="Поиск" type="text">
+                    </form>
+                    <svg version="1.1" class="search-icon" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 51.539 51.361"
+                         enable-background="new 0 0 51.539 51.361" xml:space="preserve"><path fill="#444" d="M51.539,49.356L37.247,35.065c3.273-3.74,5.272-8.623,5.272-13.983c0-11.742-9.518-21.26-21.26-21.26 S0,9.339,0,21.082s9.518,21.26,21.26,21.26c5.361,0,10.244-1.999,13.983-5.272l14.292,14.292L51.539,49.356z M2.835,21.082 c0-10.176,8.249-18.425,18.425-18.425s18.425,8.249,18.425,18.425S31.436,39.507,21.26,39.507S2.835,31.258,2.835,21.082z"></path></svg>
+                </div>
+            </div>
         </div>
-        <style>
-            #container {
-                color: #29b997;
-                list-style-type: "-"; /* Убирает буллиты */
-                display: flex;
-                justify-content: center;
-            }
-        </style>
+        <div class="d-flex">
+            <div class="mx-auto d-flex align-items-center">
+                {% for nav_supercategory in navbar_supercategories %}
+                    <a class="ms-2 nav-supercategory"
+                       href="{{ nav_supercategory.get_absolute_url }}">{{ nav_supercategory.name.capitalize }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </nav>
 

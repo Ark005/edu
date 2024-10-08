@@ -80,41 +80,11 @@
 {% block content %}
 {% endblock %}
 </body>
-<style>
-    form {
-        position: relative;
-        width: 300px;
-    }
 
-    input {
-        width: 100%;
-        height: 42px;
-        padding-left: 10px;
-        border: 2px solid #7BA7AB;
-        border-radius: 5px;
-        outline: none;
-        background: #F9F0DA;
-        color: #9E9C9C;
-    }
-
-    button {
-        width: 215px;
-        height: 35px;
-        border: none;
-        background: #e2e7d7;
-        border-radius: 0 5px 5px 0;
-        cursor: pointer;
-    }
-
-    .hidden {
-        display: none;
-    }
-</style>
-
-    <div class="mt-5">
-        <p class="text-center"><a class="text-blue" href="{% url 'feedback_create' %}">обратная связь</a></p>
-        <p class="text-center">copyright © 2024. all rights reserved.</p>
-    </div>
+<div class="mt-5">
+    <p class="text-center"><a class="text-blue" href="{% url 'feedback_create' %}">обратная связь</a></p>
+    <p class="text-center">copyright © 2024. all rights reserved.</p>
+</div>
 
 
 
