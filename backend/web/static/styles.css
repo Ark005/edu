@@ -1,3 +1,9 @@
+:root {
+    --text-default-color: #131313;
+}
+span, a, p, div, h1, h2, h3 {
+    color: var(--text-default-color);
+}
 .author-description-text, .pre-line-text {
     white-space: pre-line
 }
@@ -25,10 +31,52 @@
 .text-blue {
     color: #267cab;
 }
+
 .text-green {
     color: #29b997;
 }
 
 .supercategory-image {
     height: 250px;
+}
+
+.hidden {
+    display: none;
+}
+
+.logo-img {
+    height: 55px;
+}
+
+.search-wrapper {
+    padding-right: 25px;
+    border-bottom: 1px lightgrey solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    position: relative;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    font-size: 13px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 3px;
+    height: 15px;
+    top: 5px;
+}
+
+.nav-category {
+    font-size: 13px;
+    text-decoration: none;
+    color: gray;
+}
+
+.nav-supercategory {
+    font-size: 15px;
+    text-decoration: none;
 }

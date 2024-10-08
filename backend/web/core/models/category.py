@@ -10,6 +10,7 @@ class Category(models.Model):
     is_primary = models.BooleanField(
         default=False
     )
+    short_name = models.CharField(max_length=255, verbose_name="Короткое название", null=True, blank=True)
     main_image = models.ImageField(
         upload_to='image',
         blank=True,
