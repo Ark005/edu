@@ -5,33 +5,15 @@
     мировую историю. Кратко и содержательно о выдающихся философах, литераторах и других значимых
     личностях.{% endblock %}
 {% block content %}
-    <style type="text/css">
-        body {
-            background: url(images/star.png); /* Фоновый рисунок */
-        }
-
-        .semiopacity {
-            background: #747a7a; /* Цвет фона */
-            padding: 5px; /* Поля вокруг текста */
-            opacity: 0.3; /* Полупрозрачный фон */
-            filter: alpha(Opacity=70); /* Прозрачность в IE */
-            color: #fff; /* Цвет текста */
-        }
-    </style>
-
-    <div class="d-flex justify-content-center mb-3">
-        <div>
-            <label for="customRange3" class="form-label"><strong>столетие:</strong></label>
+    <div>
+        <div class="d-flex flex-wrap align-items-center justify-content-center">
             {% for century in centuries %}
-                <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
+                <a class="century-item me-1" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
             {% endfor %}
-            <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
-
         </div>
     </div>
-
-    <div>
-        <h1 class="text-center h3">Мир - комплекс инструментов для строительства
+    <div class="my-4">
+        <h1 class="text-center fs-3 fw-normal">Мир - комплекс инструментов для строительства
             человеком самого себя. Карл Ясперс</h1>
     </div>
 
@@ -45,24 +27,25 @@
 
                 {% for supercategory in object_list %}
                     <div class="col-12 col-md-3">
-                        <div class="card-new" style="height: 29rem; " style="width: 20rem;">
+                        <div class="card-new">
                             {% if supercategory.image %}
-                                <div class="new-card-body">
-
+                                <div class="new-card-header">
                                     <a href="{{ supercategory.get_absolute_url }}">
                                         <img width="260" src="{{ supercategory.image.url }}"
                                              alt="{{ supercategory.name }}"
-                                             class="supercategory-image">
-                                        <h6 class="text-center text-blue">{{ supercategory.description }}</h6>
+                                             class="new-card-image">
                                     </a>
                                 </div>
                             {% endif %}
-                            <div class="card-footer text-center text-blue">
+                            <div class="new-card-title">{{ supercategory.name }}</div>
+                            <div class="new-card-body">
+                                <p>{{ supercategory.description }}</p>
+                            </div>
+                            <div class="new-card-footer">
                                 {% if not supercategory.is_disabled %}
-                                    <a href="{{ supercategory.get_absolute_url }}"><h6 style="color:darkgrey;">
-                                        Подробнее</h6></a>
+                                    <a href="{{ supercategory.get_absolute_url }}">Подробнее</a>
                                 {% else %}
-                                    <a href="#" class="text-decoration-none text-muted">Раздел в разработке</a>
+                                    <a href="#" class="new-card-empty-link">Раздел в разработке</a>
                                 {% endif %}
                             </div>
                         </div>

@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 :root {
     --text-default-color: #131313;
+    --card-link-color: #199a73;
+    --bs-font-sans-serif: "Roboto"
 }
+
+* {
+    font-family: var(--bs-font-sans-serif);
+}
+
 span, a, p, div, h1, h2, h3 {
     color: var(--text-default-color);
 }
+
 .author-description-text, .pre-line-text {
     white-space: pre-line
 }
@@ -79,4 +88,49 @@ span, a, p, div, h1, h2, h3 {
 .nav-supercategory {
     font-size: 15px;
     text-decoration: none;
+}
+
+.card-new {
+    transition: 0.2s;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-new:hover {
+    box-shadow: 0 0 10px rgba(28, 28, 28, 0.75);
+}
+
+.new-card-image {
+
+    height: 250px;
+    width: 100%;
+}
+
+.new-card-body, .new-card-footer, .new-card-title {
+    padding: 15px;
+}
+.new-card-title{
+    font-weight: 500;
+}
+.new-card-body{
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.new-card-footer {
+    margin-top: auto;
+}
+.new-card-footer > a {
+    display: block;
+    color: var(--card-link-color);
+    font-size: 15px;
+    text-decoration: none;
+}
+.century-item {
+    padding: 3px 6px;
+    border: 1px solid lightgray;
+    text-decoration: none;
+    font-size: 14px;
+    color: #2c2c2c;
 }
