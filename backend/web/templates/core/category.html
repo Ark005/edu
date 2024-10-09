@@ -1,81 +1,43 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock %}
 {% block description %}{{ description }}{% endblock %}d
+{% load static %}
 {% block content %}
 
-    {% load static %}
-    <center>
-    
-    
-        {% if view.kwargs.slug != 'director' %}
-            <br>
-            <h6 style="color: #29b997;"><label for="customRange3" class="form-label">столетие:</label></h6>
-            {% comment %}<input type="range" class="form-range" min="0" max="5" step="1" id="customRange3">{% endcomment %}
-        {% endif %}
-        {% for century in centuries %}
-            <a class="text-dark" href="{{ century.get_absolute_url }}"> {{ century.century.display_name }}</a>
-        {% endfor %}
-
         <div class="container mt-3">
-            {% for object in object_list %}
-                <div class="bg-link d-inline-block">
-                    <div>
-                        {% if object.image %}
-                            <div class="flip-card audio-root">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <img class="flipcard-image-front" src="{{ object.image.url }}" alt="">
-                                    </div>
-
-                                    <div class="flip-card-back">
-                                        {% if object.website %}
-                                            <div id="ytplayer">
-
-                                                <iframe width="250" height="350" src="{{ object.website }}"
-                                                        title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                        allowfullscreen></iframe>
-
-                                            </div>
-
-                                            {{ object.text_preview }}
-                                            <div>
-                                                {% for song in object.songs.all %}
-                                                    {% if song.file %}
-                                                        <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}"
-                                                             id="id_{{ song.id }}">
-                                                            <audio style="width: 250px" controls
-                                                                   src="{{ song.file.url }}"></audio>
-                                                        </div>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                {% if object.songs.exists %}
-                                                    <select class="select-audio" name="audio" id="id_audio">
-                                                        {% for song in object.songs.all %}
-                                                            {% if song.file %}
-                                                                <option value="{{ song.id }}">
-                                                                    {{ song.name }}
-                                                                </option>
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                    </select>
-                                                {% endif %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
+            <div class="row">
+                {% for object in object_list %}
+                    <div class="col-12 col-md-3 mb-3">
+                        <div class="card-new card-new-lg">
+                            {% if object.image %}
+                                <div class="new-card-header">
+                                    <a href="{{ object.get_absolute_url }}">
+                                        <img width="260" src="{{ object.image.url }}"
+                                             alt="{{ object.name }}"
+                                             class="new-card-image">
+                                    </a>
                                 </div>
+                            {% endif %}
+                            <div class="new-card-title">{{ object.name }}</div>
+                            <div class="new-card-expand">
+                                <span><i class="fas fa-play"></i><i class="fas fa-pause ms-2"></i></span>
                             </div>
-                        {% endif %}
-                        <div>
-                            <a class="text-blue text-decoration-none"
-                               href="{{ object.get_absolute_url }}">{{ object }}</a>
+                            <div class="new-card-body">
+                                <p>{{ object.text_preview }}</p>
+                            </div>
+                            <div class="new-card-footer">
+                                {% if not category.is_disabled %}
+                                    <a href="{{ object.get_absolute_url }}">Подробнее</a>
+                                {% else %}
+                                    <a href="#" class="new-card-empty-link">Раздел в разработке</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </center>
-    
+
     <div>
         {% if view.kwargs.slug == 'philosopher' %}
             <hr>
