@@ -183,6 +183,14 @@ class Author(models.Model):
         blank=True,
     )
 
+    def get_first_video_link(self):
+        media = None
+        if self.songs.exists():
+            media = self.songs.first().youtube_link
+        elif self.videos.exists():
+            media = self.videos.first().slug
+        return media
+
     def get_reversed_name(self):
         if not self.last_name:
             return self.name

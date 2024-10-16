@@ -1,135 +1,48 @@
 {% extends "base.html" %}
 {% block title %}Раздел {{ object.name }}{% endblock %}
-{% block description %}Исследуйте разнообразие жанров от средневековья до современности: {{ object.name }} и многие другие. Узнайте об их особенностях, истории и значимых произведениях в каждом жанре.{% endblock %}
+{% block description %}
+    Исследуйте разнообразие жанров от средневековья до современности: {{ object.name }} и многие
+    другие. Узнайте об их особенностях, истории и значимых произведениях в каждом жанре.
+{% endblock %}
 {% block content %}
-
-    <center>
-        {% for century in centuries %}
-            <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.century.display_name }}</a>
-        {% endfor %}
-        <div class="container mt-3">
-            <div>
-                {% for object in object_list %}
-                    <div class="bg-link d-inline-block">
-                        <div>
-                            {% if object.image %}
-                                <div class="flip-card audio-root">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                            <img class="flipcard-image-front" src="{{ object.image.url }}" alt="">
-                                        </div>
-                                        <div class="flip-card-back">
-                                            {% if object.website %}
-                                                <div id="ytplayer">
-                                                    <iframe width="250" height="550" src="{{ object.website }}"
-                                                            title="YouTube video player" frameborder="0"
-                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                            allowfullscreen></iframe>
-                                                    {{ object.text_preview }}
-
-
-                                                    {% if object.director %}
-                                                        <p>
-                                                            {{ object.name }} 
-                                                            режиссер {{ object.director }}
-
-                                                        <p>Нажмите  на изображение.
-                                                        В правом нижнем углу видео появится логотип Youtube и квадратик.
-                                                        При повторном нажатии на квадрат, видео развернется на весь
-                                                        экран
-                                                    {% endif %}
-                                                </div>
-                                            {% else %}
-                                                <div>
-                                                    {{ object.text_preview }}
-                                                    {% for song in object.songs.all %}
-                                                        {% if song.file %}
-                                                            <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}"
-                                                                 id="id_{{ song.id }}">
-                                                                <audio style="width: 250px" controls
-                                                                       src="{{ song.file.url }}"></audio>
-                                                            </div>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                    
-                                                </div>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-
-
-                            <div>
-                                <a href="{{ object.get_absolute_url }}">{{ object }} </a>
-                                <br>
-                                {% if object.creation_author %}
-                                    <a href="{{ object.get_absolute_url }}"> {{ object.creation_author }}</a>
-                                {% endif %}
-                               
+    <div class="container mt-3">
+        <div class="row">
+            {% for object in object_list %}
+                <div class="col-12 col-md-3 mb-3">
+                    <div class="card-new {% if object.text_preview %}card-new-lg{% endif %}">
+                        {% if object.image %}
+                            <div class="new-card-header">
+                                <a href="{{ object.get_absolute_url }}">
+                                    <img width="260" src="{{ object.image.url }}"
+                                         alt="{{ object.name }}"
+                                         class="new-card-image">
+                                </a>
                             </div>
+                        {% endif %}
+                        <div class="new-card-title">{{ object.name }}</div>
+                        <div class="new-card-expand">
+                            <span><i class="fas fa-play"></i><i class="fas fa-pause ms-2"></i><i
+                                    class="fas fa-volume-up ms-2"></i><i class="fas fa-volume-down ms-2"></i><i
+                                    class="fas fa-volume-mute ms-2"></i><i class="fas fa-step-forward ms-2"></i><i
+                                    class="fas fa-step-backward ms-2"></i><i class="fas fa-expand ms-2"></i></span>
+                        </div>
+                        {% if object.text_preview %}
+                            <div class="new-card-body">
+                                <p>{{ object.text_preview }}</p>
+                            </div>
+                        {% endif %}
+                        <div class="new-card-footer">
+                            {% if not category.is_disabled %}
+                                <a href="{{ object.get_absolute_url }}">Подробнее</a>
+                            {% else %}
+                                <a href="#" class="new-card-empty-link">Раздел в разработке</a>
+                            {% endif %}
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-    </center>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
-   
-
-    <style>
-        img {
-            height: 150px;
-            width: 120px;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .flip-card {
-            background-color: transparent;
-            width: 250px;
-            height: 300px;
-            perspective: 1000px;
-        }
-
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front,
-        .flip-card-back {
-            vertical-align: middle;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-        }
-
-        .flip-card-front {
-            background-color: #bbb;
-            color: black;
-        }
-
-        .flip-card-back {
-            background-color: rgb(38, 67, 171);
-            color: white;
-            text-align: center;
-            transform: rotateY(180deg);
-        }
-    </style>
-    </center>
 {% endblock %}S
 
