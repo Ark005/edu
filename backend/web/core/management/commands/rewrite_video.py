@@ -2,13 +2,9 @@ import re
 
 from django.core.management import BaseCommand
 from django.db.models import Q
+from core.utils.video import extract_video_id
 
 from core.models import Video, Song, Category, Genre, Author
-
-
-def extract_video_id(link):
-    match = re.search(r'/embed/([^?]+)', link)
-    return match.group(1) if match else None
 
 
 def build_proxy_link(video_id) -> str:

@@ -1,214 +1,41 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}{{ author.name }}{% endblock %}
 {% block description %}
     Кратко о жизни и вкладе деятеля {{ author.name }}: биография, ключевые тезисы и идеи. Узнайте о значимых достижениях
     и влиянии автора {{ author.name }} на культуру и общество.
 {% endblock %}
 {% block content %}
-    {% load static %}
-
-
-    <script src="{% static 'core/player.js' %}"></script>
-    <div class="container my-5">
-        <div class="card p-3">
-            <div class="row audio-root">
-                <div class="img-big-wrap">
-                    <img src="{{ author.image.url }}" class="img-fluid" style="width: 565px;">
-                </div>
-                <div class="h6 my-3">
-                    <p class="mb-1">{{ author.name }} </p>
-                    {% if author.creation_author %}
-                        <a href=" /{{ author.creation_author.slug }}/detail">{{ author.creation_author }}</a>
-                    {% endif %}
-                </div>
-                {% if author.creations.exists %}
-                    <div>
-                        {% for creation in author.creations.all %}
-                            <div class="d-inline-block"><a
-                                    href="{{ creation.get_absolute_url }}">{{ creation.name }}</a></div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <div class="gallery">
+                    <div class="gallery-active bg-dark mb-3 d-flex align-items-center justify-content-center">
+                        {% if author.image %}
+                        <img src="{{ author.image.url }}" alt="{{ author.name }}" class="active-image">
+                        {% endif %}
+                    </div>
+                    <div class="gallery-items">
+                        {% for song in author.songs.all %}
+                            <div class="gallery-item">
+                                <img alt="{{ song.name }}" src="{{ song.get_preview_image }}">
+                            </div>
                         {% endfor %}
                     </div>
-                {% endif %}
-                <div class="mb-3">
-                    {% include 'core/includes/author_accordion.html' %}
-                </div>
-
-                {% if author.songs.exists %}
-                    <div class="mt-3">
-                        <p class="h3">Произведение</p>
+                    <div class="controls d-flex text-muted">
+                        <i class="fas fa-long-arrow-alt-left"></i>
+                        <i class="fas fa-long-arrow-alt-right ms-auto"></i>
                     </div>
-                {% endif %}
-
-
+                </div>
+            </div>
+            <div class="col-6">
                 <div>
-                    {% for century in centuries %}
-                        <a href="/antogonist/{{ antogonist.0 }}">{{ antogonist.1 }}</a>
-                    {% endfor %}
-                </div>
-                {% for song in author.songs.all %}
-                    <div class="audio {% if forloop.counter != 1 %}hidden{% endif %}" id="id_{{ song.id }}">
-                        <div class="main-song h_iframe">
-                            {% if song.type == 'youtube' %}
-                                <div data-url="{{ song.youtube_link }}" class="video-player" id="ytplayer">
-                                    <iframe src="{{ song.youtube_link }}#player"
-                                            height="500"
-                                            scrolling="no"
-                                            title="YouTube video player"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            allowfullscreen></iframe>
-                                </div>
-
-
-                            {% else %}
-                                {% if song.file %}
-                                    <audio controls src="{{ song.file.url }}" preload="auto">
-                                    </audio>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                        <div class="analysis">
-                            {% if song.analysis %}
-                                <audio controls src="{{ song.analysis.url }}" preload="auto">
-                                </audio>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-
-                {% if author.songs.exists %}
+                    <h1>{{ author.name }}</h1>
                     <div class="mt-3">
-                        <select class="select-audio form-select form-select-sm popover-note-2" name="audio"
-                                id="id_audio">
-
-                            {% for song in author.songs.all %}
-                                {% if song.file or song.youtube_link  or song.youtube_film %}
-                                    <option value="{{ song.id }}">
-                                        {{ song.name }}
-                                        {{ song.text }}
-                                    </option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
+                        <p class="author-text">{{ author.text }}</p>
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
-        {% if author.videos.exists %}
-            <div class="videos card my-2 p-3">
-                <p class="h3">{% if author.creation_author %}О произведении{% else %}Об авторе{% endif %}</p>
-                <div class="audio-root h_iframe">
-                    {% for video in author.videos.all %}
-                        <div data-url="{{ video.slug }}" id="id_{{ video.id }}"
-                             class="audio video-player {% if forloop.counter != 1 %}hidden{% endif %}">
-                            <iframe src="{{ video.slug }}#player"
-                                    scrolling="no"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen></iframe>
-                        </div>
-                    {% endfor %}
-                    <div class="mt-2">
-                        <select class="select-audio form-select form-select-sm popover-note">
-                            {% for video in author.videos.all %}
-                                <option value="{{ video.id }}">
-                                    {{ video.name }}
-                                </option>
-                            {% endfor %}
-
-                        </select>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-        {% if author.pictures.exists %}
-            <div class="gallery">
-
-                <div class="container">
-                    <div class="row">
-                        {% for picture in author.pictures.all %}
-                            {% if picture.file %}
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <img class="mh-400" src="{{ picture.file.url }}">
-                                    <h6>{{ picture.name }}</h6>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-
-        <style>
-            .mh-400 {
-                max-height: 250px;
-                max-width: 250px;
-            }
-
-            .h_iframe iframe {
-                width: 100%;
-                min-height: 630px;
-            }
-
-            @media (max-width: 1200px) {
-                .h_iframe iframe {
-                    width: 100%;
-                    min-height: 500px;
-                }
-            }
-
-            @media (max-width: 1100px) {
-                .h_iframe iframe {
-                    width: 100%;
-                    min-height: 400px;
-                }
-            }
-
-            @media (max-width: 990px) {
-                .h_iframe iframe {
-                    width: 100%;
-                    min-height: 300px;
-                }
-            }
-
-            @media (max-width: 760px) {
-                .h_iframe iframe {
-                    width: 100%;
-                    min-height: 250px;
-                }
-            }
-
-            @media (max-width: 460px) {
-                .h_iframe iframe {
-                    width: 100%;
-                    min-height: 200px;
-                }
-            }
-
-        </style>
-        {% if author.antagonist.name.exists %}
-            <h6>антагонист:</h6>
-            {{ author.antagonist.name.get_absolute_url }}{{ author.antagonist.name.display_name }}
-        {% endif %}
     </div>
-
-    <script>
-
-        let popover = new bootstrap.Popover(document.querySelector('.popover-note'), {
-            content: "Нажмите, чтобы выбрать ролик",
-            trigger: "hover"
-        })
-        popover.show()
-
-        let popover2 = new bootstrap.Popover(document.querySelector('.popover-note-2'), {
-            content: "Нажмите, чтобы выбрать произведение",
-            trigger: "hover"
-        })
-        popover2.show()
-
-
-    </script>
 {% endblock %}
-
-{% if author.book.name.exists %}
-    <h6>антагонист:</h6>
-    {{ author.book.name.get_absolute_url }}{{ author.book.name.display_name }}
-{% endif %}

@@ -18,6 +18,13 @@ span, a, p, div, h1, h2, h3 {
     white-space: pre-line
 }
 
+.author-text {
+    white-space: pre-line;
+    max-height: 600px;
+    overflow-y: auto;
+    text-align: justify;
+}
+
 .pre-line-child *:not(strong) {
     white-space: pre-line;
 }
@@ -163,4 +170,24 @@ span, a, p, div, h1, h2, h3 {
 
 .bg-blue {
     background: #ecedef;
+}
+
+.gallery-items {
+    display: flex;
+    overflow: auto;
+    width: 630px;
+    white-space: nowrap;
+}
+
+.gallery-item > img {
+    height: 150px;
+}
+
+.gallery-item:not(:first-child) {
+    margin-left: 5px;
+}
+
+.active-image {
+    height: 500px;
+    max-width: 600px;
 }
