@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.db.models.signals import pre_save
 from .century import Century
+from ..utils.video import get_video_id
 
 
 def get_century_choices():
@@ -182,6 +183,12 @@ class Author(models.Model):
 
         blank=True,
     )
+
+    def get_first_video_id(self):
+        video_url = self.get_first_video_link()
+        if not video_url:
+            return
+        return get_video_id(video_url)
 
     def get_first_video_link(self):
         media = None

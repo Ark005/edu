@@ -20,12 +20,20 @@
                             </div>
                         {% endif %}
                         <div class="new-card-title">{{ object.name }}</div>
-                        <div class="new-card-expand">
-                            <span><i class="fas fa-play"></i><i class="fas fa-pause ms-2"></i><i
-                                    class="fas fa-volume-up ms-2"></i><i class="fas fa-volume-down ms-2"></i><i
-                                    class="fas fa-volume-mute ms-2"></i><i class="fas fa-step-forward ms-2"></i><i
-                                    class="fas fa-step-backward ms-2"></i><i class="fas fa-expand ms-2"></i></span>
-                        </div>
+                        {% if object.get_first_video_id %}
+                                <div {% if object.image %}data-img-src="{{ object.image.url }}"{% endif %}
+                                     data-url="{{ object.get_absolute_url }}"
+                                     data-img-alt="{{ object.name }}"
+                                     data-src="{{ object.get_first_video_id }}"
+                                     class="new-card-expand">
+                                    <span class="video-play">
+                                        <i class="fas fa-play"></i>
+                                    </span>
+                                    <span class="video-pause ms-2">
+                                        <i class="fas fa-pause"></i>
+                                    </span>
+                                </div>
+                            {% endif %}
                         {% if object.text_preview %}
                             <div class="new-card-body">
                                 <p>{{ object.text_preview }}</p>

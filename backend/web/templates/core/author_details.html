@@ -26,6 +26,12 @@
                                 <img alt="{{ song.name }}" src="{{ song.get_preview_image }}">
                             </div>
                         {% endfor %}
+                        {% for video in author.videos.all %}
+                            <div data-src="{{ video.get_video_id }}" class="gallery-item">
+                                <i class="fab fa-youtube"></i>
+                                <img alt="{{ video.name }}" src="{{ video.get_preview_image }}">
+                            </div>
+                        {% endfor %}
                     </div>
                     <div class="controls d-flex text-muted">
                         <i class="fas fa-long-arrow-alt-left"></i>
@@ -57,6 +63,9 @@
                             href="{{ creation.get_absolute_url }}">{{ creation.name }}</a></div>
                 {% endfor %}
             </div>
-            </div>
         {% endif %}
+    </div>
+    <script>
+        initGallery()
+    </script>
 {% endblock %}

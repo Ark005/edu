@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Исследование мировоззрения Человека. Великие деятели культуры: биографии, труды и влияние{% endblock %}
 {% block description %}
     Откройте для себя образ мысли великих деятелей культуры: биографии, ключевые работы, трактаты и
     влияние на
     мировую историю. Кратко и содержательно о выдающихся философах, литераторах и других значимых
     личностях.
+{% endblock %}
+{% block extra_static %}
+	<script src="{% static 'core/gallery.js' %}"></script>
 {% endblock %}
 {% block content %}
     <div>
@@ -109,18 +113,18 @@
                                         </div>
                                     {% endif %}
                                     <div class="new-card-title">{{ card.name }}</div>
-                                    {% if card.get_first_video_link %}
-                                        <div class="new-card-expand">
-                            <span>
-                                <i class="fas fa-play"></i>
-                                <i class="fas fa-pause ms-2"></i>
-                                <i class="fas fa-volume-up ms-2"></i>
-                                <i class="fas fa-volume-down ms-2"></i>
-                                <i class="fas fa-volume-mute ms-2"></i>
-                                <i class="fas fa-step-forward ms-2"></i>
-                                <i class="fas fa-step-backward ms-2"></i>
-                                <i class="fas fa-expand ms-2"></i>
-                            </span>
+                                    {% if card.get_first_video_id %}
+                                        <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                             data-url="{{ card.get_absolute_url }}"
+                                             data-img-alt="{{ card.name }}"
+                                             data-src="{{ card.get_first_video_id }}"
+                                             class="new-card-expand">
+                                            <span class="video-play">
+                                                <i class="fas fa-play"></i>
+                                            </span>
+                                            <span class="video-pause ms-2">
+                                                <i class="fas fa-pause"></i>
+                                            </span>
                                         </div>
                                     {% endif %}
                                     {% if card.description %}
@@ -194,6 +198,20 @@
                                     </div>
                                 {% endif %}
                                 <div class="new-card-title">{{ card.name }}</div>
+                                {% if card.get_first_video_id %}
+                                    <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                         data-url="{{ card.get_absolute_url }}"
+                                         data-img-alt="{{ card.name }}"
+                                         data-src="{{ card.get_first_video_id }}"
+                                         class="new-card-expand">
+                                        <span class="video-play">
+                                            <i class="fas fa-play"></i>
+                                        </span>
+                                        <span class="video-pause ms-2">
+                                            <i class="fas fa-pause"></i>
+                                        </span>
+                                    </div>
+                                    {% endif %}
                                 {% if card.description %}
                                     <div class="new-card-body">
                                         <p>{{ card.description }}</p>
@@ -229,6 +247,20 @@
                                             </div>
                                         {% endif %}
                                         <div class="new-card-title">{{ card.name }}</div>
+                                        {% if card.get_first_video_id %}
+                                            <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                                 data-url="{{ card.get_absolute_url }}"
+                                                 data-img-alt="{{ card.name }}"
+                                                 data-src="{{ card.get_first_video_id }}"
+                                                 class="new-card-expand">
+                                                <span class="video-play">
+                                                    <i class="fas fa-play"></i>
+                                                </span>
+                                                <span class="video-pause ms-2">
+                                                    <i class="fas fa-pause"></i>
+                                                </span>
+                                            </div>
+                                        {% endif %}
                                         {% if card.description %}
                                             <div class="new-card-body">
                                                 <p>{{ card.description }}</p>
@@ -250,4 +282,7 @@
             </div>
         </div>
     </div>
+    <script>
+    initCards()
+    </script>
 {% endblock %}
