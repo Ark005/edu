@@ -169,14 +169,39 @@ span, a, p, div, h1, h2, h3 {
 }
 
 .bg-blue {
-    background: #ecedef;
+    background: #7ef4e9;
 }
+
+.bg-rose {
+    background: #fadadd;
+}
+
+.bg-silver {
+    background: #dbbcdb;
+}
+
 
 .gallery-items {
     display: flex;
     overflow: auto;
     width: 630px;
     white-space: nowrap;
+}
+
+.gallery-item {
+    position: relative;
+}
+
+.gallery-item:hover {
+    cursor: pointer;
+}
+
+.gallery-item > .fa-youtube {
+    position: absolute;
+    top: 45px;
+    left: 65px;
+    font-size: 72px;
+    color: #e11d1d;
 }
 
 .gallery-item > img {

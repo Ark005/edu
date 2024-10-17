@@ -11,12 +11,14 @@ def build_youtube_preview(video_id: str) -> str:
     return f"https://img.youtube.com/vi/{video_id}/0.jpg"
 
 
-def get_video_preview_link(link: str) -> Optional[str]:
+def get_video_id(link: str) -> str:
     if "ricktube" in link:
-        video_id = link.split("/")[-1]
-    else:
-        video_id = extract_video_id(link)
-    return build_youtube_preview(video_id)
+        return link.split("/")[-1]
+    return extract_video_id(link)
+
+
+def get_video_preview_link(link: str) -> Optional[str]:
+    return build_youtube_preview(get_video_id(link))
 
 
 
