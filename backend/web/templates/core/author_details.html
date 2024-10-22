@@ -68,4 +68,21 @@
     <script>
         initGallery()
     </script>
+    {% if author.pictures.exists %}
+        <div class="gallery">
+              <div class="picture">
+                <div class="row">
+                        {% for picture in author.pictures.all %}
+                            {% if picture.file %}
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <img class="mh-400" src="{{ picture.file.url }}">
+                                    <h6>{{ picture.name }}</h6>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+    {% endif %}
 {% endblock %}

@@ -8,7 +8,7 @@
     личностях.
 {% endblock %}
 {% block extra_static %}
-	<script src="{% static 'core/gallery.js' %}"></script>
+    <script src="{% static 'core/gallery.js' %}"></script>
 {% endblock %}
 {% block content %}
     <div>
@@ -61,12 +61,12 @@
 
             <div class="mt-5 bg-green p-3">
                 <div class="mb-3">
-                    <h2 class="text-center h3"> Популярные просмотры</h2>
+                    <h2 class="text-center h3"> Недавние просмотры</h2>
                 </div>
                 <div class="row">
                     {% for card in random_cards %}
                         <div class="col-12 col-md-3">
-                            <div class="card-new card-new-sm">
+                            <div class="card-new-pop">
                                 {% if card.image %}
                                     <div class="new-card-header">
                                         <a href="{{ card.get_absolute_url }}">
@@ -77,6 +77,9 @@
                                     </div>
                                 {% endif %}
                                 <div class="new-card-title">{{ card.name }}</div>
+                                <div class="new-card-body">
+                                    <p>{{ card.text_preview }}</p>
+                                </div>
                                 {% if card.description %}
                                     <div class="new-card-body">
                                         <p>{{ card.description }}</p>
@@ -84,7 +87,10 @@
                                 {% endif %}
                                 <div class="new-card-footer">
                                     {% if not card.is_disabled %}
-                                        <a href="{{ card.get_absolute_url }}">Подробнее</a>
+                                      <div class="new-card-footer">
+                                            <a href="{{ card.get_absolute_url }}">
+                                                Подробнее</a>
+                                        </div>
                                     {% else %}
                                         <a href="#" class="new-card-empty-link">Раздел в разработке</a>
                                     {% endif %}
@@ -95,14 +101,14 @@
                 </div>
             </div>
             {% for author_type, authors in authors_by_types.items %}
-                <div class="mt-5 {% if forloop.counter0 == 1 %}bg-green{% elif forloop.counter0 == 2 %}bg-green{% elif forloop.counter0 == 4 %}bg-green{% endif %} p-3">
+                <div class="mt-5 {% if forloop.counter0 == 1 %}bg-green{% elif forloop.counter0 == 2 %}bg-rose{% elif forloop.counter0 == 4 %}bg-green{% endif %} p-3">
                     <div class="mb-3">
                         <h2 class="text-center h3">{{ authors.0.get_type_display }}</h2>
                     </div>
                     <div class="row">
                         {% for card in authors %}
                             <div class="col-12 col-md-3">
-                                <div class="card-new card-new-sm">
+                              <div class="new-card-body">
                                     {% if card.image %}
                                         <div class="new-card-header">
                                             <a href="{{ card.get_absolute_url }}">
@@ -113,6 +119,7 @@
                                         </div>
                                     {% endif %}
                                     <div class="new-card-title">{{ card.name }}</div>
+                                    <p>{{ card.text_preview }}</p>
                                     {% if card.get_first_video_id %}
                                         <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
                                              data-url="{{ card.get_absolute_url }}"
@@ -152,7 +159,7 @@
                 <div class="row">
                     {% for card in random_films %}
                         <div class="col-12 col-md-3">
-                            <div class="card-new card-new-sm">
+                            <div class="new-card-body">
                                 {% if card.image %}
                                     <div class="new-card-header">
                                         <a href="{{ card.get_absolute_url }}">
@@ -163,6 +170,7 @@
                                     </div>
                                 {% endif %}
                                 <div class="new-card-title">{{ card.name }}</div>
+                                <p>{{ card.text_preview }}</p>
                                 {% if card.description %}
                                     <div class="new-card-body">
                                         <p>{{ card.description }}</p>
@@ -198,6 +206,7 @@
                                     </div>
                                 {% endif %}
                                 <div class="new-card-title">{{ card.name }}</div>
+                                <p>{{ card.text_preview }}</p>
                                 {% if card.get_first_video_id %}
                                     <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
                                          data-url="{{ card.get_absolute_url }}"
@@ -211,7 +220,7 @@
                                             <i class="fas fa-pause"></i>
                                         </span>
                                     </div>
-                                    {% endif %}
+                                {% endif %}
                                 {% if card.description %}
                                     <div class="new-card-body">
                                         <p>{{ card.description }}</p>
@@ -230,7 +239,8 @@
                 </div>
                 <div class="mt-5">
                     <div>
-                        <h2 class="text-center h3">Поэты Серебрянного века</h2>
+                        <h2 class="text-center h3"><a href="/genre/serebryannogo-veka/detail"
+                                                      class="new-card-empty-link">Поэты Серебряного века</a></h2>
                     </div>
                     <div class="row">
                         {% for card in silver_items %}
@@ -247,6 +257,7 @@
                                             </div>
                                         {% endif %}
                                         <div class="new-card-title">{{ card.name }}</div>
+                                        <p>{{ card.text_preview }}</p>
                                         {% if card.get_first_video_id %}
                                             <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
                                                  data-url="{{ card.get_absolute_url }}"
@@ -283,6 +294,6 @@
         </div>
     </div>
     <script>
-    initCards()
+        initCards()
     </script>
 {% endblock %}

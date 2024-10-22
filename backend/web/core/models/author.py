@@ -31,13 +31,13 @@ class TypeChoices:
 
 
 author_type_choices = [
-    [TypeChoices.MUSIC, 'Музыкант'],
-    [TypeChoices.WRITER, 'Литератор, Литературное произведение'],
-    [TypeChoices.ARTIST, 'Художник'],
-    [TypeChoices.PHILOSOPHER, 'Философ'],
+    [TypeChoices.MUSIC, 'Музыканты'],
+    [TypeChoices.WRITER, 'Литераторы, Литературные произведения'],
+    [TypeChoices.ARTIST, 'Художники'],
+    [TypeChoices.PHILOSOPHER, 'Философы'],
     [TypeChoices.LECTOR, 'Лектор'],
-    [TypeChoices.DIRECTOR, 'Режиссер'],
-    [TypeChoices.SPIRITUAL, 'Духоносная персона'],
+    [TypeChoices.DIRECTOR, 'Режиссеры'],
+    [TypeChoices.SPIRITUAL, 'Духовные личности'],
 ]
 
 

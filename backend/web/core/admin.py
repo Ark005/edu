@@ -93,9 +93,9 @@ class FilmAdmin(admin.ModelAdmin):
 
 @admin.register(Picture)
 class PictureAdmin(admin.ModelAdmin):
-    pass
     prepopulated_fields = {"slug": ["name"]}
     search_fields = ['name']
+
 
 
 @admin.register(Century)
