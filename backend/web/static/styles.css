@@ -105,12 +105,6 @@ span, a, p, div, h1, h2, h3 {
     flex-direction: column;
 }
 
-.card-new-pop {
-    transition: 0.2s;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-}
 .card-new.card-new-sm {
     height: auto;
 }

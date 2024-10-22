@@ -61,12 +61,12 @@
 
             <div class="mt-5 bg-green p-3">
                 <div class="mb-3">
-                    <h2 class="text-center h3"> Недавние просмотры</h2>
+                    <h2 class="text-center h3">Недавние просмотры</h2>
                 </div>
                 <div class="row">
                     {% for card in random_cards %}
                         <div class="col-12 col-md-3">
-                            <div class="card-new-pop">
+                            <div class="card-new card-new-lg">
                                 {% if card.image %}
                                     <div class="new-card-header">
                                         <a href="{{ card.get_absolute_url }}">
@@ -80,14 +80,9 @@
                                 <div class="new-card-body">
                                     <p>{{ card.text_preview }}</p>
                                 </div>
-                                {% if card.description %}
-                                    <div class="new-card-body">
-                                        <p>{{ card.description }}</p>
-                                    </div>
-                                {% endif %}
                                 <div class="new-card-footer">
                                     {% if not card.is_disabled %}
-                                      <div class="new-card-footer">
+                                        <div class="new-card-footer">
                                             <a href="{{ card.get_absolute_url }}">
                                                 Подробнее</a>
                                         </div>
@@ -108,7 +103,7 @@
                     <div class="row">
                         {% for card in authors %}
                             <div class="col-12 col-md-3">
-                              <div class="new-card-body">
+                                <div class="new-card-body">
                                     {% if card.image %}
                                         <div class="new-card-header">
                                             <a href="{{ card.get_absolute_url }}">
