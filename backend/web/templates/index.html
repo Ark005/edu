@@ -66,7 +66,7 @@
                 <div class="row">
                     {% for card in random_cards %}
                         <div class="col-12 col-md-3">
-                            <div class="card-new card-new-lg">
+                            <div class="card-new card-new-sm">
                                 {% if card.image %}
                                     <div class="new-card-header">
                                         <a href="{{ card.get_absolute_url }}">
@@ -82,10 +82,7 @@
                                 </div>
                                 <div class="new-card-footer">
                                     {% if not card.is_disabled %}
-                                        <div class="new-card-footer">
-                                            <a href="{{ card.get_absolute_url }}">
-                                                Подробнее</a>
-                                        </div>
+                                        <a href="{{ card.get_absolute_url }}">Подробнее</a>
                                     {% else %}
                                         <a href="#" class="new-card-empty-link">Раздел в разработке</a>
                                     {% endif %}
@@ -103,7 +100,7 @@
                     <div class="row">
                         {% for card in authors %}
                             <div class="col-12 col-md-3">
-                                <div class="new-card-body">
+                                <div class="card-new card-new-sm">
                                     {% if card.image %}
                                         <div class="new-card-header">
                                             <a href="{{ card.get_absolute_url }}">
@@ -114,7 +111,6 @@
                                         </div>
                                     {% endif %}
                                     <div class="new-card-title">{{ card.name }}</div>
-                                    <p>{{ card.text_preview }}</p>
                                     {% if card.get_first_video_id %}
                                         <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
                                              data-url="{{ card.get_absolute_url }}"
@@ -129,9 +125,9 @@
                                             </span>
                                         </div>
                                     {% endif %}
-                                    {% if card.description %}
+                                    {% if card.text_preview %}
                                         <div class="new-card-body">
-                                            <p>{{ card.description }}</p>
+                                            <p>{{ card.text_preview }}</p>
                                         </div>
                                     {% endif %}
                                     <div class="new-card-footer">
@@ -154,7 +150,7 @@
                 <div class="row">
                     {% for card in random_films %}
                         <div class="col-12 col-md-3">
-                            <div class="new-card-body">
+                            <div class="card-new card-new-sm">
                                 {% if card.image %}
                                     <div class="new-card-header">
                                         <a href="{{ card.get_absolute_url }}">
@@ -165,12 +161,6 @@
                                     </div>
                                 {% endif %}
                                 <div class="new-card-title">{{ card.name }}</div>
-                                <p>{{ card.text_preview }}</p>
-                                {% if card.description %}
-                                    <div class="new-card-body">
-                                        <p>{{ card.description }}</p>
-                                    </div>
-                                {% endif %}
                                 <div class="new-card-footer">
                                     {% if not card.is_disabled %}
                                         <a href="{{ card.get_absolute_url }}">Подробнее</a>
@@ -185,7 +175,7 @@
             </div>
             <div class="mt-5">
                 <div>
-                    <h2 class=" text-center h3"> Детская литература</h2>
+                    <h2 class=" text-center h3">Детская литература</h2>
                 </div>
                 <div class="row">
                     {% for card in children_items %}
@@ -201,7 +191,6 @@
                                     </div>
                                 {% endif %}
                                 <div class="new-card-title">{{ card.name }}</div>
-                                <p>{{ card.text_preview }}</p>
                                 {% if card.get_first_video_id %}
                                     <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
                                          data-url="{{ card.get_absolute_url }}"
@@ -216,9 +205,9 @@
                                         </span>
                                     </div>
                                 {% endif %}
-                                {% if card.description %}
+                                {% if card.text_preview %}
                                     <div class="new-card-body">
-                                        <p>{{ card.description }}</p>
+                                        <p>{{ card.text_preview }}</p>
                                     </div>
                                 {% endif %}
                                 <div class="new-card-footer">
@@ -234,8 +223,10 @@
                 </div>
                 <div class="mt-5">
                     <div>
-                        <h2 class="text-center h3"><a href="/genre/serebryannogo-veka/detail"
-                                                      class="new-card-empty-link">Поэты Серебряного века</a></h2>
+                        <h2 class="text-center h3">
+                            <a href="/genre/serebryannogo-veka/detail"
+                               class="new-card-empty-link">Поэты Серебряного века</a>
+                        </h2>
                     </div>
                     <div class="row">
                         {% for card in silver_items %}
@@ -252,7 +243,6 @@
                                             </div>
                                         {% endif %}
                                         <div class="new-card-title">{{ card.name }}</div>
-                                        <p>{{ card.text_preview }}</p>
                                         {% if card.get_first_video_id %}
                                             <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
                                                  data-url="{{ card.get_absolute_url }}"
@@ -267,9 +257,9 @@
                                                 </span>
                                             </div>
                                         {% endif %}
-                                        {% if card.description %}
+                                        {% if card.text_preview %}
                                             <div class="new-card-body">
-                                                <p>{{ card.description }}</p>
+                                                <p>{{ card.text_preview }}</p>
                                             </div>
                                         {% endif %}
                                         <div class="new-card-footer">
