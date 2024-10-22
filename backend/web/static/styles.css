@@ -225,11 +225,26 @@ span, a, p, div, h1, h2, h3 {
 .card-new.video-card iframe {
     height: 180px;
 }
+
 .card-new.video-card .new-card-header {
     height: 250px;
 }
 
-.picture {
-    width: 100%;
-    height: 350px;
+.pictures-carousel {
+    display: flex;
+    align-items: center;
+}
+.pictures-carousel {
+    display: flex;
+    overflow: auto;
+    width: 1200px;
+    white-space: nowrap;
+}
+.pictures-carousel-item:not(:first-child) {
+    margin-left: 5px;
+}
+.pictures-carousel-item > img {
+    height: 250px;
+    object-fit: cover;
+    width: 200px;
 }

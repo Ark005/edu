@@ -1,15 +1,24 @@
-function initGallery () {
+function initGallery() {
     const galleryItems = $(".gallery-item")
     const galleryActiveSection = $(".gallery-active")
     galleryItems.click(function (event) {
         const target = $(event.target)
+        const dataType = extractFromParent(target, "data-type")
+        if (dataType === "image") {
+            const url = extractFromParent(target, "#")
+            const alt = extractFromParent(target, "data-caption")
+            const src = extractFromParent(target, "data-src")
+            const cardImage = buildCardImage(url, src, alt)
+            insertIFrame(cardImage, galleryActiveSection)
+            return
+        }
         const videoId = getVideoId(target)
         const iframe = buildIFrame(videoId)
         insertIFrame(iframe, galleryActiveSection)
     })
 }
 
-function initCards () {
+function initCards() {
     const pauseBtn = $(".video-pause")
     const playBtn = $(".video-play")
 
@@ -37,7 +46,7 @@ function initCards () {
     })
 }
 
-function insertIFrame (iframe, targetEl) {
+function insertIFrame(iframe, targetEl) {
     targetEl.html("")
     $(iframe).appendTo(targetEl)
 }
@@ -59,7 +68,7 @@ const buildIFrame = (videoId) => {
     return iFramePattern.replace("{{ video.slug }}", videoLink)
 }
 
-function buildVideoLink (videoId, source = "ricktube") {
+function buildVideoLink(videoId, source = "ricktube") {
     const ricktubePattern = "https://ricktube.ru/video?q=https://youtu.be/"
     const youtubePattern = "https://www.youtube.com/embed/"
     return source === "ricktube" ? ricktubePattern + videoId : youtubePattern + videoId
