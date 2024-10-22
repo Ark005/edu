@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.db.models.signals import pre_save
 from slugify import slugify
 
+from core.utils.video import get_video_preview_link, get_video_id
+
 
 class Video(models.Model):
 
@@ -28,6 +30,12 @@ class Video(models.Model):
         verbose_name='Название'
 
     )
+
+    def get_video_id(self):
+        return get_video_id(self.slug)
+
+    def get_preview_image(self):
+        return get_video_preview_link(self.slug)
 
     def get_absolute_url(self):
         return reverse('author_detail', kwargs={'slug': self.author.slug})

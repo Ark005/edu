@@ -1,71 +1,57 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Исследование мировоззрения Человека. Великие деятели культуры: биографии, труды и влияние{% endblock %}
-{% block description %}Откройте для себя образ мысли великих деятелей культуры: биографии, ключевые работы, трактаты и
+{% block description %}
+    Откройте для себя образ мысли великих деятелей культуры: биографии, ключевые работы, трактаты и
     влияние на
     мировую историю. Кратко и содержательно о выдающихся философах, литераторах и других значимых
-    личностях.{% endblock %}
+    личностях.
+{% endblock %}
+{% block extra_static %}
+    <script src="{% static 'core/gallery.js' %}"></script>
+{% endblock %}
 {% block content %}
-    <style type="text/css">
-        body {
-            background: url(images/star.png); /* Фоновый рисунок */
-        }
-
-        .semiopacity {
-            background: #747a7a; /* Цвет фона */
-            padding: 5px; /* Поля вокруг текста */
-            opacity: 0.3; /* Полупрозрачный фон */
-            filter: alpha(Opacity=70); /* Прозрачность в IE */
-            color: #fff; /* Цвет текста */
-        }
-    </style>
-
-    <div class="d-flex justify-content-center mb-3">
-        <div>
-            <label for="customRange3" class="form-label"><strong>столетие:</strong></label>
+    <div>
+        <div class="d-flex flex-wrap align-items-center justify-content-center">
             {% for century in centuries %}
-                <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
+                <a class="century-item me-1" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
             {% endfor %}
-            <a class="text-dark" href="{{ century.get_absolute_url }}">{{ century.display_name }}</a>
-
         </div>
     </div>
-
-    <div>
-        <h1 class="text-center h3">Мир - комплекс инструментов для строительства
-            человеком самого себя. К. Ясперс</h1>
+    <div class="my-4">
+        <h1 class="text-center  fs-3 fw-normal">Мир - комплекс инструментов для строительства
+            человеком самого себя. Карл Ясперс</h1>
     </div>
 
+    {% comment %}
+        <div>
+            <h2 class="text-center text-blue">Типы мировоззрения человека</h2>
+        </div>
+    {% endcomment %}
     <div>
-        <h2 class="text-center text-blue">Типы мировоззрения человека</h2>
-    </div>
-
-    <div>
-        <div class="container center">
+        <div class="container">
             <div class="row">
-
                 {% for supercategory in object_list %}
                     <div class="col-12 col-md-3">
-                        <div class="card" style="height: 29rem; " style="width: 20rem;">
-                            <div class="text-center text-blue p-3">{{ supercategory.name.title }}</div>
+                        <div class="card-new">
                             {% if supercategory.image %}
-                                <div class="center card-body">
-
-                                    <center>
-                                        <a href="{{ supercategory.get_absolute_url }}">
-                                            <img width="260" src="{{ supercategory.image.url }}"
-                                                 alt="{{ supercategory.name }}"
-                                                 class="supercategory-image">
-                                            <h6 class="text-center text-blue">{{ supercategory.description }}</h6>
-                                        </a>
-                                    </center>
+                                <div class="new-card-header">
+                                    <a href="{{ supercategory.get_absolute_url }}">
+                                        <img width="260" src="{{ supercategory.image.url }}"
+                                             alt="{{ supercategory.name }}"
+                                             class="new-card-image">
+                                    </a>
                                 </div>
                             {% endif %}
-                            <div class="card-footer text-center text-blue">
+                            <div class="new-card-title">{{ supercategory.name }}</div>
+                            <div class="new-card-body">
+                                <p>{{ supercategory.description }}</p>
+                            </div>
+                            <div class="new-card-footer">
                                 {% if not supercategory.is_disabled %}
-                                    <a href="{{ supercategory.get_absolute_url }}"><h6 style="color:darkgrey;">
-                                        Подробнее</h6></a>
+                                    <a href="{{ supercategory.get_absolute_url }}">Подробнее</a>
                                 {% else %}
-                                    <a href="#" class="text-decoration-none text-muted">Раздел в разработке</a>
+                                    <a href="#" class="new-card-empty-link">Раздел в разработке</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -73,157 +59,241 @@
                 {% endfor %}
             </div>
 
-            <div class="mt-5">
-
-                <div>
-                    <h2 class=" text-center h3"> Популярные просмотры</h2>
+            <div class="mt-5 bg-green p-3">
+                <div class="mb-3">
+                    <h2 class="text-center h3"> Недавние просмотры</h2>
                 </div>
-
-                <center>
+                <div class="row">
+                    {% for card in random_cards %}
+                        <div class="col-12 col-md-3">
+                            <div class="card-new-pop">
+                                {% if card.image %}
+                                    <div class="new-card-header">
+                                        <a href="{{ card.get_absolute_url }}">
+                                            <img width="260" src="{{ card.image.url }}"
+                                                 alt="{{ card.name }}"
+                                                 class="new-card-image">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                <div class="new-card-title">{{ card.name }}</div>
+                                <div class="new-card-body">
+                                    <p>{{ card.text_preview }}</p>
+                                </div>
+                                {% if card.description %}
+                                    <div class="new-card-body">
+                                        <p>{{ card.description }}</p>
+                                    </div>
+                                {% endif %}
+                                <div class="new-card-footer">
+                                    {% if not card.is_disabled %}
+                                      <div class="new-card-footer">
+                                            <a href="{{ card.get_absolute_url }}">
+                                                Подробнее</a>
+                                        </div>
+                                    {% else %}
+                                        <a href="#" class="new-card-empty-link">Раздел в разработке</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% for author_type, authors in authors_by_types.items %}
+                <div class="mt-5 {% if forloop.counter0 == 1 %}bg-green{% elif forloop.counter0 == 2 %}bg-rose{% elif forloop.counter0 == 4 %}bg-green{% endif %} p-3">
+                    <div class="mb-3">
+                        <h2 class="text-center h3">{{ authors.0.get_type_display }}</h2>
+                    </div>
                     <div class="row">
-                        {% for card in random_cards %}
-                            <div class="col-12 col-md-3 mt-3">
-                                <div class="card">
-                                    <div class="text-center p-3">{{ card.name }}</div>
+                        {% for card in authors %}
+                            <div class="col-12 col-md-3">
+                              <div class="new-card-body">
                                     {% if card.image %}
-                                        <div class="center card-body">
+                                        <div class="new-card-header">
                                             <a href="{{ card.get_absolute_url }}">
                                                 <img width="260" src="{{ card.image.url }}"
                                                      alt="{{ card.name }}"
-                                                     class="supercategory-image" >
+                                                     class="new-card-image">
                                             </a>
                                         </div>
                                     {% endif %}
-                                    <div class="card-footer text-center">
-                                        <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">Подробнее</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </center>
-            </div>
-            {% for author_type, authors in authors_by_types.items %}
-                <center>
-                    <div class="mt-5">
-                        <h2 class="text-center h4"></h2>
-                        <h2 class="text-center h3 semiopacity">  {{ authors.0.get_type_display }}</h2>
-
-                        <div class="row">
-                            {% for card in authors %}
-                                <div class="col-12 col-md-3 mt-3">
-                                    <div class="card">
-                                        <div class="text-center p-3">{{ card.name }}</div>
-                                        {% if card.image %}
-                                            <div class="center card-body">
-
-                                                <a href="{{ card.get_absolute_url }}">
-                                                    <img width="260" src="{{ card.image.url }}"
-                                                         alt="{{ card.name }}"
-                                                         class="supercategory-image">
-                                                </a>
-
-                                            </div>
-                                        {% endif %}
-                                        <div class="card-footer text-center">
-                                            <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">
-                                                Подробнее</h6></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                </center>
-            {% endfor %}
-            <div class="mt-5">
-                <center>
-                    <div>
-                        <h2 class=" text-center h3">Кино</h2>
-                    </div>
-
-                    <h2 class="text-center h4"></h2>
-                    <div class="row">
-                        {% for card in random_films %}
-                            <div class="col-12 col-md-3 mt-3">
-                                <div class="card">
-                                    <div class="text-center p-3">{{ card.name }}</div>
-                                    {% if card.image %}
-                                        <div class="center card-body">
-                                            <img width="260" src="{{ card.image.url }}"
-                                                 alt="{{ card.name }}"
-                                                 class="supercategory-image">
+                                    <div class="new-card-title">{{ card.name }}</div>
+                                    <p>{{ card.text_preview }}</p>
+                                    {% if card.get_first_video_id %}
+                                        <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                             data-url="{{ card.get_absolute_url }}"
+                                             data-img-alt="{{ card.name }}"
+                                             data-src="{{ card.get_first_video_id }}"
+                                             class="new-card-expand">
+                                            <span class="video-play">
+                                                <i class="fas fa-play"></i>
+                                            </span>
+                                            <span class="video-pause ms-2">
+                                                <i class="fas fa-pause"></i>
+                                            </span>
                                         </div>
                                     {% endif %}
-                                    <div class="card-footer text-center">
-                                        <a href="{{ card.get_absolute_url }}"><h6 style="color:#267cab;">Подробнее</h6>
-                                        </a>
+                                    {% if card.description %}
+                                        <div class="new-card-body">
+                                            <p>{{ card.description }}</p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="new-card-footer">
+                                        {% if not card.is_disabled %}
+                                            <a href="{{ card.get_absolute_url }}">Подробнее</a>
+                                        {% else %}
+                                            <a href="#" class="new-card-empty-link">Раздел в разработке</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
-                </center>
+                </div>
+            {% endfor %}
+            <div class="mt-5">
+                <div>
+                    <h2 class="text-center h3">Кино</h2>
+                </div>
+                <div class="row">
+                    {% for card in random_films %}
+                        <div class="col-12 col-md-3">
+                            <div class="new-card-body">
+                                {% if card.image %}
+                                    <div class="new-card-header">
+                                        <a href="{{ card.get_absolute_url }}">
+                                            <img width="260" src="{{ card.image.url }}"
+                                                 alt="{{ card.name }}"
+                                                 class="new-card-image">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                <div class="new-card-title">{{ card.name }}</div>
+                                <p>{{ card.text_preview }}</p>
+                                {% if card.description %}
+                                    <div class="new-card-body">
+                                        <p>{{ card.description }}</p>
+                                    </div>
+                                {% endif %}
+                                <div class="new-card-footer">
+                                    {% if not card.is_disabled %}
+                                        <a href="{{ card.get_absolute_url }}">Подробнее</a>
+                                    {% else %}
+                                        <a href="#" class="new-card-empty-link">Раздел в разработке</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
             <div class="mt-5">
                 <div>
                     <h2 class=" text-center h3"> Детская литература</h2>
                 </div>
-                <center>
-                    <div class="row">
-                        {% for card in children_items %}
-                            <div class="col-12 col-md-3 mt-3">
-                                <div class="card">
-                                    <div class="text-center p-3">{{ card.name }}</div>
-                                    {% if card.image %}
-                                        <div class="center card-body">
-                                            <a href="{{ card.get_absolute_url }}">
-                                                <img width="260" src="{{ card.image.url }}"
-                                                     alt="{{ card.name }}"
-                                                     class="supercategory-image">
-                                            </a>
-                                        </div>
-                                    {% endif %}
-                                    <div class="card-footer text-center">
-                                        <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">Подробнее</h6>
+                <div class="row">
+                    {% for card in children_items %}
+                        <div class="col-12 col-md-3">
+                            <div class="card-new card-new-sm">
+                                {% if card.image %}
+                                    <div class="new-card-header">
+                                        <a href="{{ card.get_absolute_url }}">
+                                            <img width="260" src="{{ card.image.url }}"
+                                                 alt="{{ card.name }}"
+                                                 class="new-card-image">
                                         </a>
+                                    </div>
+                                {% endif %}
+                                <div class="new-card-title">{{ card.name }}</div>
+                                <p>{{ card.text_preview }}</p>
+                                {% if card.get_first_video_id %}
+                                    <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                         data-url="{{ card.get_absolute_url }}"
+                                         data-img-alt="{{ card.name }}"
+                                         data-src="{{ card.get_first_video_id }}"
+                                         class="new-card-expand">
+                                        <span class="video-play">
+                                            <i class="fas fa-play"></i>
+                                        </span>
+                                        <span class="video-pause ms-2">
+                                            <i class="fas fa-pause"></i>
+                                        </span>
+                                    </div>
+                                {% endif %}
+                                {% if card.description %}
+                                    <div class="new-card-body">
+                                        <p>{{ card.description }}</p>
+                                    </div>
+                                {% endif %}
+                                <div class="new-card-footer">
+                                    {% if not card.is_disabled %}
+                                        <a href="{{ card.get_absolute_url }}">Подробнее</a>
+                                    {% else %}
+                                        <a href="#" class="new-card-empty-link">Раздел в разработке</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-5">
+                    <div>
+                        <h2 class="text-center h3"><a href="/genre/serebryannogo-veka/detail"
+                                                      class="new-card-empty-link">Поэты Серебряного века</a></h2>
+                    </div>
+                    <div class="row">
+                        {% for card in silver_items %}
+                            <div class="col-12 col-md-3">
+                                <div class="card-new card-new-sm">
+                                    <div class="mt-5 bg-green p-3">
+                                        {% if card.image %}
+                                            <div class="new-card-header">
+                                                <a href="{{ card.get_absolute_url }}">
+                                                    <img width="260" src="{{ card.image.url }}"
+                                                         alt="{{ card.name }}"
+                                                         class="new-card-image">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                        <div class="new-card-title">{{ card.name }}</div>
+                                        <p>{{ card.text_preview }}</p>
+                                        {% if card.get_first_video_id %}
+                                            <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                                 data-url="{{ card.get_absolute_url }}"
+                                                 data-img-alt="{{ card.name }}"
+                                                 data-src="{{ card.get_first_video_id }}"
+                                                 class="new-card-expand">
+                                                <span class="video-play">
+                                                    <i class="fas fa-play"></i>
+                                                </span>
+                                                <span class="video-pause ms-2">
+                                                    <i class="fas fa-pause"></i>
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                        {% if card.description %}
+                                            <div class="new-card-body">
+                                                <p>{{ card.description }}</p>
+                                            </div>
+                                        {% endif %}
+                                        <div class="new-card-footer">
+                                            {% if not card.is_disabled %}
+                                                <a href="{{ card.get_absolute_url }}">Подробнее</a>
+                                            {% else %}
+                                                <a href="#" class="new-card-empty-link">Раздел в разработке</a>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
-                </center>
-                <div class="mt-5">
-                    <center>
-                        <div>
-                            <h2 class=" text-center h3">Поэты Серебрянного века</h2>
-                        </div>
-                        <div class="row">
-                            {% for card in silver_items %}
-                                <div class="col-12 col-md-3 mt-3">
-                                    <div class="card">
-                                        <div class="text-center p-3">{{ card.name }}</div>
-                                        {% if card.image %}
-                                            <div class="center card-body">
-                                                <a href="{{ card.get_absolute_url }}">
-                                                    <img width="260" src="{{ card.image.url }}"
-                                                         alt="{{ card.name }}"
-                                                         class="supercategory-image">
-                                                </a>
-                                            </div>
-                                        {% endif %}
-                                        <div class="card-footer text-center">
-                                            <a href="{{ card.get_absolute_url }}"><h6 style="color:darkgrey;">
-                                                Подробнее</h6>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </center>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        initCards()
+    </script>
 {% endblock %}

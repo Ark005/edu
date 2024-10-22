@@ -68,8 +68,8 @@ class SongAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["name", "supercategory", "is_active"]
-    list_editable = ["supercategory"]
+    list_display = ["name", "supercategory", "short_name", "is_active"]
+    list_editable = ["supercategory", "short_name"]
     actions = ["action_disable", "action_enable"]
 
     @admin.display(description="Раздел активен", boolean=True)
@@ -93,9 +93,9 @@ class FilmAdmin(admin.ModelAdmin):
 
 @admin.register(Picture)
 class PictureAdmin(admin.ModelAdmin):
-    pass
     prepopulated_fields = {"slug": ["name"]}
     search_fields = ['name']
+
 
 
 @admin.register(Century)

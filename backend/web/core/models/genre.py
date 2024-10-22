@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 from core.models.author import author_type_choices
+from core.utils.video import get_video_id
 
 
 class Genre(models.Model):
@@ -41,6 +42,12 @@ class Genre(models.Model):
         blank=True,
         null=True
     )
+
+    def get_first_video_id(self):
+        if not self.website:
+            return
+        return get_video_id(self.website)
+
     is_blocked = models.BooleanField(default=False, verbose_name="Раздел заблокирован")
     is_disabled = models.BooleanField(default=False, verbose_name="Раздел выключен")
 

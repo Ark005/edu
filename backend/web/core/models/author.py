@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.db.models.signals import pre_save
 from .century import Century
+from ..utils.video import get_video_id
 
 
 def get_century_choices():
@@ -30,13 +31,13 @@ class TypeChoices:
 
 
 author_type_choices = [
-    [TypeChoices.MUSIC, 'Музыкант'],
-    [TypeChoices.WRITER, 'Литератор, Литературное произведение'],
-    [TypeChoices.ARTIST, 'Художник'],
-    [TypeChoices.PHILOSOPHER, 'Философ'],
+    [TypeChoices.MUSIC, 'Музыканты'],
+    [TypeChoices.WRITER, 'Литераторы, Литературные произведения'],
+    [TypeChoices.ARTIST, 'Художники'],
+    [TypeChoices.PHILOSOPHER, 'Философы'],
     [TypeChoices.LECTOR, 'Лектор'],
-    [TypeChoices.DIRECTOR, 'Режиссер'],
-    [TypeChoices.SPIRITUAL, 'Духоносная персона'],
+    [TypeChoices.DIRECTOR, 'Режиссеры'],
+    [TypeChoices.SPIRITUAL, 'Духовные личности'],
 ]
 
 
@@ -182,6 +183,20 @@ class Author(models.Model):
 
         blank=True,
     )
+
+    def get_first_video_id(self):
+        video_url = self.get_first_video_link()
+        if not video_url:
+            return
+        return get_video_id(video_url)
+
+    def get_first_video_link(self):
+        media = None
+        if self.songs.exists():
+            media = self.songs.first().youtube_link
+        elif self.videos.exists():
+            media = self.videos.first().slug
+        return media
 
     def get_reversed_name(self):
         if not self.last_name:

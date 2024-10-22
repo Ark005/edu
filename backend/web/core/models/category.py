@@ -2,6 +2,9 @@ from django.db import models
 from core.models.author import author_type_choices
 from django.urls import reverse
 
+from core.utils.video import get_video_id
+
+
 class Category(models.Model):
 
     name = models.CharField(
@@ -10,6 +13,7 @@ class Category(models.Model):
     is_primary = models.BooleanField(
         default=False
     )
+    short_name = models.CharField(max_length=255, verbose_name="Короткое название", null=True, blank=True)
     main_image = models.ImageField(
         upload_to='image',
         blank=True,
@@ -42,6 +46,11 @@ class Category(models.Model):
         null=True
     )
     is_disabled = models.BooleanField(default=False, verbose_name="Раздел выключен")
+
+    def get_first_video_id(self):
+        if not self.website:
+            return
+        return get_video_id(self.website)
 
     def __str__(self):
         return self.name

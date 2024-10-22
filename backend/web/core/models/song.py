@@ -8,6 +8,8 @@ from django.db.models.signals import pre_save
 from slugify import slugify
 from django.db.models import TextChoices
 
+from core.utils.video import get_video_preview_link, get_video_id
+
 
 class PlayerTypeChoices(TextChoices):
     YOUTUBE = ("youtube", "youtube")
@@ -87,6 +89,12 @@ class Song(models.Model):
         verbose_name='тип',
         default=PlayerTypeChoices.YOUTUBE
     )
+
+    def get_video_id(self):
+        return get_video_id(self.youtube_link)
+
+    def get_preview_image(self):
+        return get_video_preview_link(self.youtube_link)
 
 
     @staticmethod
