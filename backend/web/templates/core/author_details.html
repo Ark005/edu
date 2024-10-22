@@ -2,6 +2,8 @@
 {% load static %}
 {% block extra_static %}
     <script src="{% static 'core/gallery.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
 {% endblock %}
 {% block title %}{{ author.name }}{% endblock %}
 {% block description %}
@@ -65,24 +67,26 @@
             </div>
         {% endif %}
     </div>
-    <script>
-        initGallery()
-    </script>
     {% if author.pictures.exists %}
-        <div class="gallery">
-              <div class="picture">
-                <div class="row">
-                        {% for picture in author.pictures.all %}
-                            {% if picture.file %}
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <img class="mh-400" src="{{ picture.file.url }}">
-                                    <h6>{{ picture.name }}</h6>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
+        <div class="mt-5 container">
+            <div class="pictures-carousel">
+                {% for picture in author.pictures.all %}
+                    {% if picture.file %}
+                        <div class="pictures-carousel-item gallery-item"
+                             data-type="image"
+                             data-src="{{ picture.file.url }}"
+                             data-caption="{{ picture.name }}">
+                            <img alt="{{ picture.name }}"
+                                 title="{{ picture.name }}"
+                                 class="carousel-image"
+                                 src="{{ picture.file.url }}">
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-
+        </div>
     {% endif %}
+    <script>
+        initGallery();
+    </script>
 {% endblock %}
