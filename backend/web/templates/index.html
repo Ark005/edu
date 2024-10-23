@@ -46,6 +46,20 @@
                             <div class="new-card-title">{{ supercategory.name }}</div>
                             <div class="new-card-body">
                                 <p>{{ supercategory.description }}</p>
+                                {% if card.get_first_video_id %}
+                                    <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                         data-url="{{ card.get_absolute_url }}"
+                                         data-img-alt="{{ card.name }}"
+                                         data-src="{{ card.get_first_video_id }}"
+                                         class="new-card-expand">
+                                            <span class="video-play">
+                                                <i class="fas fa-play"></i>
+                                            </span>
+                                        <span class="video-pause ms-2">
+                                                <i class="fas fa-pause"></i>
+                                            </span>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="new-card-footer">
                                 {% if not supercategory.is_disabled %}
@@ -77,6 +91,20 @@
                                     </div>
                                 {% endif %}
                                 <div class="new-card-title">{{ card.name }}</div>
+                                {% if card.get_first_video_id %}
+                                    <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                         data-url="{{ card.get_absolute_url }}"
+                                         data-img-alt="{{ card.name }}"
+                                         data-src="{{ card.get_first_video_id }}"
+                                         class="new-card-expand">
+                                            <span class="video-play">
+                                                <i class="fas fa-play"></i>
+                                            </span>
+                                        <span class="video-pause ms-2">
+                                                <i class="fas fa-pause"></i>
+                                            </span>
+                                    </div>
+                                {% endif %}
                                 <div class="new-card-body">
                                     <p>{{ card.text_preview }}</p>
                                 </div>
@@ -161,6 +189,20 @@
                                     </div>
                                 {% endif %}
                                 <div class="new-card-title">{{ card.name }}</div>
+                                {% if card.get_first_video_id %}
+                                    <div {% if card.image %}data-img-src="{{ card.image.url }}"{% endif %}
+                                         data-url="{{ card.get_absolute_url }}"
+                                         data-img-alt="{{ card.name }}"
+                                         data-src="{{ card.get_first_video_id }}"
+                                         class="new-card-expand">
+                                            <span class="video-play">
+                                                <i class="fas fa-play"></i>
+                                            </span>
+                                        <span class="video-pause ms-2">
+                                                <i class="fas fa-pause"></i>
+                                            </span>
+                                    </div>
+                                {% endif %}
                                 <div class="new-card-footer">
                                     {% if not card.is_disabled %}
                                         <a href="{{ card.get_absolute_url }}">Подробнее</a>
