@@ -1,14 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light border-bottom mb-3">
     <div class="container flex-column">
         <div class="d-flex w-100">
-
             <div>
-
-                <a class="ms-2 nav-supercategory"
-                     href="/"><img class="ms-2 logo-img" src="/media/image/logo.jpeg" alt=""> 005.ru</a>
+                <a class="ms-2 nav-supercategory" href="/">
+                    <img class="ms-2 me-2 logo-img" src="/media/image/logo.jpeg" alt="">005.ru
+                </a>
             </div>
             <div class="ms-auto mt-2 d-flex align-items-center">
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center flex-wrap">
                     {% for nav_category in navbar_categories %}
                         <a class="nav-category ms-2"
                            href="{{ nav_category.get_absolute_url }}">{{ nav_category.short_name.capitalize }}</a>
@@ -24,8 +23,8 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex">
-            <div class="mx-auto d-flex align-items-center">
+        <div class="d-flex mt-1">
+            <div class="mx-auto d-flex align-items-center flex-wrap">
                 {% for nav_supercategory in navbar_supercategories %}
                     <a class="ms-2 nav-supercategory"
                        href="{{ nav_supercategory.get_absolute_url }}">{{ nav_supercategory.name.capitalize }}</a>
