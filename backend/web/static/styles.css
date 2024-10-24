@@ -106,7 +106,7 @@ span, a, p, div, h1, h2, h3 {
 }
 
 .card-new.card-new-sm {
-    height: auto;
+    height: 100%;
 }
 
 .card-new.card-new-lg {
@@ -120,6 +120,13 @@ span, a, p, div, h1, h2, h3 {
 .new-card-image {
     height: 250px;
     width: 100%;
+    object-fit: cover;
+    object-position: center top;
+
+}
+
+.new-card-header {
+    background-color: #6c6c6c;
 }
 
 .new-card-body, .new-card-footer, .new-card-title {
@@ -184,8 +191,8 @@ span, a, p, div, h1, h2, h3 {
 .gallery-items {
     display: flex;
     overflow: auto;
-    width: 630px;
     white-space: nowrap;
+    scroll-behavior: smooth;
 }
 
 .gallery-item {
@@ -214,7 +221,9 @@ span, a, p, div, h1, h2, h3 {
 
 .active-image {
     height: 500px;
-    max-width: 600px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center top;
 }
 
 .gallery-iframe {
@@ -247,4 +256,14 @@ span, a, p, div, h1, h2, h3 {
     height: 250px;
     object-fit: cover;
     width: 200px;
+}
+
+@media (max-width: 768px) {
+    .gallery-items {
+        width: auto;
+    }
+}
+
+.scroll-left, .scroll-right {
+    cursor: pointer;
 }

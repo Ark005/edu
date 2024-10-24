@@ -95,5 +95,17 @@ const imagePattern = `
          alt="{{ alt }}"
          class="new-card-image">
 </a>
-
 `
+
+function initScroll () {
+    const scrollLeftBtn = $('.scroll-left')
+    const scrollRightBtn = $('.scroll-right')
+    const scrollContainer = $('.gallery-items')
+
+    scrollLeftBtn.click(function (event) {
+        scrollContainer.scrollLeft(scrollContainer.scrollLeft() - 200)
+    })
+    scrollRightBtn.click(function (event) {
+        scrollContainer.scrollLeft(scrollContainer.scrollLeft() + 200)
+    })
+}

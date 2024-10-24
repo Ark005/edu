@@ -1,10 +1,12 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
-<p></p>
-{% for search in search_data %}
-<div class="container">
-    <a href="{{search.link}}">{{search.name}}{% if search.description %} ({{ search.description }}){% endif %}</a>
-</div>
-{% endfor %}
+    <div class="container">
+        <h1 class="h2 my-3">Результаты поиска</h1>
+        {% for search in search_data %}
+            <a href="{{ search.link }}" class="d-block">
+                {{ search.name }}{% if search.description %} ({{ search.description }}){% endif %}</a>
+        {% endfor %}
+    </div>
 
-{% endblock  %}
+
+{% endblock %}
